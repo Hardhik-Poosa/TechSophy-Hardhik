@@ -70,20 +70,21 @@ ingestion → preprocessing → ml_engine → analysis → recommendations → v
 
 # 📁 Project Structure
 
-```
 
+```text
 TechSophy-Hardhik/
 ├── src/
-│   ├── analysis.py
-│   ├── config.py
-│   ├── ingestion.py
-│   ├── logging_config.py
-│   ├── ml_engine.py
-│   ├── models.py
-│   ├── preprocessing.py
-│   ├── recommendations.py
-│   ├── visualization.py
-│   └── runner.py
+│   ├── __init__.py
+│   ├── analysis.py            # Business metrics and insight computation
+│   ├── config.py              # Centralized configuration loading
+│   ├── ingestion.py           # CSV loading, cleaning, schema validation
+│   ├── logging_config.py      # Logging setup
+│   ├── ml_engine.py           # Clustering and anomaly detection
+│   ├── models.py              # Dataclasses and domain exceptions
+│   ├── preprocessing.py       # Feature engineering and scaling
+│   ├── recommendations.py     # Human-readable recommendations
+│   ├── visualization.py       # Matplotlib/Seaborn visualizations
+│   └── runner.py              # Full pipeline orchestration
 │
 ├── tests/
 │   ├── test_analysis_and_recommendations.py
@@ -93,13 +94,13 @@ TechSophy-Hardhik/
 │   ├── test_preprocessing.py
 │   ├── test_runner_integration.py
 │   ├── test_visualization.py
-│   └── conftest.py
+│   └── conftest.py            # Shared test configuration (e.g., matplotlib backend)
 │
 ├── data/
-│   ├── input_transactions.csv
-│   └── input_transactions_with_labels.csv
+│   ├── input_transactions.csv                 # Sample raw data
+│   └── input_transactions_with_labels.csv     # Optional labelled data
 │
-├── outputs/
+├── outputs/                                   # Generated reports (ignored in CI)
 │   ├── summary.txt
 │   ├── recommendations.txt
 │   ├── processed_transactions.csv
@@ -108,16 +109,20 @@ TechSophy-Hardhik/
 │   ├── anomaly_detection.png
 │   └── cluster_distribution.png
 │
-├── .github/workflows/ci.yml
-├── .pre-commit-config.yaml
-├── bandit.yaml
-├── ruff.toml
-├── pytest.ini
-├── quality.ps1
-├── config.yaml
-├── requirements.txt
-├── main.py
-└── README.md
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # CI pipeline (tests, coverage, lint, security)
+│
+├── .pre-commit-config.yaml     # Pre-commit hooks (ruff, black/format, etc.)
+├── .flake8                     # Flake8 configuration (if used)
+├── ruff.toml                   # Ruff configuration
+├── bandit.yaml                 # Bandit configuration
+├── pytest.ini                  # Pytest configuration
+├── quality.ps1                 # Local quality script (tests + coverage + bandit)
+├── config.yaml                 # Application configuration
+├── requirements.txt            # Runtime and dev dependencies
+├── main.py                     # CLI entrypoint
+└── README.md                   # This file
 
 ````
 
