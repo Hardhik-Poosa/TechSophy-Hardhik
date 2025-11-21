@@ -1,0 +1,53 @@
+# Finance Tracker Configuration
+# All tunable parameters centralized here for easy experimentation
+
+data:
+  input_path: "data/input_transactions.csv"
+  output_dir: "outputs"
+  required_columns:
+    - "Transaction Date"
+    - "Description"
+    - "Amount"
+    - "Transaction_Type"
+
+model:
+  clustering:
+    n_clusters: 5
+    random_state: 42
+    max_iter: 300
+
+  anomaly_detection:
+    contamination: 0.05
+    random_state: 42
+    n_estimators: 100
+
+preprocessing:
+  date_formats:
+    - "%Y-%m-%d"
+    - "%d/%m/%Y"
+    - "%m/%d/%Y"
+    - "%b %d, %Y"
+    - "%d-%b-%Y"
+
+  # retained for future extension; current code uses numeric features
+  text_vectorization:
+    max_features: 100
+    ngram_range: [1, 2]
+
+business_rules:
+  anomaly_threshold_std: 2.0
+  high_value_threshold: 1000.0
+  recurring_similarity_threshold: 0.9
+  recurring_min_occurrences: 2
+  category_spike_threshold: 0.30
+
+visualization:
+  output_format: "png"
+  dpi: 100
+  figure_size: [10, 6]
+  style: "seaborn-v0_8-darkgrid"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "finance_tracker.log"

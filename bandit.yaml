@@ -1,0 +1,24 @@
+# Bandit configuration for TechSophy finance tracker
+
+# Paths to include
+targets:
+  - src
+
+# Paths to exclude (tests and virtual env)
+exclude:
+  - tests
+  - .venv
+  - env
+  - venv
+  - .pytest_cache
+
+# Severity levels to report: LOW, MEDIUM, HIGH
+severity: MEDIUM
+
+# Confidence levels: LOW, MEDIUM, HIGH
+confidence: MEDIUM
+
+# Rules to skip if they are not relevant
+# (example: B101 is "use of assert" – often fine in tests, but we are already excluding tests)
+skips:
+  - B101

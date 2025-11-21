@@ -1,0 +1,30 @@
+1. Your net cash flow over the analysed period is negative (-38398.16). Consider reviewing high-spend categories and setting monthly limits.
+
+2. Spending on category 'Entertainment' increased by 52.8% in 2025-02 (total 942.14). Review recent purchases.
+
+3. Spending on category 'Entertainment' increased by 43.5% in 2025-03 (total 1352.43). Review recent purchases.
+
+4. Spending on category 'Entertainment' increased by 250.7% in 2025-10 (total 39.66). Review recent purchases.
+
+5. Spending on category 'Food' increased by 100.8% in 2025-02 (total 796.53). Review recent purchases.
+
+6. Spending on category 'Food' increased by 94.5% in 2025-12 (total 30.59). Review recent purchases.
+
+7. Spending on category 'Other' increased by 141.9% in 2025-06 (total 134.26). Review recent purchases.
+
+8. Spending on category 'Other' increased by 52.8% in 2025-10 (total 41.54). Review recent purchases.
+
+9. Spending on category 'Other' increased by 320.7% in 2025-11 (total 174.74). Review recent purchases.
+
+10. Spending on category 'Shopping' increased by 313.5% in 2025-07 (total 175.11). Review recent purchases.
+
+11. Spending on category 'Shopping' increased by 2140.3% in 2025-10 (total 2500.00). Review recent purchases.
+
+12. Spending on category 'Transport' increased by 214.5% in 2025-11 (total 70.14). Review recent purchases.
+
+13. Spending on category 'Utilities' increased by 208.8% in 2025-08 (total 179.15). Review recent purchases.
+
+14. 31 transactions were flagged as unusual. Examples include: ACH DEPOSIT SALARY, PAYPAL *SPOTIFY, APPLE STORE #R1234, WATER BILL, LYFT RIDE PGH. Verify that these are legitimate.
+
+15. Recurring transactions detected for: ACH DEPOSIT SALARY, AMAZON MKTP US*2R9, APPLE STORE #R1234, ZARA MALL 09, TARGET T-2812. Together they represent approximately 20922.56 over the analysed period. Consider cancelling any subscriptions you no longer need.
+

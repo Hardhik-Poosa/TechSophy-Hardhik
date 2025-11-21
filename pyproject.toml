@@ -1,0 +1,33 @@
+[tool.ruff]
+# Lint and format only these paths
+src = ["src", "tests"]
+
+# Target Python version
+target-version = "py310"
+
+# Max line length (compatible with Black / common style)
+line-length = 88
+
+[tool.ruff.lint]
+# Enable standard rule sets
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "I",   # import sorting
+  "B",   # flake8-bugbear
+  "UP",  # pyupgrade
+]
+
+# Things we are OK to ignore for now (can tighten later)
+ignore = [
+  "E203",  # space before ':'
+  "E266",  # too many leading '#'
+  "E501",  # line length handled differently
+]
+
+[tool.ruff.format]
+# Keep formatting simple and stable
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
