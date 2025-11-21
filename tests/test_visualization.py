@@ -10,12 +10,15 @@ Instead, we verify:
 """
 
 from pathlib import Path
-from typing import Dict
 
 import pandas as pd
-
-from src.visualization import generate_all_plots, plot_category_spend, plot_spend_over_time
-from src.visualization import plot_anomalies, plot_cluster_distribution
+from src.visualization import (
+    generate_all_plots,
+    plot_anomalies,
+    plot_category_spend,
+    plot_cluster_distribution,
+    plot_spend_over_time,
+)
 
 
 def _sample_df_with_predictions() -> pd.DataFrame:
@@ -36,7 +39,7 @@ def _sample_df_with_predictions() -> pd.DataFrame:
     )
 
 
-def _sample_analysis_result() -> Dict[str, object]:
+def _sample_analysis_result() -> dict[str, object]:
     """
     Build a minimal analysis_result dictionary compatible with generate_all_plots.
     Only the keys used by visualization are populated.
@@ -84,12 +87,16 @@ class TestVisualizationEmptyData:
         path = plot_spend_over_time(pd.DataFrame(), str(tmp_path))
         assert path is None
 
-    def test_anomaly_plot_returns_none_when_no_anomaly_column(self, tmp_path: Path) -> None:
+    def test_anomaly_plot_returns_none_when_no_anomaly_column(
+        self, tmp_path: Path
+    ) -> None:
         df = _sample_df_with_predictions().drop(columns=["is_anomaly"])
         path = plot_anomalies(df, str(tmp_path))
         assert path is None
 
-    def test_cluster_plot_returns_none_when_no_cluster_column(self, tmp_path: Path) -> None:
+    def test_cluster_plot_returns_none_when_no_cluster_column(
+        self, tmp_path: Path
+    ) -> None:
         df = _sample_df_with_predictions().drop(columns=["cluster_id"])
         path = plot_cluster_distribution(df, str(tmp_path))
         assert path is None
@@ -122,4 +129,3 @@ class TestVisualizationHappyPath:
         # All referenced files should exist on disk
         for path_str in figure_paths.values():
             assert Path(path_str).exists()
-

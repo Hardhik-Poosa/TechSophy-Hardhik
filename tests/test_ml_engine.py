@@ -9,18 +9,16 @@ Covers:
 """
 
 from pathlib import Path
-from typing import Tuple
 
 import numpy as np
 import pandas as pd
-
 from src.ml_engine import (
-    SpendingClusterer,
     AnomalyDetector,
-    train_models,
+    SpendingClusterer,
     apply_models,
-    save_models,
     load_models,
+    save_models,
+    train_models,
 )
 
 

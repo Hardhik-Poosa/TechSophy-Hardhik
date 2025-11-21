@@ -7,12 +7,10 @@ anomaly detection for unusual transaction identification.
 
 from __future__ import annotations
 
-from typing import List, Tuple, Optional    # noqa: F401
 from pathlib import Path
-
+from typing import Optional  # noqa: F401
 
 import joblib
-import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.ensemble import IsolationForest
@@ -29,7 +27,9 @@ class SpendingClusterer:
     Clustering model for discovering spending patterns using KMeans.
     """
 
-    def __init__(self, n_clusters: int = 5, random_state: int = 42, max_iter: int = 300) -> None:
+    def __init__(
+        self, n_clusters: int = 5, random_state: int = 42, max_iter: int = 300
+    ) -> None:
         self.n_clusters = n_clusters
         self.random_state = random_state
         self.max_iter = max_iter
@@ -50,7 +50,9 @@ class SpendingClusterer:
             )
             self.model.fit(features)
             self.is_fitted = True
-            logger.info("Clustering completed. Inertia=%.2f", float(self.model.inertia_))
+            logger.info(
+                "Clustering completed. Inertia=%.2f", float(self.model.inertia_)
+            )
         except Exception as exc:  # noqa: BLE001
             msg = f"Clustering failed: {exc}"
             logger.error(msg)
@@ -69,9 +71,9 @@ class SpendingClusterer:
 
     def get_cluster_profiles(
         self, df: pd.DataFrame, cluster_labels: pd.Series
-    ) -> List[ClusterProfile]:
+    ) -> list[ClusterProfile]:
         logger.info("Generating cluster profiles")
-        profiles: List[ClusterProfile] = []
+        profiles: list[ClusterProfile] = []
 
         df_with_clusters = df.copy()
         df_with_clusters["cluster"] = cluster_labels
@@ -110,7 +112,12 @@ class AnomalyDetector:
     Anomaly detection using Isolation Forest.
     """
 
-    def __init__(self, contamination: float = 0.05, random_state: int = 42, n_estimators: int = 100) -> None:
+    def __init__(
+        self,
+        contamination: float = 0.05,
+        random_state: int = 42,
+        n_estimators: int = 100,
+    ) -> None:
         self.contamination = contamination
         self.random_state = random_state
         self.n_estimators = n_estimators
@@ -150,7 +157,7 @@ class AnomalyDetector:
         return pd.Series(flags, index=features.index)
 
 
-def train_models(features: pd.DataFrame) -> Tuple[SpendingClusterer, AnomalyDetector]:
+def train_models(features: pd.DataFrame) -> tuple[SpendingClusterer, AnomalyDetector]:
     """
     Train both clusterer and anomaly detector based on model config.
     """
@@ -192,7 +199,9 @@ def apply_models(
     return df
 
 
-def save_models(clusterer: SpendingClusterer, detector: AnomalyDetector, path: str) -> None:
+def save_models(
+    clusterer: SpendingClusterer, detector: AnomalyDetector, path: str
+) -> None:
     logger.info("Saving models to %s", path)
     folder = Path(path)
     folder.mkdir(parents=True, exist_ok=True)
@@ -200,7 +209,7 @@ def save_models(clusterer: SpendingClusterer, detector: AnomalyDetector, path: s
     joblib.dump(detector, folder / "detector.pkl")
 
 
-def load_models(path: str) -> Tuple[SpendingClusterer, AnomalyDetector]:
+def load_models(path: str) -> tuple[SpendingClusterer, AnomalyDetector]:
     folder = Path(path)
     clusterer = joblib.load(folder / "clusterer.pkl")
     detector = joblib.load(folder / "detector.pkl")

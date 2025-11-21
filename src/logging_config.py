@@ -9,10 +9,8 @@ from __future__ import annotations
 import logging
 from logging import Logger
 from pathlib import Path
-from typing import Optional
 
 from src.config import get_logging_config
-
 
 _logging_configured = False
 
@@ -53,7 +51,7 @@ def configure_logging() -> None:
     _logging_configured = True
 
 
-def get_logger(name: Optional[str] = None) -> Logger:
+def get_logger(name: str | None = None) -> Logger:
     """
     Return a logger instance with global configuration applied.
     """

@@ -10,17 +10,15 @@ Covers:
 """
 
 from pathlib import Path
-from datetime import datetime
 
 import pandas as pd
 import pytest
-
 from src.ingestion import (
+    handle_missing_values,
+    ingest_transactions,
     normalize_columns,
     parse_dates,
-    handle_missing_values,
     validate_schema,
-    ingest_transactions,
 )
 from src.models import DataValidationError
 
@@ -98,6 +96,7 @@ class TestParseDates:
         assert len(result) < len(df)
         assert pd.api.types.is_datetime64_any_dtype(result["date"])
         assert result["date"].notna().all()
+
     def test_missing_date_column_raises(self) -> None:
         df = pd.DataFrame({"description": ["Test"]})
 
@@ -152,7 +151,9 @@ class TestValidateSchema:
         assert isinstance(validated, pd.DataFrame)
 
     def test_missing_required_columns_raises(self) -> None:
-        df = pd.DataFrame({"date": pd.to_datetime(["2025-01-01"]), "description": ["A"]})
+        df = pd.DataFrame(
+            {"date": pd.to_datetime(["2025-01-01"]), "description": ["A"]}
+        )
 
         with pytest.raises(DataValidationError):
             validate_schema(df)

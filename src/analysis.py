@@ -12,8 +12,6 @@ and computes:
 
 from __future__ import annotations
 
-from typing import Tuple
-
 import pandas as pd
 
 from src.logging_config import get_logger
@@ -112,7 +110,9 @@ class AnalysisService:
         logger.debug("Detecting recurring transactions")
 
         df = df.copy()
-        df["normalized_desc"] = df["description"].str.lower().str.replace(r"\s+", " ", regex=True)
+        df["normalized_desc"] = (
+            df["description"].str.lower().str.replace(r"\s+", " ", regex=True)
+        )
 
         grouped = (
             df.groupby("normalized_desc")

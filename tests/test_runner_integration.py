@@ -1,12 +1,11 @@
 # tests/test_runner_integration.py
 
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 import pandas as pd
-
-from src.runner import run_pipeline, validate_input_file
 from src.models import AnalysisSummary
+from src.runner import run_pipeline, validate_input_file
 
 
 def _create_small_input_csv(tmp_path: Path) -> str:
@@ -63,7 +62,7 @@ class TestRunnerIntegration:
 
         output_dir = tmp_path / "outputs"
 
-        result: Dict[str, Any] = run_pipeline(csv_path, str(output_dir))
+        result: dict[str, Any] = run_pipeline(csv_path, str(output_dir))
 
         # Basic success flag
         assert result["success"] is True

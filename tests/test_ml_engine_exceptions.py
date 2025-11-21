@@ -11,8 +11,7 @@ These tests deliberately feed invalid inputs to the models to ensure that:
 
 import pandas as pd
 import pytest
-
-from src.ml_engine import SpendingClusterer, AnomalyDetector
+from src.ml_engine import AnomalyDetector, SpendingClusterer
 from src.models import ModelError
 
 
@@ -44,7 +43,9 @@ class TestAnomalyDetectorExceptions:
         with pytest.raises(ModelError):
             detector.fit(features)
 
-    def test_score_and_predict_raise_model_error_if_underlying_model_fails(self) -> None:
+    def test_score_and_predict_raise_model_error_if_underlying_model_fails(
+        self,
+    ) -> None:
         """
         Simulate a corrupted detector state:
         - Mark is_fitted=True but set model=None

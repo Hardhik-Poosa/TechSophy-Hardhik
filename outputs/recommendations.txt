@@ -27,4 +27,3 @@
 14. 31 transactions were flagged as unusual. Examples include: ACH DEPOSIT SALARY, PAYPAL *SPOTIFY, APPLE STORE #R1234, WATER BILL, LYFT RIDE PGH. Verify that these are legitimate.
 
 15. Recurring transactions detected for: ACH DEPOSIT SALARY, AMAZON MKTP US*2R9, APPLE STORE #R1234, ZARA MALL 09, TARGET T-2812. Together they represent approximately 20922.56 over the analysed period. Consider cancelling any subscriptions you no longer need.
-

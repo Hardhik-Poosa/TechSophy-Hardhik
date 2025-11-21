@@ -10,9 +10,6 @@ Responsibilities:
 
 from __future__ import annotations
 
-from typing import Tuple, List
-
-import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
@@ -57,13 +54,23 @@ class PreprocessingService:
         def classify(row_desc: str) -> str:
             if any(k in row_desc for k in ["uber", "lyft", "cab", "taxi", "train"]):
                 return "Transport"
-            if any(k in row_desc for k in ["starbucks", "coffee", "restaurant", "diner", "mcdonalds"]):
+            if any(
+                k in row_desc
+                for k in ["starbucks", "coffee", "restaurant", "diner", "mcdonalds"]
+            ):
                 return "Food"
-            if any(k in row_desc for k in ["netflix", "spotify", "prime video", "subscription"]):
+            if any(
+                k in row_desc
+                for k in ["netflix", "spotify", "prime video", "subscription"]
+            ):
                 return "Entertainment"
-            if any(k in row_desc for k in ["electric", "water bill", "internet", "utility"]):
+            if any(
+                k in row_desc for k in ["electric", "water bill", "internet", "utility"]
+            ):
                 return "Utilities"
-            if any(k in row_desc for k in ["amazon", "target", "walmart", "mall", "store"]):
+            if any(
+                k in row_desc for k in ["amazon", "target", "walmart", "mall", "store"]
+            ):
                 return "Shopping"
             if any(k in row_desc for k in ["salary", "deposit", "payroll"]):
                 return "Income"
@@ -72,7 +79,7 @@ class PreprocessingService:
         df["base_category"] = desc.fillna("").apply(classify)
         return df
 
-    def build_feature_matrix(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, List[str]]:
+    def build_feature_matrix(self, df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
         """
         Build numeric feature matrix for ML models.
 
@@ -87,9 +94,11 @@ class PreprocessingService:
         df = df.copy()
 
         if "base_category" not in df.columns:
-            raise ValueError("Column 'base_category' must exist before building features")
+            raise ValueError(
+                "Column 'base_category' must exist before building features"
+            )
 
-        feature_cols: List[str] = ["amount", "day_of_week", "month"]
+        feature_cols: list[str] = ["amount", "day_of_week", "month"]
 
         # Encode base_category as ordinal
         category_codes = df["base_category"].astype("category").cat.codes
@@ -108,7 +117,9 @@ class PreprocessingService:
         logger.debug("Scaling feature matrix")
         scaler = StandardScaler()
         scaled_array = scaler.fit_transform(features)
-        scaled_df = pd.DataFrame(scaled_array, index=features.index, columns=features.columns)
+        scaled_df = pd.DataFrame(
+            scaled_array, index=features.index, columns=features.columns
+        )
         return scaled_df, scaler
 
 

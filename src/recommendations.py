@@ -6,8 +6,6 @@ Converts analysis results into human-readable recommendations.
 
 from __future__ import annotations
 
-from typing import List
-
 from src.config import get_business_rules_config
 from src.logging_config import get_logger
 from src.models import AnalysisResult
@@ -23,8 +21,8 @@ class RecommendationEngine:
     def __init__(self) -> None:
         self.rules = get_business_rules_config()
 
-    def generate_recommendations(self, analysis_result: AnalysisResult) -> List[str]:
-        recs: List[str] = []
+    def generate_recommendations(self, analysis_result: AnalysisResult) -> list[str]:
+        recs: list[str] = []
         recs.extend(self._recommend_on_cash_flow(analysis_result))
         recs.extend(self._recommend_on_category_spikes(analysis_result))
         recs.extend(self._recommend_on_anomalies(analysis_result))
@@ -33,7 +31,7 @@ class RecommendationEngine:
 
     # ------------------------------------------------------------------ #
 
-    def _recommend_on_cash_flow(self, analysis_result: AnalysisResult) -> List[str]:
+    def _recommend_on_cash_flow(self, analysis_result: AnalysisResult) -> list[str]:
         s = analysis_result.summary
         if s.net_cash_flow < 0:
             return [
@@ -45,7 +43,9 @@ class RecommendationEngine:
             ]
         return []
 
-    def _recommend_on_category_spikes(self, analysis_result: AnalysisResult) -> List[str]:
+    def _recommend_on_category_spikes(
+        self, analysis_result: AnalysisResult
+    ) -> list[str]:
         threshold = float(self.rules.get("category_spike_threshold", 0.30))
 
         df = analysis_result.raw_df
@@ -58,9 +58,11 @@ class RecommendationEngine:
             .sort_values(["base_category", "year_month"])
         )
 
-        recs: List[str] = []
+        recs: list[str] = []
         for category in grouped["base_category"].unique():
-            series = grouped[grouped["base_category"] == category].reset_index(drop=True)
+            series = grouped[grouped["base_category"] == category].reset_index(
+                drop=True
+            )
             if len(series) < 2:
                 continue
 
@@ -68,16 +70,14 @@ class RecommendationEngine:
             spikes = series[series["pct_change"] > threshold]
             for _, row in spikes.iterrows():
                 recs.append(
-                    (
-                        f"Spending on category '{category}' increased by "
-                        f"{row['pct_change'] * 100:.1f}% in {row['year_month']} "
-                        f"(total {row['total_amount']:.2f}). Review recent purchases."
-                    )
+                    f"Spending on category '{category}' increased by "
+                    f"{row['pct_change'] * 100:.1f}% in {row['year_month']} "
+                    f"(total {row['total_amount']:.2f}). Review recent purchases."
                 )
 
         return recs
 
-    def _recommend_on_anomalies(self, analysis_result: AnalysisResult) -> List[str]:
+    def _recommend_on_anomalies(self, analysis_result: AnalysisResult) -> list[str]:
         anomalies = analysis_result.anomalies
         if anomalies.empty:
             return []
@@ -91,7 +91,7 @@ class RecommendationEngine:
             )
         ]
 
-    def _recommend_on_recurring(self, analysis_result: AnalysisResult) -> List[str]:
+    def _recommend_on_recurring(self, analysis_result: AnalysisResult) -> list[str]:
         recurring = analysis_result.recurring
         if recurring.empty:
             return []
@@ -113,5 +113,5 @@ class RecommendationEngine:
 _default_engine = RecommendationEngine()
 
 
-def generate_recommendations(analysis_result: AnalysisResult) -> List[str]:
+def generate_recommendations(analysis_result: AnalysisResult) -> list[str]:
     return _default_engine.generate_recommendations(analysis_result)

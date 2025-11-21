@@ -9,10 +9,9 @@ Covers:
 """
 
 import pandas as pd
-
 from src.analysis import build_analysis_result
+from src.models import AnalysisResult, AnalysisSummary
 from src.recommendations import generate_recommendations
-from src.models import AnalysisSummary, AnalysisResult
 
 
 def _analysis_df() -> pd.DataFrame:

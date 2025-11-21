@@ -5,10 +5,9 @@ Domain models and custom exceptions.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import Any
 
 import pandas as pd
-
 
 # Exceptions ---------------------------------------------------------------
 
@@ -34,7 +33,7 @@ class ClusterProfile:
     size: int
     avg_amount: float
     total_amount: float
-    top_merchants: List[str]
+    top_merchants: list[str]
     dominant_category: str | None = None
 
 
@@ -55,7 +54,7 @@ class AnalysisResult:
     recurring: pd.DataFrame
     raw_df: pd.DataFrame
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """
         Serialize key metrics to a plain dictionary (for JSON/reporting).
         DataFrames are not fully serialized here, only shapes/basic stats.

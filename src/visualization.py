@@ -5,30 +5,24 @@ Visualization module.
 
 Generates charts and graphs for spending analysis.
 Saves publication-quality figures to disk.
-
-Design Decisions:
-    - Matplotlib/Seaborn for professional-quality visualizations
-    - Consistent styling across all charts
-    - Save to files rather than display (suitable for CLI/batch processing)
-    - Configurable output format and DPI
 """
 
-from pathlib import Path
-from typing import Dict, Optional
 import warnings
+from pathlib import Path
 
-import pandas as pd
 import matplotlib
-
-# Use a non-interactive backend suitable for CLI and tests
-matplotlib.use("Agg")
-
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 
-
-from src.logging_config import get_logger
 from src.config import get_visualization_config
+from src.logging_config import get_logger
+
+# ---- Safe backend configuration (flake8-compatible) ----
+try:
+    matplotlib.use("Agg", force=True)
+except Exception:
+    pass
 
 # Suppress matplotlib warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
@@ -37,41 +31,20 @@ logger = get_logger(__name__)
 
 
 def _setup_plot_style() -> None:
-    """
-    Configure matplotlib/seaborn style for consistent, professional plots.
-
-    Design Decision:
-        Centralized styling ensures visual consistency.
-        Seaborn theme provides modern, clean aesthetics.
-    """
+    """Configure consistent matplotlib/seaborn style."""
     config = get_visualization_config()
     style = config.get("style", "seaborn-v0_8-darkgrid")
 
     try:
         plt.style.use(style)
     except Exception:
-        # Fallback to default if style not available
         sns.set_theme()
 
-    # Set color palette
     sns.set_palette("husl")
 
 
 def _save_figure(fig: plt.Figure, output_path: str) -> str:
-    """
-    Save figure to disk with configured parameters.
-
-    Args:
-        fig: Matplotlib figure object
-        output_path: Path to save the figure
-
-    Returns:
-        Absolute path to saved figure
-
-    Design Decision:
-        Centralized save logic ensures consistency.
-        Creates output directory if needed.
-    """
+    """Save figure to disk with configured DPI and format."""
     config = get_visualization_config()
     dpi = config.get("dpi", 100)
     output_format = config.get("output_format", "png")
@@ -87,20 +60,8 @@ def _save_figure(fig: plt.Figure, output_path: str) -> str:
     return str(output_file.absolute())
 
 
-def plot_category_spend(
-    category_stats: pd.DataFrame,
-    output_dir: str,
-) -> Optional[str]:
-    """
-    Create bar chart of spending by category.
-
-    Args:
-        category_stats: Category aggregation DataFrame
-        output_dir: Directory to save the chart
-
-    Returns:
-        Path to saved figure, or None if no data
-    """
+def plot_category_spend(category_stats: pd.DataFrame, output_dir: str) -> str | None:
+    """Bar chart of spending by category."""
     logger.info("Generating category spending chart")
 
     if category_stats.empty:
@@ -108,9 +69,7 @@ def plot_category_spend(
         return None
 
     _setup_plot_style()
-    config = get_visualization_config()
-    figsize = tuple(config.get("figure_size", [10, 6]))
-
+    figsize = tuple(get_visualization_config().get("figure_size", [10, 6]))
     fig, ax = plt.subplots(figsize=figsize)
 
     sns.barplot(
@@ -128,24 +87,11 @@ def plot_category_spend(
     for container in ax.containers:
         ax.bar_label(container, fmt="$%.0f")
 
-    output_path = Path(output_dir) / "category_spending.png"
-    return _save_figure(fig, str(output_path))
+    return _save_figure(fig, str(Path(output_dir) / "category_spending.png"))
 
 
-def plot_spend_over_time(
-    time_series: pd.DataFrame,
-    output_dir: str,
-) -> Optional[str]:
-    """
-    Create line chart of spending trends over time.
-
-    Args:
-        time_series: Monthly aggregation DataFrame
-        output_dir: Directory to save the chart
-
-    Returns:
-        Path to saved figure, or None if no data
-    """
+def plot_spend_over_time(time_series: pd.DataFrame, output_dir: str) -> str | None:
+    """Create line chart of spending trends over time."""
     logger.info("Generating time series chart")
 
     if time_series.empty:
@@ -153,9 +99,7 @@ def plot_spend_over_time(
         return None
 
     _setup_plot_style()
-    config = get_visualization_config()
-    figsize = tuple(config.get("figure_size", [10, 6]))
-
+    figsize = tuple(get_visualization_config().get("figure_size", [10, 6]))
     fig, ax = plt.subplots(figsize=figsize)
 
     for txn_type in time_series["transaction_type"].unique():
@@ -176,24 +120,11 @@ def plot_spend_over_time(
 
     plt.xticks(rotation=45, ha="right")
 
-    output_path = Path(output_dir) / "spending_trends.png"
-    return _save_figure(fig, str(output_path))
+    return _save_figure(fig, str(Path(output_dir) / "spending_trends.png"))
 
 
-def plot_anomalies(
-    df: pd.DataFrame,
-    output_dir: str,
-) -> Optional[str]:
-    """
-    Create scatter plot highlighting anomalous transactions.
-
-    Args:
-        df: Transaction DataFrame with 'is_anomaly' column
-        output_dir: Directory to save the chart
-
-    Returns:
-        Path to saved figure, or None if no data
-    """
+def plot_anomalies(df: pd.DataFrame, output_dir: str) -> str | None:
+    """Scatter plot for anomalies."""
     logger.info("Generating anomaly visualization")
 
     if "is_anomaly" not in df.columns:
@@ -201,12 +132,13 @@ def plot_anomalies(
         return None
 
     _setup_plot_style()
-    config = get_visualization_config()
-    figsize = tuple(config.get("figure_size", [12, 6]))
-
+    figsize = tuple(get_visualization_config().get("figure_size", [12, 6]))
     fig, ax = plt.subplots(figsize=figsize)
 
-    normal = df.loc[df["is_anomaly"] == False]
+    # Normal vs anomalous
+    normal = df.loc[~df["is_anomaly"]]
+    anomalies = df.loc[df["is_anomaly"]]
+
     ax.scatter(
         normal["date"],
         normal["amount"],
@@ -216,7 +148,6 @@ def plot_anomalies(
         label="Normal",
     )
 
-    anomalies = df.loc[df["is_anomaly"] == True]
     if not anomalies.empty:
         ax.scatter(
             anomalies["date"],
@@ -238,24 +169,11 @@ def plot_anomalies(
 
     plt.xticks(rotation=45, ha="right")
 
-    output_path = Path(output_dir) / "anomaly_detection.png"
-    return _save_figure(fig, str(output_path))
+    return _save_figure(fig, str(Path(output_dir) / "anomaly_detection.png"))
 
 
-def plot_cluster_distribution(
-    df: pd.DataFrame,
-    output_dir: str,
-) -> Optional[str]:
-    """
-    Create visualization of spending clusters.
-
-    Args:
-        df: Transaction DataFrame with 'cluster_id' column
-        output_dir: Directory to save the chart
-
-    Returns:
-        Path to saved figure, or None if no data
-    """
+def plot_cluster_distribution(df: pd.DataFrame, output_dir: str) -> str | None:
+    """Boxplot of spending clusters."""
     logger.info("Generating cluster distribution chart")
 
     if "cluster_id" not in df.columns:
@@ -263,12 +181,11 @@ def plot_cluster_distribution(
         return None
 
     _setup_plot_style()
-    config = get_visualization_config()
-    figsize = tuple(config.get("figure_size", [10, 6]))
-
+    figsize = tuple(get_visualization_config().get("figure_size", [10, 6]))
     fig, ax = plt.subplots(figsize=figsize)
 
     df_debit = df.loc[df["transaction_type"] == "Debit"]
+
     sns.boxplot(
         data=df_debit,
         x="cluster_id",
@@ -281,47 +198,30 @@ def plot_cluster_distribution(
     ax.set_ylabel("Transaction Amount ($)", fontsize=12, fontweight="bold")
     ax.set_title("Spending Patterns by Cluster", fontsize=14, fontweight="bold")
 
-    output_path = Path(output_dir) / "cluster_distribution.png"
-    return _save_figure(fig, str(output_path))
+    return _save_figure(fig, str(Path(output_dir) / "cluster_distribution.png"))
 
 
 def generate_all_plots(
-    analysis_result: Dict,
-    df: pd.DataFrame,
-    output_dir: str,
-) -> Dict[str, str]:
-    """
-    Generate all visualization charts.
-
-    Args:
-        analysis_result: Analysis output dictionary
-        df: Transaction DataFrame with predictions
-        output_dir: Directory to save all charts
-
-    Returns:
-        Dictionary mapping chart names to file paths
-    """
+    analysis_result: dict, df: pd.DataFrame, output_dir: str
+) -> dict[str, str]:
+    """Generate all charts and return mapping of chart_name → filepath."""
     logger.info(f"Generating all plots in directory: {output_dir}")
 
-    figure_paths: Dict[str, str] = {}
+    figure_paths: dict[str, str] = {}
 
     category_stats = analysis_result.get("category_stats", pd.DataFrame())
-    path = plot_category_spend(category_stats, output_dir)
-    if path:
-        figure_paths["category_spending"] = path
+    if p := plot_category_spend(category_stats, output_dir):
+        figure_paths["category_spending"] = p
 
     time_series = analysis_result.get("time_series", pd.DataFrame())
-    path = plot_spend_over_time(time_series, output_dir)
-    if path:
-        figure_paths["spending_trends"] = path
+    if p := plot_spend_over_time(time_series, output_dir):
+        figure_paths["spending_trends"] = p
 
-    path = plot_anomalies(df, output_dir)
-    if path:
-        figure_paths["anomaly_detection"] = path
+    if p := plot_anomalies(df, output_dir):
+        figure_paths["anomaly_detection"] = p
 
-    path = plot_cluster_distribution(df, output_dir)
-    if path:
-        figure_paths["cluster_distribution"] = path
+    if p := plot_cluster_distribution(df, output_dir):
+        figure_paths["cluster_distribution"] = p
 
     logger.info(f"Generated {len(figure_paths)} visualization(s)")
     return figure_paths

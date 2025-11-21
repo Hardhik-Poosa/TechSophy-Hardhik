@@ -8,11 +8,8 @@ Covers:
 - Feature scaling
 """
 
-from typing import Tuple
-
 import numpy as np
 import pandas as pd
-
 from src import preprocessing
 
 

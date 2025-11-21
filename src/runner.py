@@ -8,17 +8,24 @@ Coordinates the complete analysis workflow from raw data to final insights.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
-from src.logging_config import get_logger
+from src import (
+    analysis,
+    ingestion,
+    ml_engine,
+    preprocessing,
+    recommendations,
+    visualization,
+)
 from src.config import get_data_config
-from src.models import DataValidationError, ModelError, AnalysisResult
-from src import ingestion, preprocessing, ml_engine, analysis, recommendations, visualization
+from src.logging_config import get_logger
+from src.models import AnalysisResult, DataValidationError, ModelError
 
 logger = get_logger(__name__)
 
 
-def run_pipeline(csv_path: str, output_dir: str | None = None) -> Dict[str, Any]:
+def run_pipeline(csv_path: str, output_dir: str | None = None) -> dict[str, Any]:
     """
     Execute the complete analysis pipeline.
 
@@ -89,7 +96,7 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> Dict[str, Any]
             f.write(f"Number of Transactions: {s.num_transactions}\n")
             f.write(f"Anomalies Detected:     {len(analysis_result.anomalies)}\n")
 
-        result: Dict[str, Any] = {
+        result: dict[str, Any] = {
             "success": True,
             "summary": analysis_result.summary,
             "recommendations": recs,
@@ -107,7 +114,11 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> Dict[str, Any]
 
     except DataValidationError as exc:
         logger.error(f"Data validation failed: {exc}")
-        return {"success": False, "error": str(exc), "error_type": "DataValidationError"}
+        return {
+            "success": False,
+            "error": str(exc),
+            "error_type": "DataValidationError",
+        }
     except ModelError as exc:
         logger.error(f"Model error: {exc}")
         return {"success": False, "error": str(exc), "error_type": "ModelError"}

@@ -14,7 +14,6 @@ Provides both a class-based service and functional helpers for convenience.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Dict
 
 import pandas as pd
 
@@ -30,7 +29,7 @@ class TransactionIngestionService:
     Service responsible for loading and validating transaction data.
     """
 
-    def __init__(self, required_columns: Dict[str, str] | None = None) -> None:
+    def __init__(self, required_columns: dict[str, str] | None = None) -> None:
         """
         required_columns maps canonical names to possible input variants.
         """
@@ -38,7 +37,7 @@ class TransactionIngestionService:
         self.required_raw_columns = data_cfg.get("required_columns", [])
 
         # mapping from canonical -> list of possible patterns
-        self.column_aliases: Dict[str, tuple[str, ...]] = required_columns or {
+        self.column_aliases: dict[str, tuple[str, ...]] = required_columns or {
             "date": ("transaction date", "date"),
             "description": ("description", "desc", "details"),
             "amount": ("amount", "transaction amount", "amt"),
@@ -93,7 +92,7 @@ class TransactionIngestionService:
         logger.debug("Normalizing column names")
         normalized = {col: col.strip().lower() for col in df.columns}
 
-        mapping: Dict[str, str] = {}
+        mapping: dict[str, str] = {}
         for canonical, aliases in self.column_aliases.items():
             for col, norm in normalized.items():
                 if norm in aliases and canonical not in mapping:
@@ -119,7 +118,10 @@ class TransactionIngestionService:
 
         logger.debug("Parsing dates")
         # First try pandas automatic parsing
-        parsed = pd.to_datetime(df["date"], errors="coerce",)
+        parsed = pd.to_datetime(
+            df["date"],
+            errors="coerce",
+        )
 
         if self.date_formats:
             # fill NaT values by trying configured formats
@@ -127,12 +129,8 @@ class TransactionIngestionService:
             if mask.any():
                 raw_dates = df.loc[mask, "date"]
                 for fmt in self.date_formats:
-                    try_parsed = pd.to_datetime(
-                        raw_dates, errors="coerce", format=fmt
-                    )
-                    parsed[mask & try_parsed.notna()] = try_parsed[
-                        try_parsed.notna()
-                    ]
+                    try_parsed = pd.to_datetime(raw_dates, errors="coerce", format=fmt)
+                    parsed[mask & try_parsed.notna()] = try_parsed[try_parsed.notna()]
 
         df["date"] = parsed
         invalid_count = df["date"].isna().sum()
