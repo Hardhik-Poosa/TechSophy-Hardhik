@@ -95,7 +95,10 @@ TechSophy-Hardhik/
 ├── main.py                     # CLI entrypoint
 └── README.md                   # This file
 
-Installation
+
+
+---
+### Installation
 Prerequisites
 
 Python 3.10+ (project currently tested on Python 3.13)
