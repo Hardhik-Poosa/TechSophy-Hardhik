@@ -324,10 +324,3 @@ A formal license (MIT/Apache-2.0) may be added later.
 # 🎉 Thank You
 
 This project highlights full-stack ML engineering, DevOps, secure coding, and high-quality software craftsmanship.
-
-```
-
----
-
-If you'd like a **logo**, **GIF demo**, or **auto-generated table of contents**, just tell me!
-```
