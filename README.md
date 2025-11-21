@@ -70,8 +70,6 @@ ingestion → preprocessing → ml_engine → analysis → recommendations → v
 
 # 📁 Project Structure
 
-
-
 TechSophy-Hardhik/
 ├── src/
 │   ├── __init__.py
