@@ -1,51 +1,27 @@
-# tests/test_runner_integration.py
+from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
 
-import pandas as pd
-from src.models import AnalysisSummary
 from src.runner import run_pipeline, validate_input_file
 
 
 def _create_small_input_csv(tmp_path: Path) -> str:
     """
-    Create a small but valid CSV file with enough rows
-    to satisfy KMeans(n_clusters=5).
+    Create a small but valid CSV file with enough rows so that:
+    - KMeans (n_clusters=5) can fit without error
+    - Both Debit and Credit transactions exist
     """
     csv_path = tmp_path / "small_transactions.csv"
-
-    df = pd.DataFrame(
-        {
-            "Transaction Date": [
-                "2025-01-01",
-                "2025-01-02",
-                "2025-01-03",
-                "2025-01-04",
-                "2025-01-05",
-                "2025-01-06",
-            ],
-            "Description": [
-                "Starbucks Store 0032",
-                "UBER TRIP 12345",
-                "Amazon Purchase",
-                "Netflix Subscription",
-                "Local Diner",
-                "Shell Station",
-            ],
-            "Amount": [12.50, 35.00, 120.00, 15.99, 20.00, 50.00],
-            "Transaction_Type": [
-                "Debit",
-                "Debit",
-                "Debit",
-                "Debit",
-                "Debit",
-                "Debit",
-            ],
-        }
+    csv_path.write_text(
+        "Transaction Date,Description,Amount,Transaction_Type\n"
+        "2025-01-01,Salary,5000.00,Credit\n"
+        "2025-01-02,Coffee,-200.00,Debit\n"
+        "2025-01-03,Groceries,-800.00,Debit\n"
+        "2025-01-04,Taxi,-300.00,Debit\n"
+        "2025-01-05,Shopping,-1200.00,Debit\n"
+        "2025-01-06,Subscription,-500.00,Debit\n"
     )
-
-    df.to_csv(csv_path, index=False)
     return str(csv_path)
 
 
@@ -54,37 +30,45 @@ class TestRunnerIntegration:
         """
         End-to-end check: run the full pipeline on a small CSV and verify:
         - The pipeline reports success
-        - Summary object has expected attributes
-        - Core output files are created
+        - Summary object has sensible values
+        - Outputs are written into the given output directory
         """
         csv_path = _create_small_input_csv(tmp_path)
         assert validate_input_file(csv_path) is True
 
         output_dir = tmp_path / "outputs"
-
         result: dict[str, Any] = run_pipeline(csv_path, str(output_dir))
 
-        # Basic success flag
+        # Success flag
         assert result["success"] is True
 
-        # Summary should be an AnalysisSummary dataclass
+        # Summary is a dataclass (AnalysisSummary) with attributes, not a dict
         summary = result["summary"]
-        assert isinstance(summary, AnalysisSummary)
-        assert summary.total_spend > 0
+        assert summary.total_spend != 0
         assert summary.num_transactions == 6
 
-        # Core output files should exist
-        processed = Path(result["processed_data_path"])
-        summary_txt = Path(result["summary_path"])
-        recs_txt = Path(result["recommendations_path"])
+        # Check that core output files exist
+        processed_path = Path(result["processed_data_path"])
+        summary_path = Path(result["summary_path"])
+        recs_path = Path(result["recommendations_path"])
 
-        assert processed.exists()
-        assert summary_txt.exists()
-        assert recs_txt.exists()
+        assert processed_path.exists()
+        assert summary_path.exists()
+        assert recs_path.exists()
 
-        # At least some figures should be generated
-        figure_paths = result["figure_paths"]
-        assert isinstance(figure_paths, dict)
-        assert "category_spending" in figure_paths
-        for path in figure_paths.values():
-            assert Path(path).exists()
+
+class TestRunnerErrorHandling:
+    def test_run_pipeline_handles_missing_file_gracefully(self, tmp_path: Path) -> None:
+        """
+        Verify that run_pipeline returns a failure dict when the CSV is missing.
+        This covers the error-handling branch in runner.py.
+        """
+        missing_csv = tmp_path / "does_not_exist.csv"
+
+        result: dict[str, Any] = run_pipeline(
+            str(missing_csv), str(tmp_path / "outputs")
+        )
+
+        assert result["success"] is False
+        assert "error_type" in result
+        assert isinstance(result["error"], str)

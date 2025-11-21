@@ -7,6 +7,7 @@ Generates charts and graphs for spending analysis.
 Saves publication-quality figures to disk.
 """
 
+import logging
 import warnings
 from pathlib import Path
 
@@ -21,9 +22,10 @@ from src.logging_config import get_logger
 # ---- Safe backend configuration (flake8-compatible) ----
 try:
     matplotlib.use("Agg", force=True)
-except Exception:
-    pass
-
+except Exception as exc:  # noqa: BLE001
+    logging.getLogger(__name__).warning(
+        "Could not set matplotlib backend to Agg: %s", exc
+    )
 # Suppress matplotlib warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 
