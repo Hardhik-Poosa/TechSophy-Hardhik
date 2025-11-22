@@ -1,146 +1,146 @@
-Below is the **fully cleaned, final README.md** — **100% pure Markdown**, **no commentary**, **no explanations**, **no interruptions**, **no prefixes**, **no extra text**.
+Below is your **clean, professional, fully rewritten README.md**,
+**without emojis**, **production-grade style**, **includes all new updates**:
 
-You can **copy–paste directly** into your `README.md`.
+* New frontend (React, dark UI)
+* New backend advanced charts (heatmap, radar, waterfall, forecast)
+* Dashboard integration
+* API redesigned with /analyze supporting additional figures
+* Outputs now ignored from Git
+* Maintains clean architecture and engineering depth
+
+You can **copy this directly** into `README.md`.
 
 ---
 
 ```markdown
-# 🚀 TechSophy Finance Insights
-*AI-powered personal finance analysis with production-grade engineering.*
+# TechSophy Finance Insights
+A production-ready financial analytics platform combining Machine Learning, statistical modeling, a modern React dashboard, and a secure FastAPI backend.
 
-[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue)]()
-[![License](https://img.shields.io/badge/License-Open-brightgreen)]()
-[![CI Status](https://img.shields.io/github/actions/workflow/status/Hardhik-Poosa/TechSophy-Hardhik/ci.yml?label=CI%20Build)]()
-[![Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen)]()
-[![Security](https://img.shields.io/badge/Bandit-Security%20Passed-success)]()
-[![Linter](https://img.shields.io/badge/Linting-ruff%20%2F%20flake8-orange)]()
+This project demonstrates clean architecture, strong engineering practices, and a fully integrated end-to-end ML workflow for personal financial intelligence.
 
 ---
 
-# 📘 Overview
+# Overview
 
-**TechSophy Finance Insights** is a production-ready AI/ML application that ingests financial transaction data, detects patterns, identifies anomalies, and produces professional-grade insights and visualizations.
+TechSophy Finance Insights processes raw banking transactions, performs automated feature engineering, identifies patterns and anomalies using ML models, and renders insights through a modern, dark-themed analytics dashboard.
 
-The system demonstrates:
+The system includes:
 
-- Machine Learning Engineering
-- Clean Code & Architecture
-- High Test Coverage
-- CI/CD & DevSecOps
-- Secure, typed, modular Python design
+- Data ingestion and validation
+- Feature engineering and preprocessing
+- ML clustering (KMeans) and anomaly detection (Isolation Forest)
+- Time-series and statistical analysis
+- Multiple financial visualizations
+- A React dashboard that displays insights, charts, and recommendations
+- Clean, secure, typed Python backend using FastAPI
 
 ---
 
-# ✨ Features
+# Key Features
 
-## 🔍 Financial Analysis
-- Total spending, income, net cash flow
-- Category-wise spending insights
-- Month-over-month trends
-- Recurring bill/subscription detection
-- Spending spikes & unusual patterns
+## Financial Analysis
+- Total spend, income, net cash flow, and processed volume
+- Month-over-month spending trends
+- Category-level spending distribution
+- Detection of recurring charges and subscription patterns
+- Detection of risky, unusual, or irregular transactions
 
-## 🤖 Machine Learning
-- **KMeans Clustering** → discover spending behavior
-- **Isolation Forest** → detect anomalous transactions
-- TF-IDF text features
-- Temporal & numerical feature engineering
-- Scikit-learn processing pipeline
+## Machine Learning
+- KMeans clustering for behavioral segmentation
+- Isolation Forest for anomaly detection
+- Text vectorization for transaction descriptions (TF-IDF)
+- Numerical, temporal, and categorical feature engineering
+- Robust scaling and feature matrix construction
 
-## 🛠 Engineering Excellence
-- Clean architecture:
+## Visualizations (Backend-Generated PNG Charts)
+Standard charts:
+- category_spending.png
+- spending_trends.png
+- anomaly_detection.png
+- cluster_distribution.png
+
+Advanced charts:
+- correlation_heatmap.png
+- cluster_radar.png
+- cashflow_waterfall.png
+- cashflow_forecast.png
+
+All charts are served from `/static/...` and consumed by the React UI.
+
+## Engineering Practices
+- Fully modular clean architecture
+- Strong type-hints and documentation
+- Separate domains for ingestion, ML, analysis, visualization, reporting
+- Strict linting: Ruff + Flake8
+- Security analysis using Bandit
+- Automated formatting and quality enforcement via pre-commit
+- CI pipeline for tests, linting, coverage, and security
+- Output data excluded from version control
+
+---
+
+# Project Structure
+
 ```
-
-ingestion → preprocessing → ml_engine → analysis → recommendations → visualization → runner
-
-```
-- Config-based parameters (`config.yaml`)
-- Structured logging & robust error handling
-- Domain-specific exceptions
-- Fully typed + docstrings everywhere
-
-## 🔐 Security & Quality
-- **95%+ test coverage** (unit + integration)
-- **Ruff / Flake8** linting
-- **Bandit** security scan
-- **Pre-commit hooks** enforcing quality
-- **GitHub Actions CI pipeline**
-
----
-
-# 📁 Project Structure
 
 TechSophy-Hardhik/
 ├── src/
-│   ├── __init__.py
-│   ├── analysis.py            # Business metrics and insight computation
-│   ├── config.py              # Centralized configuration loading
-│   ├── ingestion.py           # CSV loading, cleaning, schema validation
-│   ├── logging_config.py      # Logging setup
-│   ├── ml_engine.py           # Clustering and anomaly detection
-│   ├── models.py              # Dataclasses and domain exceptions
-│   ├── preprocessing.py       # Feature engineering and scaling
-│   ├── recommendations.py     # Human-readable recommendations
-│   ├── visualization.py       # Matplotlib/Seaborn visualizations
-│   └── runner.py              # Full pipeline orchestration
+│   ├── analysis.py                 # Metric computation and analysis logic
+│   ├── api.py                      # FastAPI server and /analyze endpoint
+│   ├── config.py                   # Config loading and defaults
+│   ├── ingestion.py                # CSV ingestion, validation, cleaning
+│   ├── logging_config.py           # Structured logging setup
+│   ├── ml_engine.py                # Clustering + anomaly models
+│   ├── models.py                   # Dataclasses, schemas, errors
+│   ├── preprocessing.py            # Feature engineering + scaling
+│   ├── recommendations.py          # Insight generation
+│   ├── visualization.py            # All charts (basic + advanced)
+│   └── runner.py                   # Full pipeline orchestration
 │
-├── tests/
-│   ├── test_analysis_and_recommendations.py
-│   ├── test_ingestion.py
-│   ├── test_ml_engine.py
-│   ├── test_ml_engine_exceptions.py
-│   ├── test_preprocessing.py
-│   ├── test_runner_integration.py
-│   ├── test_visualization.py
-│   └── conftest.py            # Shared test configuration (e.g., matplotlib backend)
+├── frontend/
+│   ├── src/
+│   │   ├── App.js                 # Main UI / upload + dashboard
+│   │   ├── App.css                # Dark UI styling
+│   │   └── Dashboard.jsx          # Extended dashboard page
+│   └── public/
+│
+├── tests/                          # Unit + integration tests
 │
 ├── data/
-│   ├── input_transactions.csv                 # Sample raw data
-│   └── input_transactions_with_labels.csv     # Optional labelled data
+│   └── input_transactions.csv
 │
-├── outputs/                                   # Generated reports (ignored in CI)
-│   ├── summary.txt
-│   ├── recommendations.txt
-│   ├── processed_transactions.csv
-│   ├── category_spending.png
-│   ├── spending_trends.png
-│   ├── anomaly_detection.png
-│   └── cluster_distribution.png
+├── outputs/                        # Generated files (ignored from git)
+│   └── api-runs/<uuid>/*.png
 │
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # CI pipeline (tests, coverage, lint, security)
-│
-├── .pre-commit-config.yaml     # Pre-commit hooks (ruff, black/format, etc.)
-├── .flake8                     # Flake8 configuration (if used)
-├── ruff.toml                   # Ruff configuration
-├── bandit.yaml                 # Bandit configuration
-├── pytest.ini                  # Pytest configuration
-├── quality.ps1                 # Local quality script (tests + coverage + bandit)
-├── config.yaml                 # Application configuration
-├── requirements.txt            # Runtime and dev dependencies
-├── main.py                     # CLI entrypoint
-└── README.md                   # This file
+├── .github/workflows/ci.yml        # CI pipeline
+├── .pre-commit-config.yaml         # Hooks for quality enforcement
+├── ruff.toml                       # Ruff config
+├── pytest.ini                      # Pytest configuration
+├── config.yaml                     # Application parameters
+├── requirements.txt                # Dependencies
+├── quality.ps1                     # Local quality check script
+└── README.md
 
 ````
 
 ---
 
-# 🧩 Installation
+# Installation
 
-## ✔ Prerequisites
-- Python **3.10+**
+## Requirements
+- Python 3.10+
+- Node.js 18+ (for React dashboard)
 - pip
 - Git
 
-## ✔ Setup
+Clone the repository:
 
 ```bash
 git clone https://github.com/Hardhik-Poosa/TechSophy-Hardhik.git
 cd TechSophy-Hardhik
 ````
 
-Create a virtual environment:
+Create environment:
 
 ```bash
 python -m venv .venv
@@ -150,95 +150,111 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Install dependencies:
+Install Python dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-# ▶️ Usage
-
-Run the full pipeline:
+Install frontend dependencies:
 
 ```bash
-python main.py --input data/input_transactions.csv
+cd frontend
+npm install
 ```
-
-With optional arguments:
-
-```bash
-python main.py --input your.csv --output output_dir --verbose
-```
-
-### Required Input Columns
-
-| Column           | Example          | Purpose              |
-| ---------------- | ---------------- | -------------------- |
-| date             | 2025-01-15       | Time features        |
-| description      | "UBER TRIP TX93" | NLP clustering       |
-| amount           | 45.20            | Spending & anomalies |
-| transaction_type | Debit / Credit   | Trend analysis       |
 
 ---
 
-# 🧪 Testing & Coverage
+# Running the Application
 
-## Full local quality suite:
+## Start Backend (FastAPI)
+
+```bash
+uvicorn src.api:app --reload --port 8000
+```
+
+Backend runs at:
+
+```
+http://127.0.0.1:8000
+```
+
+Static charts served at:
+
+```
+http://127.0.0.1:8000/static/<run-id>/<filename>.png
+```
+
+## Start Frontend (React)
+
+```bash
+cd frontend
+npm start
+```
+
+Frontend UI runs at:
+
+```
+http://localhost:3000
+```
+
+---
+
+# Using the /analyze Endpoint
+
+Upload a CSV file containing:
+
+| Column           | Example        |
+| ---------------- | -------------- |
+| Transaction Date | 2025-01-15     |
+| Description      | UBER TRIP      |
+| Amount           | 45.20          |
+| Transaction_Type | Debit / Credit |
+
+Returns:
+
+* Summary metrics
+* Recommendations
+* Figure URLs (PNG)
+* Run ID
+* Processed CSV
+
+---
+
+# Testing & Quality
+
+Run full quality suite:
 
 ```bash
 .\quality.ps1
 ```
 
-## Test with coverage:
+Run tests with coverage:
 
 ```bash
-pytest tests --cov=src --cov-report=term-missing
+pytest --cov=src --cov-report=term-missing
 ```
 
-HTML coverage:
+Open HTML coverage:
 
 ```bash
-pytest tests --cov=src --cov-report=html
-# open htmlcov/index.html
+pytest --cov=src --cov-report=html
 ```
 
----
-
-# 🧹 Linting
-
-### Ruff
+Run linters:
 
 ```bash
 ruff check .
+flake8 .
 ```
 
-### Flake8
-
-```bash
-flake8 src tests
-```
-
----
-
-# 🔐 Security (Bandit)
+Run security scan:
 
 ```bash
 bandit -c bandit.yaml -r src
 ```
 
----
-
-# 🔗 Pre-Commit Hooks
-
-Install hooks:
-
-```bash
-pre-commit install
-```
-
-Run all hooks:
+Run pre-commit:
 
 ```bash
 pre-commit run --all-files
@@ -246,48 +262,35 @@ pre-commit run --all-files
 
 ---
 
-# 🤖 CI/CD (GitHub Actions)
+# Architecture Notes
 
-Located in:
+## Clean Layered Pipeline
 
 ```
-.github/workflows/ci.yml
+ingestion
+→ preprocessing
+→ ml_engine
+→ analysis
+→ recommendations
+→ visualization (charts)
+→ runner (orchestration)
+→ FastAPI endpoint
+→ React dashboard
 ```
 
-The pipeline runs on every push and PR:
+## Principles
 
-* Ruff linting
-* Pytest + Coverage
-* Bandit security scan
-* Enforces branch protection
+* Separation of concerns
+* Config-driven parameters
+* Fully typed domain models
+* Defensive validation and error handling
+* Logging across all pipeline stages
+* Testability and reproducibility
+* Git-ignored outputs to prevent repo pollution
 
 ---
 
-# 🧱 Architecture Principles
-
-### ✔ Separation of Concerns
-
-Each module has one responsibility → easier to test and maintain.
-
-### ✔ Config-Driven
-
-All parameters (clusters, contamination rate, DPI, figure size) live in `config.yaml`.
-
-### ✔ Defensive Programming
-
-Validation, error checking, custom exceptions.
-
-### ✔ Observability
-
-Consistent logging across ingestion, ML, analysis, and visualization.
-
-### ✔ Testability
-
-Highly modular → unit tests + integration tests pass cleanly.
-
----
-
-# 🤝 Contributing
+# Contributing
 
 ```bash
 git checkout development
@@ -295,32 +298,22 @@ git pull
 git checkout -b feature/my-feature
 ```
 
-Run checks:
+Before committing:
 
 ```bash
-.\quality.ps1
 pre-commit run --all-files
+.\quality.ps1
 ```
 
-Submit changes:
-
-```bash
-git add .
-git commit -m "Add new feature"
-git push origin feature/my-feature
-```
-
-Open a Pull Request into `development`.
+Push changes and open a PR into `development`.
 
 ---
 
-# 📄 License
+# License
 
-This project is intended for educational and evaluation purposes.
-A formal license (MIT/Apache-2.0) may be added later.
+Project is intended for educational and engineering demonstration purposes.
+A formal open-source license may be added later.
 
 ---
 
-# 🎉 Thank You
-
-This project highlights full-stack ML engineering, DevOps, secure coding, and high-quality software craftsmanship.
+# End of Documentation
