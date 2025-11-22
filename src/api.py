@@ -30,6 +30,9 @@ app.add_middleware(
 # Serve files under ./outputs at /static/...
 app.mount("/static", StaticFiles(directory="outputs"), name="static")
 
+# ---- Ruff B008-safe default for File(...) ----
+FILE_PARAM = File(...)  # FastAPI dependency, created once at module level
+
 
 @app.get("/")
 def root() -> dict[str, str]:
@@ -42,9 +45,7 @@ def health() -> dict[str, str]:
 
 
 @app.post("/analyze")
-async def analyze_file(
-    file: UploadFile = File(...),  # noqa: B008 - FastAPI dependency injection pattern
-) -> dict[str, Any]:
+async def analyze_file(file: UploadFile = FILE_PARAM) -> dict[str, Any]:
     """
     Upload a CSV, run the full pipeline, and return summary + recs + figure URLs.
     """
@@ -74,16 +75,20 @@ async def analyze_file(
 
     summary = result["summary"]
     recommendations = result.get("recommendations", [])
-    figures = result.get("figures", {})
+
+    # 🔑 Accept both newer "figures" and your current "figure_paths"
+    raw_figures: dict[str, str] = (
+        result.get("figures") or result.get("figure_paths") or {}
+    )
 
     # Convert local file paths into URLs under /static/...
     public_figures: dict[str, str] = {}
-    for name, path_str in figures.items():
+    for name, path_str in raw_figures.items():
         path = Path(path_str)
         try:
             rel = path.relative_to(Path("outputs"))
         except ValueError:
-            # If it's already absolute somewhere else, just skip or handle as needed
+            # If it's outside ./outputs for some reason, skip it
             continue
         public_figures[name] = f"/static/{rel.as_posix()}"
 
@@ -96,6 +101,7 @@ async def analyze_file(
             "num_transactions": summary.num_transactions,
         },
         "recommendations": recommendations,
+        # 👇 This is what App.js expects:
         "figures": public_figures,
     }
 

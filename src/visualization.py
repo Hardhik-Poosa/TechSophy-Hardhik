@@ -13,6 +13,7 @@ from pathlib import Path
 
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -227,3 +228,229 @@ def generate_all_plots(
 
     logger.info(f"Generated {len(figure_paths)} visualization(s)")
     return figure_paths
+
+
+# --- Advanced visualizations: heatmap, radar, waterfall, forecast ---
+
+
+def generate_correlation_heatmap(
+    df: pd.DataFrame,
+    output_dir: Path,
+) -> str | None:
+    """
+    Correlation heatmap of numeric columns.
+    Returns output file path or None if not enough numeric data.
+    """
+    numeric_df = df.select_dtypes(include="number")
+    if numeric_df.empty or numeric_df.shape[1] < 2:
+        logger.info("Skipping heatmap: not enough numeric columns.")
+        return None
+
+    corr = numeric_df.corr()
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.heatmap(
+        corr,
+        annot=True,
+        fmt=".2f",
+        cmap="viridis",
+        linewidths=0.5,
+        ax=ax,
+    )
+    ax.set_title("Feature Correlation Heatmap", fontsize=14)
+    fig.tight_layout()
+
+    output_path = Path(output_dir) / "correlation_heatmap.png"
+    fig.savefig(output_path)
+    plt.close(fig)
+    logger.info("Saved heatmap to: %s", output_path)
+    return str(output_path)
+
+
+def generate_cluster_radar_chart(
+    cluster_profiles: dict[int, dict[str, float]] | None,
+    output_dir: Path,
+) -> str | None:
+    """
+    Radar chart of cluster profiles (avg/min/max amount + count).
+    Expects the dict returned by SpendingClusterer.get_cluster_profiles().
+    """
+    if not cluster_profiles:
+        logger.info("Skipping radar chart: empty cluster_profiles.")
+        return None
+
+    metrics = ["avg_amount", "min_amount", "max_amount", "count"]
+    # Angles for radar chart
+    angles = np.linspace(0, 2 * np.pi, len(metrics), endpoint=False)
+    angles = np.concatenate([angles, [angles[0]]])  # close the loop
+
+    fig = plt.figure(figsize=(7, 7))
+    ax = fig.add_subplot(111, polar=True)
+
+    for cluster_id, profile in cluster_profiles.items():
+        values = [float(profile.get(m, 0.0)) for m in metrics]
+        values = np.concatenate([values, [values[0]]])
+        ax.plot(angles, values, label=f"Cluster {cluster_id}", linewidth=2)
+        ax.fill(angles, values, alpha=0.15)
+
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(
+        ["Avg", "Min", "Max", "#Txns"],
+        fontsize=11,
+    )
+    ax.set_title("Cluster Profiles (Radar View)", fontsize=15, pad=20)
+    ax.grid(True)
+    ax.legend(loc="upper right", bbox_to_anchor=(1.25, 1.1))
+
+    fig.tight_layout()
+    output_path = Path(output_dir) / "cluster_radar.png"
+    fig.savefig(output_path)
+    plt.close(fig)
+    logger.info("Saved radar chart to: %s", output_path)
+    return str(output_path)
+
+
+def generate_cashflow_waterfall(
+    df: pd.DataFrame,
+    output_dir: Path,
+) -> str | None:
+    """
+    Simple waterfall-style view of net cash flow over months.
+    Uses monthly net (sum of 'amount') as steps.
+    """
+    if "date" not in df.columns or "amount" not in df.columns:
+        logger.info("Skipping waterfall: 'date' or 'amount' column missing.")
+        return None
+
+    if df.empty:
+        logger.info("Skipping waterfall: empty dataframe.")
+        return None
+
+    df_local = df.copy()
+    df_local["month"] = df_local["date"].dt.to_period("M").dt.to_timestamp()
+    monthly_net = df_local.groupby("month")["amount"].sum().sort_index()
+
+    if monthly_net.empty:
+        logger.info("Skipping waterfall: no monthly data.")
+        return None
+
+    months = monthly_net.index
+    values = monthly_net.values
+
+    # Build cumulative waterfall steps
+    cumulative = np.cumsum(values)
+    fig, ax = plt.subplots(figsize=(9, 5))
+
+    colors = ["#22c55e" if v >= 0 else "#ef4444" for v in values]
+    ax.bar(months, values, color=colors)
+    ax.plot(months, cumulative, marker="o", linestyle="--", linewidth=1.5)
+
+    ax.set_title("Monthly Net Cash Flow (Waterfall-style)", fontsize=14)
+    ax.set_xlabel("Month")
+    ax.set_ylabel("Net Amount")
+    ax.axhline(0, color="gray", linewidth=1)
+    fig.autofmt_xdate()
+    fig.tight_layout()
+
+    output_path = Path(output_dir) / "cashflow_waterfall.png"
+    fig.savefig(output_path)
+    plt.close(fig)
+    logger.info("Saved waterfall chart to: %s", output_path)
+    return str(output_path)
+
+
+def generate_cashflow_forecast(
+    df: pd.DataFrame,
+    output_dir: Path,
+) -> str | None:
+    """
+    Very lightweight 'forecast': groups by month, then projects
+    one extra month as the mean of the last three months.
+    """
+    if "date" not in df.columns or "amount" not in df.columns:
+        logger.info("Skipping forecast: 'date' or 'amount' column missing.")
+        return None
+
+    if df.empty:
+        logger.info("Skipping forecast: empty dataframe.")
+        return None
+
+    df_local = df.copy()
+    df_local["month"] = df_local["date"].dt.to_period("M").dt.to_timestamp()
+    monthly_net = df_local.groupby("month")["amount"].sum().sort_index()
+
+    if monthly_net.empty:
+        logger.info("Skipping forecast: no monthly data.")
+        return None
+
+    months = list(monthly_net.index)
+    values = list(monthly_net.values)
+
+    # Naive forecast = mean of last up-to-3 months
+    tail = values[-3:]
+    forecast_value = float(np.mean(tail))
+    last_month = months[-1]
+    # next month = last_month + 1 month
+    next_month = (last_month.to_period("M") + 1).to_timestamp()
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+    ax.plot(months, values, marker="o", label="Actual")
+
+    ax.plot(
+        [next_month],
+        [forecast_value],
+        marker="o",
+        linestyle="none",
+        label="Forecast",
+    )
+    ax.plot(
+        [months[-1], next_month],
+        [values[-1], forecast_value],
+        linestyle="--",
+    )
+
+    ax.set_title("Monthly Net Cash Flow + Simple Forecast", fontsize=14)
+    ax.set_xlabel("Month")
+    ax.set_ylabel("Net Amount")
+    ax.legend()
+    fig.autofmt_xdate()
+    fig.tight_layout()
+
+    output_path = Path(output_dir) / "cashflow_forecast.png"
+    fig.savefig(output_path)
+    plt.close(fig)
+    logger.info("Saved forecast chart to: %s", output_path)
+    return str(output_path)
+
+
+def generate_advanced_plots(
+    df: pd.DataFrame,
+    output_dir: str | Path,
+    cluster_profiles: dict[int, dict[str, float]] | None = None,
+) -> dict[str, str]:
+    """
+    Wrapper to generate extra plots without touching the original tests
+    that exercise generate_all_plots().
+    """
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    figures: dict[str, str] = {}
+
+    heatmap_path = generate_correlation_heatmap(df, output_path)
+    if heatmap_path:
+        figures["correlation_heatmap"] = heatmap_path
+
+    radar_path = generate_cluster_radar_chart(cluster_profiles, output_path)
+    if radar_path:
+        figures["cluster_radar"] = radar_path
+
+    waterfall_path = generate_cashflow_waterfall(df, output_path)
+    if waterfall_path:
+        figures["cashflow_waterfall"] = waterfall_path
+
+    forecast_path = generate_cashflow_forecast(df, output_path)
+    if forecast_path:
+        figures["cashflow_forecast"] = forecast_path
+
+    logger.info("Generated %s advanced visualization(s)", len(figures))
+    return figures

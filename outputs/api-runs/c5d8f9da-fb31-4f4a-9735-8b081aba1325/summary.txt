@@ -1,0 +1,8 @@
+SPENDING SUMMARY
+==================================================
+
+Total Spending:     48898.16
+Total Income:       10500.00
+Net Cash Flow:      -38398.16
+Number of Transactions: 612
+Anomalies Detected:     31

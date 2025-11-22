@@ -2232,3 +2232,240 @@ FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pyt
 2025-11-23 00:20:50,444 - src.visualization - INFO - Saved figure to: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\cluster_distribution.png
 2025-11-23 00:20:50,445 - src.visualization - INFO - Generated 4 visualization(s)
 2025-11-23 00:20:50,451 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:07:17,223 - src.runner - INFO - ==================================================
+2025-11-23 01:07:17,223 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:07:17,223 - src.runner - INFO - ==================================================
+2025-11-23 01:07:17,224 - src.ingestion - INFO - Loading transactions from outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db\input.csv
+2025-11-23 01:07:17,271 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:07:17,290 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:07:27,325 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:07:27,506 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db
+2025-11-23 01:07:27,506 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:07:27,731 - src.visualization - INFO - Saved figure to: outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db\category_spending.png
+2025-11-23 01:07:27,732 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:07:27,739 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:27,741 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:27,742 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:27,743 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:27,870 - src.visualization - INFO - Saved figure to: outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db\spending_trends.png
+2025-11-23 01:07:27,871 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:07:28,025 - src.visualization - INFO - Saved figure to: outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db\anomaly_detection.png
+2025-11-23 01:07:28,025 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:07:28,041 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:28,047 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:28,169 - src.visualization - INFO - Saved figure to: outputs\api-runs\babff6e5-0c3e-4297-be67-74f843b1b3db\cluster_distribution.png
+2025-11-23 01:07:28,169 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:07:28,174 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:07:40,591 - src.runner - INFO - ==================================================
+2025-11-23 01:07:40,591 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:07:40,591 - src.runner - INFO - ==================================================
+2025-11-23 01:07:40,591 - src.ingestion - INFO - Loading transactions from outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81\input.csv
+2025-11-23 01:07:40,636 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:07:40,652 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:07:40,657 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:07:40,949 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81
+2025-11-23 01:07:40,950 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:07:41,221 - src.visualization - INFO - Saved figure to: outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81\category_spending.png
+2025-11-23 01:07:41,222 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:07:41,235 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:41,237 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:41,239 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:41,240 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:41,465 - src.visualization - INFO - Saved figure to: outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81\spending_trends.png
+2025-11-23 01:07:41,465 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:07:41,738 - src.visualization - INFO - Saved figure to: outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81\anomaly_detection.png
+2025-11-23 01:07:41,738 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:07:41,759 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:41,767 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:07:42,011 - src.visualization - INFO - Saved figure to: outputs\api-runs\664e698a-057e-43b2-bf41-5e0cfe1d9b81\cluster_distribution.png
+2025-11-23 01:07:42,012 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:07:42,020 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:11:08,250 - src.ingestion - INFO - Loading transactions from outputs\api-runs\b6d492fb-9a4e-4e51-8eef-c0c491d4d2d5\input.csv
+2025-11-23 01:11:08,304 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:11:08,317 - src.runner - ERROR - Pipeline failed: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+2025-11-23 01:11:36,203 - src.runner - INFO - ==================================================
+2025-11-23 01:11:36,203 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:11:36,203 - src.runner - INFO - ==================================================
+2025-11-23 01:11:36,204 - src.ingestion - INFO - Loading transactions from outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325\input.csv
+2025-11-23 01:11:36,258 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:11:36,272 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:11:42,525 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:11:42,804 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325
+2025-11-23 01:11:42,805 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:11:43,098 - src.visualization - INFO - Saved figure to: outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325\category_spending.png
+2025-11-23 01:11:43,098 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:11:43,111 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,113 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,116 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,118 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,346 - src.visualization - INFO - Saved figure to: outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325\spending_trends.png
+2025-11-23 01:11:43,346 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:11:43,603 - src.visualization - INFO - Saved figure to: outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325\anomaly_detection.png
+2025-11-23 01:11:43,603 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:11:43,628 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,636 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:11:43,854 - src.visualization - INFO - Saved figure to: outputs\api-runs\c5d8f9da-fb31-4f4a-9735-8b081aba1325\cluster_distribution.png
+2025-11-23 01:11:43,855 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:11:43,862 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:21:45,447 - src.runner - INFO - ==================================================
+2025-11-23 01:21:45,447 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:21:45,447 - src.runner - INFO - ==================================================
+2025-11-23 01:21:45,448 - src.ingestion - INFO - Loading transactions from outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\input.csv
+2025-11-23 01:21:45,496 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:21:45,511 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:21:50,956 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:21:51,132 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060
+2025-11-23 01:21:51,132 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:21:51,300 - src.visualization - INFO - Saved figure to: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\category_spending.png
+2025-11-23 01:21:51,300 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:21:51,307 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,308 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,310 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,310 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,432 - src.visualization - INFO - Saved figure to: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\spending_trends.png
+2025-11-23 01:21:51,432 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:21:51,578 - src.visualization - INFO - Saved figure to: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\anomaly_detection.png
+2025-11-23 01:21:51,579 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:21:51,592 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,599 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:21:51,712 - src.visualization - INFO - Saved figure to: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\cluster_distribution.png
+2025-11-23 01:21:51,713 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:21:51,871 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\f376ea09-043d-4b84-8c1b-26719e7f6060\correlation_heatmap.png
+2025-11-23 01:21:51,871 - src.runner - WARNING - Failed to generate advanced plots: name 'np' is not defined
+2025-11-23 01:21:51,876 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:27:26,726 - src.runner - INFO - ==================================================
+2025-11-23 01:27:26,726 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:27:26,726 - src.runner - INFO - ==================================================
+2025-11-23 01:27:26,727 - src.ingestion - INFO - Loading transactions from outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\input.csv
+2025-11-23 01:27:26,781 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:27:26,799 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:27:33,167 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:27:33,463 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d
+2025-11-23 01:27:33,463 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:27:33,783 - src.visualization - INFO - Saved figure to: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\category_spending.png
+2025-11-23 01:27:33,784 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:27:33,795 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:33,798 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:33,800 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:33,801 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:34,046 - src.visualization - INFO - Saved figure to: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\spending_trends.png
+2025-11-23 01:27:34,047 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:27:34,339 - src.visualization - INFO - Saved figure to: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\anomaly_detection.png
+2025-11-23 01:27:34,340 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:27:34,364 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:34,373 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:27:34,583 - src.visualization - INFO - Saved figure to: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\cluster_distribution.png
+2025-11-23 01:27:34,583 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:27:34,884 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\0b757750-fc1b-4a40-a3a7-9976ca4a7e1d\correlation_heatmap.png
+2025-11-23 01:27:34,885 - src.runner - WARNING - Failed to generate advanced plots: name 'np' is not defined
+2025-11-23 01:27:34,892 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:28:01,384 - src.runner - INFO - ==================================================
+2025-11-23 01:28:01,384 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:28:01,384 - src.runner - INFO - ==================================================
+2025-11-23 01:28:01,385 - src.ingestion - INFO - Loading transactions from outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\input.csv
+2025-11-23 01:28:01,430 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:28:01,448 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:28:01,454 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:28:01,744 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf
+2025-11-23 01:28:01,745 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:28:01,997 - src.visualization - INFO - Saved figure to: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\category_spending.png
+2025-11-23 01:28:01,998 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:28:02,010 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,011 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,013 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,015 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,245 - src.visualization - INFO - Saved figure to: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\spending_trends.png
+2025-11-23 01:28:02,246 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:28:02,493 - src.visualization - INFO - Saved figure to: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\anomaly_detection.png
+2025-11-23 01:28:02,494 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:28:02,511 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,520 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:28:02,739 - src.visualization - INFO - Saved figure to: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\cluster_distribution.png
+2025-11-23 01:28:02,739 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:28:03,007 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\0f4d519f-5e9b-4d60-a7c9-23001ca68aaf\correlation_heatmap.png
+2025-11-23 01:28:03,007 - src.runner - WARNING - Failed to generate advanced plots: name 'np' is not defined
+2025-11-23 01:28:03,016 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:31:43,426 - src.runner - INFO - ==================================================
+2025-11-23 01:31:43,426 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:31:43,426 - src.runner - INFO - ==================================================
+2025-11-23 01:31:43,427 - src.ingestion - INFO - Loading transactions from outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\input.csv
+2025-11-23 01:31:43,469 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:31:43,482 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:31:49,266 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:31:49,539 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6
+2025-11-23 01:31:49,540 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:31:49,783 - src.visualization - INFO - Saved figure to: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\category_spending.png
+2025-11-23 01:31:49,784 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:31:49,794 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:49,796 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:49,798 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:49,799 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:50,023 - src.visualization - INFO - Saved figure to: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\spending_trends.png
+2025-11-23 01:31:50,024 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:31:50,259 - src.visualization - INFO - Saved figure to: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\anomaly_detection.png
+2025-11-23 01:31:50,260 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:31:50,279 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:50,286 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:31:50,457 - src.visualization - INFO - Saved figure to: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\cluster_distribution.png
+2025-11-23 01:31:50,457 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:31:50,688 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\5ebb679b-4461-4df1-bf4f-8a5c4efd9da6\correlation_heatmap.png
+2025-11-23 01:31:50,688 - src.runner - WARNING - Failed to generate advanced plots: name 'np' is not defined
+2025-11-23 01:31:50,695 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:40:13,121 - src.runner - INFO - ==================================================
+2025-11-23 01:40:13,121 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:40:13,121 - src.runner - INFO - ==================================================
+2025-11-23 01:40:13,122 - src.ingestion - INFO - Loading transactions from outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\input.csv
+2025-11-23 01:40:13,160 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:40:13,172 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:40:17,709 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:40:17,868 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e
+2025-11-23 01:40:17,868 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:40:18,035 - src.visualization - INFO - Saved figure to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\category_spending.png
+2025-11-23 01:40:18,035 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:40:18,042 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,043 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,045 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,046 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,167 - src.visualization - INFO - Saved figure to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\spending_trends.png
+2025-11-23 01:40:18,167 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:40:18,310 - src.visualization - INFO - Saved figure to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\anomaly_detection.png
+2025-11-23 01:40:18,310 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:40:18,324 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,330 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:18,441 - src.visualization - INFO - Saved figure to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\cluster_distribution.png
+2025-11-23 01:40:18,441 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:40:18,597 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\correlation_heatmap.png
+2025-11-23 01:40:18,727 - src.visualization - INFO - Saved radar chart to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\cluster_radar.png
+2025-11-23 01:40:18,830 - src.visualization - INFO - Saved waterfall chart to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\cashflow_waterfall.png
+2025-11-23 01:40:18,944 - src.visualization - INFO - Saved forecast chart to: outputs\api-runs\e545ed71-4867-4375-af2a-456dc9692c6e\cashflow_forecast.png
+2025-11-23 01:40:18,944 - src.visualization - INFO - Generated 4 advanced visualization(s)
+2025-11-23 01:40:18,949 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 01:40:30,542 - src.runner - INFO - ==================================================
+2025-11-23 01:40:30,543 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 01:40:30,543 - src.runner - INFO - ==================================================
+2025-11-23 01:40:30,544 - src.ingestion - INFO - Loading transactions from outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\input.csv
+2025-11-23 01:40:30,585 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 01:40:30,600 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 01:40:35,698 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 01:40:35,945 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7
+2025-11-23 01:40:35,946 - src.visualization - INFO - Generating category spending chart
+2025-11-23 01:40:36,191 - src.visualization - INFO - Saved figure to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\category_spending.png
+2025-11-23 01:40:36,192 - src.visualization - INFO - Generating time series chart
+2025-11-23 01:40:36,201 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,203 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,205 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,206 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,382 - src.visualization - INFO - Saved figure to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\spending_trends.png
+2025-11-23 01:40:36,382 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 01:40:36,622 - src.visualization - INFO - Saved figure to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\anomaly_detection.png
+2025-11-23 01:40:36,623 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 01:40:36,642 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,650 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 01:40:36,836 - src.visualization - INFO - Saved figure to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\cluster_distribution.png
+2025-11-23 01:40:36,836 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 01:40:37,068 - src.visualization - INFO - Saved heatmap to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\correlation_heatmap.png
+2025-11-23 01:40:37,288 - src.visualization - INFO - Saved radar chart to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\cluster_radar.png
+2025-11-23 01:40:37,458 - src.visualization - INFO - Saved waterfall chart to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\cashflow_waterfall.png
+2025-11-23 01:40:37,627 - src.visualization - INFO - Saved forecast chart to: outputs\api-runs\81dfc189-b5ee-4f0e-ac0c-c2f0406e1ae7\cashflow_forecast.png
+2025-11-23 01:40:37,628 - src.visualization - INFO - Generated 4 advanced visualization(s)
+2025-11-23 01:40:37,635 - src.runner - INFO - Pipeline completed successfully

@@ -64,8 +64,8 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> dict[str, Any]
         # STEP 5: Recommendations
         recs = recommendations.generate_recommendations(analysis_result)
 
-        # STEP 6: Visualizations
-        figure_paths = visualization.generate_all_plots(
+        # STEP 6: Visualizations (original 4 charts)
+        figure_paths: dict[str, str] = visualization.generate_all_plots(
             {
                 "category_stats": analysis_result.category_stats,
                 "time_series": analysis_result.time_series,
@@ -75,6 +75,18 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> dict[str, Any]
             df,
             output_dir,
         )
+
+        # STEP 6b: Advanced visualizations (heatmap, radar, waterfall, forecast)
+        # This is optional and must NEVER break the pipeline.
+        try:
+            advanced_figures = visualization.generate_advanced_plots(
+                df,
+                output_dir,
+                cluster_profiles=cluster_profiles,
+            )
+            figure_paths.update(advanced_figures)
+        except Exception as exc:  # pragma: no cover - best effort only
+            logger.warning("Failed to generate advanced plots: %s", exc)
 
         # STEP 7: Save Outputs
         processed_csv_path = output_path / "processed_transactions.csv"
@@ -96,11 +108,15 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> dict[str, Any]
             f.write(f"Number of Transactions: {s.num_transactions}\n")
             f.write(f"Anomalies Detected:     {len(analysis_result.anomalies)}\n")
 
+        # IMPORTANT:
+        # - "figure_paths" kept for tests (existing contract)
+        # - "figures" added for API/frontend (same dict)
         result: dict[str, Any] = {
             "success": True,
             "summary": analysis_result.summary,
             "recommendations": recs,
             "figure_paths": figure_paths,
+            "figures": figure_paths,
             "processed_data_path": str(processed_csv_path),
             "recommendations_path": str(recommendations_path),
             "summary_path": str(summary_path),
@@ -113,18 +129,26 @@ def run_pipeline(csv_path: str, output_dir: str | None = None) -> dict[str, Any]
         return result
 
     except DataValidationError as exc:
-        logger.error(f"Data validation failed: {exc}")
+        logger.error("Data validation failed: %s", exc)
         return {
             "success": False,
             "error": str(exc),
             "error_type": "DataValidationError",
         }
     except ModelError as exc:
-        logger.error(f"Model error: {exc}")
-        return {"success": False, "error": str(exc), "error_type": "ModelError"}
+        logger.error("Model error: %s", exc)
+        return {
+            "success": False,
+            "error": str(exc),
+            "error_type": "ModelError",
+        }
     except Exception as exc:  # pylint: disable=broad-except
-        logger.error(f"Unexpected error in pipeline: {exc}", exc_info=True)
-        return {"success": False, "error": str(exc), "error_type": "UnexpectedError"}
+        logger.error("Unexpected error in pipeline: %s", exc, exc_info=True)
+        return {
+            "success": False,
+            "error": str(exc),
+            "error_type": "UnexpectedError",
+        }
 
 
 def validate_input_file(csv_path: str) -> bool:
@@ -134,14 +158,14 @@ def validate_input_file(csv_path: str) -> bool:
     path = Path(csv_path)
 
     if not path.exists():
-        logger.error(f"Input file does not exist: {csv_path}")
+        logger.error("Input file does not exist: %s", csv_path)
         return False
 
     if not path.is_file():
-        logger.error(f"Input path is not a file: {csv_path}")
+        logger.error("Input path is not a file: %s", csv_path)
         return False
 
     if path.suffix.lower() != ".csv":
-        logger.warning(f"Input file does not have .csv extension: {csv_path}")
+        logger.warning("Input file does not have .csv extension: %s", csv_path)
 
     return True

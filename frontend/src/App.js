@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -10,43 +10,40 @@ import {
   Spinner,
   Alert,
   Badge,
-  Modal,
-  ProgressBar,
-} from 'react-bootstrap';
+} from "react-bootstrap";
+import Dashboard from "./Dashboard";
 
-const API_BASE = process.env.REACT_APP_API_BASE || 'http://127.0.0.1:8000';
+const API_BASE = process.env.REACT_APP_API_BASE || "http://127.0.0.1:8000";
 
 function App() {
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [result, setResult] = useState(null);
-  const [showChartModal, setShowChartModal] = useState(false);
-  const [activeChart, setActiveChart] = useState(null);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0] || null);
-    setError('');
+    setError("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!file) {
-      setError('Please select a CSV file before uploading.');
+      setError("Please select a CSV file before uploading.");
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     setIsUploading(true);
-    setError('');
+    setError("");
     setResult(null);
 
     try {
       const response = await fetch(`${API_BASE}/analyze`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       });
 
@@ -59,18 +56,18 @@ function App() {
 
       if (!response.ok) {
         const rawDetail = data?.detail ?? data;
-        let message = 'Failed to analyze file. Please try again.';
+        let message = "Failed to analyze file. Please try again.";
 
-        if (typeof rawDetail === 'string') {
+        if (typeof rawDetail === "string") {
           message = rawDetail;
-        } else if (rawDetail && typeof rawDetail === 'object') {
+        } else if (rawDetail && typeof rawDetail === "object") {
           const parts = [
             rawDetail.message,
-            rawDetail.error_type ? `(${rawDetail.error_type})` : '',
-            rawDetail.error ? `: ${rawDetail.error}` : '',
+            rawDetail.error_type ? `(${rawDetail.error_type})` : "",
+            rawDetail.error ? `: ${rawDetail.error}` : "",
           ].filter(Boolean);
           if (parts.length) {
-            message = parts.join(' ');
+            message = parts.join(" ");
           }
         }
 
@@ -81,241 +78,22 @@ function App() {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
-      setError(err.message || 'Something went wrong while calling the API.');
+      setError(err.message || "Something went wrong while calling the API.");
     } finally {
       setIsUploading(false);
     }
   };
 
-  const openChartModal = (chart) => {
-    setActiveChart(chart);
-    setShowChartModal(true);
-  };
-
-  const closeChartModal = () => {
-    setShowChartModal(false);
-    setActiveChart(null);
-  };
-
-  const renderSummaryCards = () => {
-    if (!result) return null;
-
-    const { summary } = result;
-    const isNegativeCashFlow = summary.net_cash_flow < 0;
-
-    const totalVolume =
-      Math.abs(summary.total_spend) + Math.abs(summary.total_income);
-    const spendRatio =
-      totalVolume > 0
-        ? Math.round((Math.abs(summary.total_spend) / totalVolume) * 100)
-        : 0;
-
-    return (
-      <>
-        <Row className="g-3 mb-3">
-          <Col md={3} sm={6}>
-            <Card className="shadow-sm h-100 card-glass card-hover">
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Card.Title className="mb-0 small text-uppercase text-muted">
-                    Total Spend
-                  </Card.Title>
-                  <span className="emoji-pill">💸</span>
-                </div>
-                <Card.Text className="fs-4 mt-2 text-danger fw-semibold">
-                  ₹
-                  {summary.total_spend.toLocaleString(undefined, {
-                    maximumFractionDigits: 2,
-                  })}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={3} sm={6}>
-            <Card className="shadow-sm h-100 card-glass card-hover">
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Card.Title className="mb-0 small text-uppercase text-muted">
-                    Total Income
-                  </Card.Title>
-                  <span className="emoji-pill">💰</span>
-                </div>
-                <Card.Text className="fs-4 mt-2 text-success fw-semibold">
-                  ₹
-                  {summary.total_income.toLocaleString(undefined, {
-                    maximumFractionDigits: 2,
-                  })}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={3} sm={6}>
-            <Card className="shadow-sm h-100 card-glass card-hover">
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Card.Title className="mb-0 small text-uppercase text-muted">
-                    Net Cash Flow
-                  </Card.Title>
-                  <span className="emoji-pill">
-                    {isNegativeCashFlow ? '⚠️' : '✅'}
-                  </span>
-                </div>
-                <Card.Text
-                  className={`fs-4 mt-2 fw-semibold ${
-                    isNegativeCashFlow ? 'text-danger' : 'text-success'
-                  }`}
-                >
-                  {isNegativeCashFlow ? '▼ ' : '▲ '}
-                  ₹
-                  {summary.net_cash_flow.toLocaleString(undefined, {
-                    maximumFractionDigits: 2,
-                  })}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={3} sm={6}>
-            <Card className="shadow-sm h-100 card-glass card-hover">
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Card.Title className="mb-0 small text-uppercase text-muted">
-                    Transactions
-                  </Card.Title>
-                  <span className="emoji-pill">📊</span>
-                </div>
-                <Card.Text className="fs-4 mt-2 fw-semibold">
-                  {summary.num_transactions.toLocaleString()}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={6}>
-            <Card className="shadow-sm card-glass mb-3">
-              <Card.Body>
-                <Card.Title className="small text-uppercase text-muted mb-2">
-                  Spending vs Income
-                </Card.Title>
-                <div className="d-flex justify-content-between mb-1 small">
-                  <span>Spending share</span>
-                  <span>{spendRatio}% of total volume</span>
-                </div>
-                <ProgressBar
-                  now={spendRatio}
-                  label={`${spendRatio}%`}
-                  variant={spendRatio > 70 ? 'danger' : 'success'}
-                />
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </>
-    );
-  };
-
-  const renderRecommendations = () => {
-    if (!result || !result.recommendations?.length) return null;
-
-    return (
-      <Card className="shadow-sm mt-3 card-glass">
-        <Card.Body>
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <div>
-              <Card.Title className="mb-0">Smart Recommendations</Card.Title>
-              <small className="text-muted">
-                Generated from your spending patterns and anomalies
-              </small>
-            </div>
-            <Badge bg="primary" pill>
-              {result.recommendations.length}
-            </Badge>
-          </div>
-          <ul className="mb-0 fancy-list">
-            {result.recommendations.map((rec, index) => (
-              <li key={index} className="mb-2">
-                {rec}
-              </li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
-    );
-  };
-
-  const renderCharts = () => {
-    if (!result || !result.figures) return null;
-
-    const { figures } = result;
-
-    const chartConfigs = [
-      {
-        key: 'category_spending',
-        title: 'Spending by Category',
-        subtitle: 'Top categories where your money goes',
-        accent: 'info',
-      },
-      {
-        key: 'spending_trends',
-        title: 'Spending Trends Over Time',
-        subtitle: 'Month-over-month cash flow',
-        accent: 'primary',
-      },
-      {
-        key: 'anomaly_detection',
-        title: 'Anomaly Detection',
-        subtitle: 'Unusual or risky transactions',
-        accent: 'warning',
-      },
-      {
-        key: 'cluster_distribution',
-        title: 'Cluster Distribution',
-        subtitle: 'Behavioral spending clusters',
-        accent: 'success',
-      },
-    ];
-
-    const availableCharts = chartConfigs.filter((cfg) => figures[cfg.key]);
-
-    if (!availableCharts.length) return null;
-
-    return (
-      <Row className="mt-4 g-4">
-        {availableCharts.map((cfg) => {
-          const url = figures[cfg.key];
-
-          return (
-            <Col md={6} key={cfg.key}>
-              <Card
-                className="shadow-sm h-100 card-glass card-hover chart-card"
-                onClick={() => openChartModal({ ...cfg, url })}
-              >
-                <Card.Body>
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <div>
-                      <Card.Title className="mb-0">{cfg.title}</Card.Title>
-                      <small className="text-muted">{cfg.subtitle}</small>
-                    </div>
-                    <Badge bg={cfg.accent} pill>
-                      View
-                    </Badge>
-                  </div>
-                  <div className="text-center mt-3">
-                    <img
-                      src={`${API_BASE}${url}`}
-                      alt={cfg.title}
-                      className="img-fluid rounded chart-thumb"
-                    />
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
-    );
-  };
+  // Build figures object with full URLs for Dashboard
+  const figuresWithBase =
+    result?.figures != null
+      ? Object.fromEntries(
+          Object.entries(result.figures).map(([key, url]) => [
+            key,
+            `${API_BASE}${url}`,
+          ]),
+        )
+      : null;
 
   return (
     <div className="app-root">
@@ -356,7 +134,7 @@ function App() {
                   recommendations.
                   <br />
                   <span className="text-light-50">
-                    Expected columns:{' '}
+                    Expected columns:{" "}
                     <code>
                       Transaction Date, Description, Amount, Transaction_Type
                     </code>
@@ -367,7 +145,7 @@ function App() {
                 {error && (
                   <Alert
                     variant="danger"
-                    onClose={() => setError('')}
+                    onClose={() => setError("")}
                     dismissible
                     className="mt-3"
                   >
@@ -409,7 +187,7 @@ function App() {
                         Analyzing your spending…
                       </>
                     ) : (
-                      'Analyze my spending'
+                      "Analyze my spending"
                     )}
                   </Button>
                 </Form>
@@ -452,43 +230,17 @@ function App() {
             )}
 
             {result && !isUploading && (
-              <>
-                {renderSummaryCards()}
-                {renderRecommendations()}
-                {renderCharts()}
-              </>
+              <Dashboard
+                summary={result.summary}
+                recommendations={result.recommendations || []}
+                figures={figuresWithBase || {}}
+                isAnalyzing={isUploading}
+                lastRunId={result.run_id}
+              />
             )}
           </Col>
         </Row>
       </Container>
-
-      {/* Full-screen chart modal */}
-      <Modal
-        show={showChartModal}
-        onHide={closeChartModal}
-        size="xl"
-        centered
-        contentClassName="chart-modal"
-      >
-        {activeChart && (
-          <>
-            <Modal.Header closeButton>
-              <Modal.Title>{activeChart.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p className="text-muted small mb-3">{activeChart.subtitle}</p>
-              <div className="text-center">
-                <img
-                  src={`${API_BASE}${activeChart.url}`}
-                  alt={activeChart.title}
-                  className="img-fluid rounded"
-                  style={{ maxHeight: '80vh', objectFit: 'contain' }}
-                />
-              </div>
-            </Modal.Body>
-          </>
-        )}
-      </Modal>
     </div>
   );
 }
