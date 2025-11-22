@@ -1,0 +1,410 @@
+/* src/App.css */
+
+/* ---------- Base layout & typography ---------- */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: #020617;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.app-root {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #1f2937 0, #020617 50%, #000 100%);
+  color: #f9fafb;
+  position: relative;
+}
+
+.app-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.18), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+/* ---------- Header ---------- */
+
+.app-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(14px);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.8),
+    rgba(30, 64, 175, 0.7)
+  );
+}
+
+.app-title {
+  letter-spacing: 0.03em;
+  color: #f9fafb;
+}
+
+.text-light-50 {
+  color: rgba(249, 250, 251, 0.7) !important;
+}
+
+/* ---------- Cards & Panels ---------- */
+
+.card {
+  background-color: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.25);
+  color: #e5e7eb;
+}
+
+.card-header {
+  background-color: rgba(15, 23, 42, 0.9);
+  border-bottom-color: rgba(51, 65, 85, 0.9);
+  color: #e5e7eb;
+}
+
+.card-glass {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(18px);
+}
+
+.card-hover {
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    border-color 0.15s ease-out;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 35px rgba(15, 23, 42, 0.7);
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+.card-upload {
+  border-radius: 18px;
+}
+
+.card-empty,
+.card-loading {
+  border-radius: 20px;
+}
+
+/* ---------- Charts ---------- */
+
+.chart-card {
+  border-radius: 18px;
+}
+
+.chart-thumb {
+  max-height: 230px;
+  object-fit: contain;
+  transition:
+    transform 0.2s ease-out,
+    filter 0.2s ease-out;
+}
+
+.chart-card:hover .chart-thumb {
+  transform: scale(1.02);
+  filter: saturate(1.15);
+}
+
+/* Modal styling for charts / details */
+.chart-modal,
+.modal-content {
+  background: radial-gradient(circle at top, #020617, #020617 40%, #000 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #e5e7eb;
+}
+
+.modal-header,
+.modal-footer {
+  border-color: rgba(51, 65, 85, 0.9);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: #2563eb;
+  color: #f9fafb;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  border-color: #1d4ed8;
+}
+
+.btn-outline-primary {
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.7);
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: #60a5fa;
+  color: #bfdbfe;
+}
+
+.btn-outline-secondary {
+  color: #e5e7eb;
+  border-color: rgba(75, 85, 99, 0.9);
+  background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background: rgba(31, 41, 55, 0.9);
+  border-color: rgba(148, 163, 184, 0.9);
+  color: #f9fafb;
+}
+
+.btn-elevated {
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.55);
+}
+
+.btn-elevated:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.65);
+}
+
+/* ---------- Upload zone ---------- */
+
+.upload-zone {
+  border: 1px dashed rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 18px;
+  padding: 1.5rem;
+  text-align: center;
+  transition:
+    border-color 0.15s ease-out,
+    background-color 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.upload-zone:hover {
+  border-color: rgba(96, 165, 250, 0.9);
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+
+/* ---------- Forms & Inputs ---------- */
+
+.form-label {
+  color: #e5e7eb;
+}
+
+.form-control,
+.form-select {
+  background-color: #020617;
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #e5e7eb;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: rgba(59, 130, 246, 0.9);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35);
+  background-color: #020617;
+  color: #f9fafb;
+}
+
+.form-control::placeholder {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+/* ---------- Tables ---------- */
+
+.table {
+  color: #e5e7eb;
+}
+
+.table thead {
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+.table tbody tr {
+  background-color: rgba(15, 23, 42, 0.92);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+}
+
+/* ---------- Summary KPI cards & badges ---------- */
+
+.summary-kpi-card {
+  border-radius: 16px;
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.summary-kpi-label {
+  font-size: 0.9rem;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.summary-kpi-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.summary-kpi-badge {
+  font-size: 0.75rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.12);
+  border: 1px solid rgba(22, 163, 74, 0.7);
+  color: #bbf7d0;
+}
+
+/* Emoji chip in summary cards */
+.emoji-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ---------- Recommendations list ---------- */
+
+.fancy-list {
+  list-style: none;
+  padding-left: 0;
+  border-left: 2px solid rgba(55, 65, 81, 0.9);
+  margin-left: 0.35rem;
+}
+
+.fancy-list li {
+  padding-left: 0.75rem;
+  position: relative;
+}
+
+.fancy-list li::before {
+  content: '';
+  position: absolute;
+  left: -0.35rem;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3b82f6, #22c55e);
+}
+
+/* ---------- Anomaly badges & chips ---------- */
+
+.anomaly-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  background: rgba(127, 29, 29, 0.35);
+  border: 1px solid rgba(248, 113, 113, 0.9);
+  color: #fecaca;
+  font-size: 0.78rem;
+}
+
+.anomaly-count {
+  font-weight: 600;
+}
+
+/* generic small pill tag */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(75, 85, 99, 0.9);
+  font-size: 0.75rem;
+  color: rgba(209, 213, 219, 0.95);
+}
+
+/* ---------- Cluster profile chips & tooltips ---------- */
+
+.cluster-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(75, 85, 99, 0.9);
+  font-size: 0.78rem;
+  color: rgba(209, 213, 219, 0.95);
+}
+
+.cluster-chip-pill {
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  background: rgba(37, 99, 235, 0.16);
+  border: 1px solid rgba(59, 130, 246, 0.65);
+  font-size: 0.75rem;
+}
+
+/* Bootstrap tooltip override (for cluster profile tooltips) */
+.tooltip .tooltip-inner {
+  background-color: #020617;
+  color: #e5e7eb;
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  font-size: 0.75rem;
+}
+
+.tooltip .tooltip-arrow::before {
+  border-top-color: #020617 !important;
+}
+
+/* ---------- Badges ---------- */
+
+.badge {
+  border-radius: 999px;
+}
+
+.badge.bg-success {
+  background-color: rgba(21, 128, 61, 0.9) !important;
+}
+
+.badge.bg-danger {
+  background-color: rgba(185, 28, 28, 0.9) !important;
+}
+
+.badge.bg-warning {
+  background-color: rgba(234, 179, 8, 0.9) !important;
+  color: #0f172a !important;
+}
+
+/* ---------- Misc layout helpers ---------- */
+
+.section-title {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.small-muted {
+  font-size: 0.8rem;
+  color: rgba(148, 163, 184, 0.9);
+}

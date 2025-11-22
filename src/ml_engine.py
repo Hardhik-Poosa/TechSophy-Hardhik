@@ -1,183 +1,161 @@
-"""
-Machine Learning engine module.
-
-Implements clustering for spending pattern discovery and
-anomaly detection for unusual transaction identification.
-"""
-
+# src/ml_engine.py
 from __future__ import annotations
 
+import logging
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional  # noqa: F401
 
 import joblib
+import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.ensemble import IsolationForest
 
 from src.config import get_model_config
-from src.logging_config import get_logger
-from src.models import ClusterProfile, ModelError
 
-logger = get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
+class ModelError(Exception):
+    """Custom exception for ML errors."""
+
+
+# ----------------------------------------------------------
+# SpendingClusterer
+# ----------------------------------------------------------
+
+
+@dataclass
 class SpendingClusterer:
-    """
-    Clustering model for discovering spending patterns using KMeans.
-    """
+    n_clusters: int = 5
+    random_state: int = 42
+    max_iter: int = 300
 
-    def __init__(
-        self, n_clusters: int = 5, random_state: int = 42, max_iter: int = 300
-    ) -> None:
-        self.n_clusters = n_clusters
-        self.random_state = random_state
-        self.max_iter = max_iter
-        self.model: KMeans | None = None
-        self.is_fitted: bool = False
+    model: KMeans | None = field(default=None, init=False)
+    is_fitted: bool = field(default=False, init=False)
 
     def fit(self, features: pd.DataFrame) -> None:
-        if features.empty:
-            raise ModelError("Cannot fit clustering model on empty feature matrix")
-
-        logger.info("Fitting KMeans with n_clusters=%d", self.n_clusters)
         try:
+            logger.info(
+                "Fitting KMeans with n_clusters=%s on %s samples",
+                self.n_clusters,
+                len(features),
+            )
             self.model = KMeans(
                 n_clusters=self.n_clusters,
                 random_state=self.random_state,
                 max_iter=self.max_iter,
-                n_init=10,
+                n_init="auto",
             )
             self.model.fit(features)
             self.is_fitted = True
-            logger.info(
-                "Clustering completed. Inertia=%.2f", float(self.model.inertia_)
-            )
-        except Exception as exc:  # noqa: BLE001
-            msg = f"Clustering failed: {exc}"
-            logger.error(msg)
-            raise ModelError(msg) from exc
+        except Exception as exc:  # pragma: no cover - error path
+            raise ModelError(f"Failed to fit cluster model: {exc}") from exc
+
+    def _ensure_fitted(self) -> None:
+        if not self.is_fitted or self.model is None:
+            raise ModelError("Underlying model failure")
 
     def predict(self, features: pd.DataFrame) -> pd.Series:
-        if not self.is_fitted or self.model is None:
-            raise ModelError("Clusterer must be fitted before prediction")
+        self._ensure_fitted()
         try:
             labels = self.model.predict(features)
             return pd.Series(labels, index=features.index)
-        except Exception as exc:  # noqa: BLE001
-            msg = f"Clustering prediction failed: {exc}"
-            logger.error(msg)
-            raise ModelError(msg) from exc
+        except Exception as exc:
+            raise ModelError("Underlying model failure") from exc
 
     def get_cluster_profiles(
         self, df: pd.DataFrame, cluster_labels: pd.Series
-    ) -> list[ClusterProfile]:
-        logger.info("Generating cluster profiles")
-        profiles: list[ClusterProfile] = []
+    ) -> dict[int, dict[str, float]]:
+        merged = df.copy()
+        merged["cluster_id"] = cluster_labels
 
-        df_with_clusters = df.copy()
-        df_with_clusters["cluster"] = cluster_labels
+        profiles: dict[int, dict[str, float]] = {}
 
-        for cluster_id in range(self.n_clusters):
-            subset = df_with_clusters[df_with_clusters["cluster"] == cluster_id]
-            if subset.empty:
-                continue
+        for cid, group in merged.groupby("cluster_id"):
+            profiles[int(cid)] = {
+                "count": int(len(group)),
+                "avg_amount": float(group["amount"].mean()),
+                "min_amount": float(group["amount"].min()),
+                "max_amount": float(group["amount"].max()),
+            }
 
-            top_merchants = (
-                subset["description"].value_counts().head(3).index.tolist()
-                if "description" in subset.columns
-                else []
-            )
-
-            dominant_category = None
-            if "base_category" in subset.columns and not subset["base_category"].empty:
-                dominant_category = subset["base_category"].mode()[0]
-
-            profile = ClusterProfile(
-                cluster_id=cluster_id,
-                size=int(len(subset)),
-                avg_amount=float(subset["amount"].mean()),
-                total_amount=float(subset["amount"].sum()),
-                top_merchants=top_merchants,
-                dominant_category=dominant_category,
-            )
-            profiles.append(profile)
-
-        logger.info("Generated %d cluster profiles", len(profiles))
         return profiles
 
 
-class AnomalyDetector:
-    """
-    Anomaly detection using Isolation Forest.
-    """
+# ----------------------------------------------------------
+# AnomalyDetector
+# ----------------------------------------------------------
 
-    def __init__(
-        self,
-        contamination: float = 0.05,
-        random_state: int = 42,
-        n_estimators: int = 100,
-    ) -> None:
-        self.contamination = contamination
-        self.random_state = random_state
-        self.n_estimators = n_estimators
-        self.model: IsolationForest | None = None
-        self.is_fitted: bool = False
+
+@dataclass
+class AnomalyDetector:
+    contamination: float = 0.05
+    random_state: int = 42
+    n_estimators: int = 100
+
+    model: IsolationForest | None = field(default=None, init=False)
+    is_fitted: bool = field(default=False, init=False)
 
     def fit(self, features: pd.DataFrame) -> None:
-        if features.empty:
-            raise ModelError("Cannot fit anomaly detector on empty feature matrix")
-
-        logger.info("Fitting Isolation Forest (contamination=%s)", self.contamination)
         try:
+            logger.info("Fitting IsolationForest on %s samples", len(features))
             self.model = IsolationForest(
                 contamination=self.contamination,
                 random_state=self.random_state,
                 n_estimators=self.n_estimators,
-                n_jobs=-1,
             )
             self.model.fit(features)
             self.is_fitted = True
-        except Exception as exc:  # noqa: BLE001
-            msg = f"Anomaly detection fitting failed: {exc}"
-            logger.error(msg)
-            raise ModelError(msg) from exc
+        except Exception as exc:  # pragma: no cover - error path
+            raise ModelError(f"Failed to fit anomaly detector: {exc}") from exc
 
-    def score(self, features: pd.DataFrame) -> pd.Series:
+    def _ensure_fitted(self) -> None:
+        """
+        Ensure the underlying IsolationForest model is available and fitted.
+        """
         if not self.is_fitted or self.model is None:
-            raise ModelError("Detector must be fitted before scoring")
-        scores = self.model.score_samples(features)
-        return pd.Series(scores, index=features.index)
+            raise ModelError("Anomaly detector has not been fitted yet.")
 
-    def predict(self, features: pd.DataFrame) -> pd.Series:
-        if not self.is_fitted or self.model is None:
-            raise ModelError("Detector must be fitted before prediction")
-        preds = self.model.predict(features)
-        flags = preds == -1
-        return pd.Series(flags, index=features.index)
+    def score(self, features: pd.DataFrame) -> np.ndarray:
+        self._ensure_fitted()
+        try:
+            return self.model.decision_function(features)
+        except Exception as exc:
+            raise ModelError("Underlying model failure") from exc
+
+    def predict(self, features: pd.DataFrame) -> np.ndarray:
+        self._ensure_fitted()
+        try:
+            raw = self.model.predict(features)  # 1 normal, -1 anomaly
+            return raw == -1
+        except Exception as exc:
+            raise ModelError("Underlying model failure") from exc
+
+
+# ----------------------------------------------------------
+# Model training & persistence
+# ----------------------------------------------------------
 
 
 def train_models(features: pd.DataFrame) -> tuple[SpendingClusterer, AnomalyDetector]:
-    """
-    Train both clusterer and anomaly detector based on model config.
-    """
     cfg = get_model_config()
-
-    clustering_cfg = cfg.get("clustering", {})
-    anomaly_cfg = cfg.get("anomaly_detection", {})
+    c_cfg = cfg.get("clustering", {})
+    a_cfg = cfg.get("anomaly_detection", {})
 
     clusterer = SpendingClusterer(
-        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
-        random_state=int(clustering_cfg.get("random_state", 42)),
-        max_iter=int(clustering_cfg.get("max_iter", 300)),
+        n_clusters=int(c_cfg.get("n_clusters", 5)),
+        random_state=int(c_cfg.get("random_state", 42)),
+        max_iter=int(c_cfg.get("max_iter", 300)),
     )
-    clusterer.fit(features)
 
     detector = AnomalyDetector(
-        contamination=float(anomaly_cfg.get("contamination", 0.05)),
-        random_state=int(anomaly_cfg.get("random_state", 42)),
-        n_estimators=int(anomaly_cfg.get("n_estimators", 100)),
+        contamination=float(a_cfg.get("contamination", 0.05)),
+        random_state=int(a_cfg.get("random_state", 42)),
+        n_estimators=int(a_cfg.get("n_estimators", 100)),
     )
+
+    clusterer.fit(features)
     detector.fit(features)
 
     return clusterer, detector
@@ -189,28 +167,36 @@ def apply_models(
     clusterer: SpendingClusterer,
     detector: AnomalyDetector,
 ) -> pd.DataFrame:
-    """
-    Attach cluster_id, is_anomaly, and anomaly_score to transaction DataFrame.
-    """
-    df = df.copy()
-    df["cluster_id"] = clusterer.predict(features)
-    df["is_anomaly"] = detector.predict(features)
-    df["anomaly_score"] = detector.score(features)
-    return df
+    df2 = df.copy()
+
+    df2["cluster_id"] = clusterer.predict(features).values
+    df2["anomaly_score"] = detector.score(features)
+    df2["is_anomaly"] = detector.predict(features)
+
+    return df2
 
 
 def save_models(
-    clusterer: SpendingClusterer, detector: AnomalyDetector, path: str
-) -> None:
-    logger.info("Saving models to %s", path)
-    folder = Path(path)
-    folder.mkdir(parents=True, exist_ok=True)
-    joblib.dump(clusterer, folder / "clusterer.pkl")
-    joblib.dump(detector, folder / "detector.pkl")
+    clusterer: SpendingClusterer,
+    detector: AnomalyDetector,
+    model_dir: str,
+) -> tuple[str, str]:
+    p = Path(model_dir)
+    p.mkdir(parents=True, exist_ok=True)
+
+    cluster_path = p / "cluster_model.joblib"
+    anomaly_path = p / "anomaly_model.joblib"
+
+    joblib.dump(clusterer, cluster_path)
+    joblib.dump(detector, anomaly_path)
+
+    return str(cluster_path), str(anomaly_path)
 
 
-def load_models(path: str) -> tuple[SpendingClusterer, AnomalyDetector]:
-    folder = Path(path)
-    clusterer = joblib.load(folder / "clusterer.pkl")
-    detector = joblib.load(folder / "detector.pkl")
-    return clusterer, detector
+def load_models(model_dir: str) -> tuple[SpendingClusterer, AnomalyDetector]:
+    p = Path(model_dir)
+
+    cluster: SpendingClusterer = joblib.load(p / "cluster_model.joblib")
+    detector: AnomalyDetector = joblib.load(p / "anomaly_model.joblib")
+
+    return cluster, detector

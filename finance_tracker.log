@@ -899,3 +899,1336 @@ FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pyt
 2025-11-22 03:34:21,109 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-11-22 03:34:21,242 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-14\test_generate_all_plots_create0\cluster_distribution.png
 2025-11-22 03:34:21,242 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 18:43:37,684 - src.runner - INFO - ==================================================
+2025-11-22 18:43:37,685 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 18:43:37,685 - src.runner - INFO - ==================================================
+2025-11-22 18:43:37,685 - src.ingestion - INFO - Loading transactions from outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6\input.csv
+2025-11-22 18:43:37,733 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 18:43:37,749 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5
+2025-11-22 18:43:42,791 - src.ml_engine - INFO - Clustering completed. Inertia=740.49
+2025-11-22 18:43:42,791 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.05)
+2025-11-22 18:43:42,968 - src.ml_engine - INFO - Generating cluster profiles
+2025-11-22 18:43:42,975 - src.ml_engine - INFO - Generated 5 cluster profiles
+2025-11-22 18:43:43,005 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6
+2025-11-22 18:43:43,005 - src.visualization - INFO - Generating category spending chart
+2025-11-22 18:43:43,212 - src.visualization - INFO - Saved figure to: outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6\category_spending.png
+2025-11-22 18:43:43,212 - src.visualization - INFO - Generating time series chart
+2025-11-22 18:43:43,219 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,221 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,222 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,223 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,344 - src.visualization - INFO - Saved figure to: outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6\spending_trends.png
+2025-11-22 18:43:43,345 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 18:43:43,497 - src.visualization - INFO - Saved figure to: outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6\anomaly_detection.png
+2025-11-22 18:43:43,498 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 18:43:43,509 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,515 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 18:43:43,629 - src.visualization - INFO - Saved figure to: outputs\api-runs\0139bd9b-4bb3-4f3d-a95f-230344567ec6\cluster_distribution.png
+2025-11-22 18:43:43,629 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 18:43:43,635 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 20:06:47,024 - src.runner - INFO - ==================================================
+2025-11-22 20:06:47,024 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:06:47,024 - src.runner - INFO - ==================================================
+2025-11-22 20:06:47,025 - src.ingestion - INFO - Loading transactions from outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2\input.csv
+2025-11-22 20:06:47,060 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 20:06:47,071 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5
+2025-11-22 20:06:47,121 - src.ml_engine - INFO - Clustering completed. Inertia=740.49
+2025-11-22 20:06:47,121 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.05)
+2025-11-22 20:06:47,359 - src.ml_engine - INFO - Generating cluster profiles
+2025-11-22 20:06:47,366 - src.ml_engine - INFO - Generated 5 cluster profiles
+2025-11-22 20:06:47,410 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2
+2025-11-22 20:06:47,411 - src.visualization - INFO - Generating category spending chart
+2025-11-22 20:06:47,707 - src.visualization - INFO - Saved figure to: outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2\category_spending.png
+2025-11-22 20:06:47,708 - src.visualization - INFO - Generating time series chart
+2025-11-22 20:06:47,718 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:47,720 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:47,722 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:47,724 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:47,960 - src.visualization - INFO - Saved figure to: outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2\spending_trends.png
+2025-11-22 20:06:47,961 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 20:06:48,263 - src.visualization - INFO - Saved figure to: outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2\anomaly_detection.png
+2025-11-22 20:06:48,264 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 20:06:48,280 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:48,288 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:06:48,453 - src.visualization - INFO - Saved figure to: outputs\api-runs\994044b4-e4bb-4d4f-b1bf-ddd56f17b1b2\cluster_distribution.png
+2025-11-22 20:06:48,454 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 20:06:48,460 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 20:06:56,744 - src.runner - INFO - ==================================================
+2025-11-22 20:06:56,745 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:06:56,745 - src.runner - INFO - ==================================================
+2025-11-22 20:06:56,745 - src.ingestion - INFO - Loading transactions from outputs\api-runs\4bc05740-f809-4ac9-9cea-14055227dab4\input.csv
+2025-11-22 20:06:56,766 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 20:07:04,702 - src.runner - INFO - ==================================================
+2025-11-22 20:07:04,703 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:07:04,703 - src.runner - INFO - ==================================================
+2025-11-22 20:07:04,703 - src.ingestion - INFO - Loading transactions from outputs\api-runs\2c7e6175-1d40-4543-b749-9d7ff1b94bc5\input.csv
+2025-11-22 20:07:04,727 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 20:07:30,902 - src.runner - INFO - ==================================================
+2025-11-22 20:07:30,903 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:07:30,903 - src.runner - INFO - ==================================================
+2025-11-22 20:07:30,903 - src.ingestion - INFO - Loading transactions from outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3\input.csv
+2025-11-22 20:07:30,920 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 20:07:30,932 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5
+2025-11-22 20:07:30,982 - src.ml_engine - INFO - Clustering completed. Inertia=867.90
+2025-11-22 20:07:30,982 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.05)
+2025-11-22 20:07:31,216 - src.ml_engine - INFO - Generating cluster profiles
+2025-11-22 20:07:31,223 - src.ml_engine - INFO - Generated 5 cluster profiles
+2025-11-22 20:07:31,262 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3
+2025-11-22 20:07:31,263 - src.visualization - INFO - Generating category spending chart
+2025-11-22 20:07:31,482 - src.visualization - INFO - Saved figure to: outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3\category_spending.png
+2025-11-22 20:07:31,483 - src.visualization - INFO - Generating time series chart
+2025-11-22 20:07:31,494 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:31,496 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:31,497 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:31,498 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:31,643 - src.visualization - INFO - Saved figure to: outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3\spending_trends.png
+2025-11-22 20:07:31,643 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 20:07:31,874 - src.visualization - INFO - Saved figure to: outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3\anomaly_detection.png
+2025-11-22 20:07:31,875 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 20:07:31,902 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:31,911 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 20:07:32,096 - src.visualization - INFO - Saved figure to: outputs\api-runs\2317dfc7-2d48-4ee1-9d94-13b2f7d61bb3\cluster_distribution.png
+2025-11-22 20:07:32,096 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 20:07:32,103 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 20:45:33,631 - src.runner - INFO - ==================================================
+2025-11-22 20:45:33,632 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:45:33,632 - src.runner - INFO - ==================================================
+2025-11-22 20:45:33,632 - src.ingestion - INFO - Loading transactions from outputs\api-runs\a11b8575-6cc0-445d-8fb2-2fbcfb6b4c55\input.csv
+2025-11-22 20:45:33,654 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 20:59:46,796 - src.runner - INFO - ==================================================
+2025-11-22 20:59:46,797 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 20:59:46,797 - src.runner - INFO - ==================================================
+2025-11-22 20:59:46,797 - src.ingestion - INFO - Loading transactions from outputs\api-runs\30e2789d-88d9-4627-9d81-4646cf2b3628\input.csv
+2025-11-22 20:59:46,821 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 21:00:03,440 - src.runner - INFO - ==================================================
+2025-11-22 21:00:03,440 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:00:03,441 - src.runner - INFO - ==================================================
+2025-11-22 21:00:03,441 - src.ingestion - INFO - Loading transactions from outputs\api-runs\d365f27e-a159-47d4-8fb3-eba0985c1384\input.csv
+2025-11-22 21:00:03,460 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 21:01:06,100 - src.runner - INFO - ==================================================
+2025-11-22 21:01:06,100 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:01:06,100 - src.runner - INFO - ==================================================
+2025-11-22 21:01:06,101 - src.ingestion - INFO - Loading transactions from outputs\api-runs\33c04444-7c7a-4df9-b1c1-01a6f7ccab2c\input.csv
+2025-11-22 21:01:06,121 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 21:24:15,155 - src.runner - INFO - ==================================================
+2025-11-22 21:24:15,155 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:24:15,155 - src.runner - INFO - ==================================================
+2025-11-22 21:24:15,156 - src.ingestion - INFO - Loading transactions from outputs\api-runs\cc03d722-6dfd-4096-9bda-50e63e6d97e4\input.csv
+2025-11-22 21:24:15,178 - src.runner - ERROR - Data validation failed: Missing required columns (after normalization): ['description', 'transaction_type']
+2025-11-22 21:30:08,536 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 21:30:08,545 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 21:30:08,546 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 21:30:08,551 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 21:30:08,575 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 21:30:08,590 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 21:30:08,594 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 21:30:08,596 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 21:30:12,748 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.2)
+2025-11-22 21:30:12,896 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.2)
+2025-11-22 21:30:13,013 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.1)
+2025-11-22 21:30:13,015 - src.ml_engine - ERROR - Anomaly detection fitting failed: could not convert string to float: 'x'
+2025-11-22 21:30:13,056 - src.runner - INFO - ==================================================
+2025-11-22 21:30:13,056 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:30:13,056 - src.runner - INFO - ==================================================
+2025-11-22 21:30:13,056 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 21:30:13,070 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 21:30:13,078 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 21:30:13,088 - src.runner - INFO - ==================================================
+2025-11-22 21:30:13,089 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:30:13,089 - src.runner - INFO - ==================================================
+2025-11-22 21:30:13,089 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 21:30:13,089 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 21:30:13,095 - src.visualization - INFO - Generating category spending chart
+2025-11-22 21:30:13,095 - src.visualization - WARNING - No category data to plot
+2025-11-22 21:30:13,100 - src.visualization - INFO - Generating time series chart
+2025-11-22 21:30:13,100 - src.visualization - WARNING - No time series data to plot
+2025-11-22 21:30:13,106 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 21:30:13,106 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 21:30:13,112 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 21:30:13,112 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 21:30:13,119 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_generate_all_plots_create0
+2025-11-22 21:30:13,120 - src.visualization - INFO - Generating category spending chart
+2025-11-22 21:30:13,297 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_generate_all_plots_create0\category_spending.png
+2025-11-22 21:30:13,297 - src.visualization - INFO - Generating time series chart
+2025-11-22 21:30:13,308 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 21:30:13,309 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 21:30:13,421 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 21:30:13,421 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 21:30:13,624 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 21:30:13,624 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 21:30:13,640 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 21:30:13,646 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 21:30:13,779 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-15\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 21:30:13,779 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 21:33:53,036 - src.runner - INFO - ==================================================
+2025-11-22 21:33:53,036 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:33:53,036 - src.runner - INFO - ==================================================
+2025-11-22 21:33:53,037 - src.ingestion - INFO - Loading transactions from outputs\api-runs\2e274b57-84f0-40e2-a2de-770e4dc08ef7\input.csv
+2025-11-22 21:33:53,084 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 21:33:53,101 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 21:34:14,454 - src.runner - INFO - ==================================================
+2025-11-22 21:34:14,454 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:34:14,454 - src.runner - INFO - ==================================================
+2025-11-22 21:34:14,455 - src.ingestion - INFO - Loading transactions from outputs\api-runs\142700a2-816e-45cd-8495-45173d3c5609\input.csv
+2025-11-22 21:34:14,497 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 21:34:14,511 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 21:34:18,554 - src.runner - INFO - ==================================================
+2025-11-22 21:34:18,554 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:34:18,555 - src.runner - INFO - ==================================================
+2025-11-22 21:34:18,555 - src.ingestion - INFO - Loading transactions from outputs\api-runs\6e5e7ade-bf96-4a93-a1b7-037fcdfba805\input.csv
+2025-11-22 21:34:18,575 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 21:34:18,587 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 21:51:59,338 - src.runner - INFO - ==================================================
+2025-11-22 21:51:59,339 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:51:59,339 - src.runner - INFO - ==================================================
+2025-11-22 21:51:59,340 - src.ingestion - INFO - Loading transactions from outputs\api-runs\6cd84ebd-e4a5-4919-8ee5-b7ee25a47c18\input.csv
+2025-11-22 21:51:59,374 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 21:51:59,386 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 21:52:34,552 - src.runner - INFO - ==================================================
+2025-11-22 21:52:34,552 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 21:52:34,552 - src.runner - INFO - ==================================================
+2025-11-22 21:52:34,552 - src.ingestion - INFO - Loading transactions from outputs\api-runs\7a5ed6b5-3093-4c6e-a3e6-d961f9b02d96\input.csv
+2025-11-22 21:52:34,590 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 21:52:34,602 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 138, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer.__init__() got an unexpected keyword argument 'max_iter'
+2025-11-22 22:08:16,663 - src.runner - INFO - ==================================================
+2025-11-22 22:08:16,664 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:08:16,664 - src.runner - INFO - ==================================================
+2025-11-22 22:08:16,664 - src.ingestion - INFO - Loading transactions from outputs\api-runs\a2cb4450-efe8-43d4-b4b7-146797605aeb\input.csv
+2025-11-22 22:08:16,707 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 22:08:16,721 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer() takes no arguments
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\ml_engine.py", line 154, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer() takes no arguments
+2025-11-22 22:08:52,096 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 22:08:52,107 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 22:08:52,108 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 22:08:52,114 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 22:08:52,138 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 22:08:52,154 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 22:08:52,158 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 22:08:52,367 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.2)
+2025-11-22 22:08:52,517 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.2)
+2025-11-22 22:08:52,646 - src.ml_engine - INFO - Fitting Isolation Forest (contamination=0.1)
+2025-11-22 22:08:52,647 - src.ml_engine - ERROR - Anomaly detection fitting failed: could not convert string to float: 'x'
+2025-11-22 22:08:52,689 - src.runner - INFO - ==================================================
+2025-11-22 22:08:52,689 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:08:52,689 - src.runner - INFO - ==================================================
+2025-11-22 22:08:52,690 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 22:08:52,704 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 22:08:52,713 - src.runner - ERROR - Unexpected error in pipeline: SpendingClusterer() takes no arguments
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 57, in run_pipeline
+    clusterer, detector = ml_engine.train_models(scaled_features)
+                          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ml_engine.py", line 154, in train_models
+    clusterer = SpendingClusterer(
+        n_clusters=int(clustering_cfg.get("n_clusters", 5)),
+        random_state=int(clustering_cfg.get("random_state", 42)),
+        max_iter=int(clustering_cfg.get("max_iter", 300)),
+    )
+TypeError: SpendingClusterer() takes no arguments
+2025-11-22 22:08:52,735 - src.runner - INFO - ==================================================
+2025-11-22 22:08:52,736 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:08:52,736 - src.runner - INFO - ==================================================
+2025-11-22 22:08:52,736 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:08:52,736 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:08:52,756 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:08:52,756 - src.visualization - WARNING - No category data to plot
+2025-11-22 22:08:52,761 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:08:52,761 - src.visualization - WARNING - No time series data to plot
+2025-11-22 22:08:52,767 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:08:52,767 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 22:08:52,773 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:08:52,774 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 22:08:52,780 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_generate_all_plots_create0
+2025-11-22 22:08:52,780 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:08:52,982 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_generate_all_plots_create0\category_spending.png
+2025-11-22 22:08:52,983 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:08:52,996 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:08:52,997 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:08:53,111 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 22:08:53,111 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:08:53,316 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 22:08:53,316 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:08:53,332 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:08:53,338 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:08:53,471 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-16\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 22:08:53,471 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 22:37:04,191 - src.runner - INFO - ==================================================
+2025-11-22 22:37:04,192 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:37:04,192 - src.runner - INFO - ==================================================
+2025-11-22 22:37:04,192 - src.ingestion - INFO - Loading transactions from outputs\api-runs\26b725af-0ac7-4799-8b18-8a18c3df066a\input.csv
+2025-11-22 22:37:04,234 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 22:37:04,249 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 22:37:13,633 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 22:37:13,754 - src.runner - ERROR - Unexpected error in pipeline: apply_models() takes 3 positional arguments but 4 were given
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 58, in run_pipeline
+    df = ml_engine.apply_models(df, scaled_features, clusterer, detector)
+TypeError: apply_models() takes 3 positional arguments but 4 were given
+2025-11-22 22:39:24,729 - src.runner - INFO - ==================================================
+2025-11-22 22:39:24,729 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:39:24,729 - src.runner - INFO - ==================================================
+2025-11-22 22:39:24,730 - src.ingestion - INFO - Loading transactions from outputs\api-runs\cf0ee47b-a975-4ae1-9ba7-a5c74d1ffbe6\input.csv
+2025-11-22 22:39:24,775 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 22:39:24,797 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 22:39:29,453 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 22:39:29,574 - src.runner - ERROR - Unexpected error in pipeline: apply_models() takes 3 positional arguments but 4 were given
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 58, in run_pipeline
+    df = ml_engine.apply_models(df, scaled_features, clusterer, detector)
+TypeError: apply_models() takes 3 positional arguments but 4 were given
+2025-11-22 22:40:16,755 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 22:40:16,766 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 22:40:16,767 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 22:40:16,773 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 22:40:16,796 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 22:40:16,803 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 22:40:16,806 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 22:40:16,809 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 22:40:20,842 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:40:20,928 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 22:40:20,933 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:40:21,083 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 22:40:21,088 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:40:21,304 - src.ml_engine - INFO - Saved cluster model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_save_and_load_models_roun0\cluster_model.joblib
+2025-11-22 22:40:21,305 - src.ml_engine - INFO - Saved anomaly model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_save_and_load_models_roun0\anomaly_model.joblib
+2025-11-22 22:40:21,312 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:40:21,384 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 22:40:21,388 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 22:40:21,435 - src.runner - INFO - ==================================================
+2025-11-22 22:40:21,435 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:40:21,435 - src.runner - INFO - ==================================================
+2025-11-22 22:40:21,435 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 22:40:21,441 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 22:40:21,457 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 22:40:21,462 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 22:40:21,604 - src.runner - ERROR - Unexpected error in pipeline: apply_models() takes 3 positional arguments but 4 were given
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 58, in run_pipeline
+    df = ml_engine.apply_models(df, scaled_features, clusterer, detector)
+TypeError: apply_models() takes 3 positional arguments but 4 were given
+2025-11-22 22:40:21,613 - src.runner - INFO - ==================================================
+2025-11-22 22:40:21,613 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:40:21,613 - src.runner - INFO - ==================================================
+2025-11-22 22:40:21,614 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:40:21,614 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:40:21,619 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:40:21,619 - src.visualization - WARNING - No category data to plot
+2025-11-22 22:40:21,624 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:40:21,624 - src.visualization - WARNING - No time series data to plot
+2025-11-22 22:40:21,630 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:40:21,630 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 22:40:21,637 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:40:21,637 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 22:40:21,644 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_generate_all_plots_create0
+2025-11-22 22:40:21,645 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:40:21,825 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_generate_all_plots_create0\category_spending.png
+2025-11-22 22:40:21,826 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:40:21,837 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:40:21,838 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:40:21,952 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 22:40:21,953 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:40:22,157 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 22:40:22,157 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:40:22,174 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:40:22,179 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:40:22,311 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-17\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 22:40:22,311 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 22:47:34,963 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 22:47:34,972 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 22:47:34,973 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 22:47:34,978 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 22:47:35,005 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 22:47:35,012 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 22:47:35,015 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 22:47:35,018 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 22:47:38,965 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:47:39,049 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 22:47:39,054 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:47:39,214 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 22:47:39,219 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:47:39,427 - src.ml_engine - INFO - Saved cluster model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_save_and_load_models_roun0\cluster_model.joblib
+2025-11-22 22:47:39,428 - src.ml_engine - INFO - Saved anomaly model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_save_and_load_models_roun0\anomaly_model.joblib
+2025-11-22 22:47:39,696 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 22:47:39,775 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 22:47:39,779 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 22:47:39,823 - src.runner - INFO - ==================================================
+2025-11-22 22:47:39,823 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:47:39,823 - src.runner - INFO - ==================================================
+2025-11-22 22:47:39,823 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 22:47:39,828 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 22:47:39,843 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 22:47:39,850 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 22:47:40,004 - src.runner - ERROR - Unexpected error in pipeline: 'SpendingClusterer' object has no attribute 'get_cluster_profiles'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 59, in run_pipeline
+    cluster_profiles = clusterer.get_cluster_profiles(df, df["cluster_id"])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SpendingClusterer' object has no attribute 'get_cluster_profiles'
+2025-11-22 22:47:40,014 - src.runner - INFO - ==================================================
+2025-11-22 22:47:40,015 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:47:40,015 - src.runner - INFO - ==================================================
+2025-11-22 22:47:40,015 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:47:40,015 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 22:47:40,021 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:47:40,021 - src.visualization - WARNING - No category data to plot
+2025-11-22 22:47:40,025 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:47:40,026 - src.visualization - WARNING - No time series data to plot
+2025-11-22 22:47:40,032 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:47:40,032 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 22:47:40,038 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:47:40,039 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 22:47:40,046 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_generate_all_plots_create0
+2025-11-22 22:47:40,046 - src.visualization - INFO - Generating category spending chart
+2025-11-22 22:47:40,216 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_generate_all_plots_create0\category_spending.png
+2025-11-22 22:47:40,216 - src.visualization - INFO - Generating time series chart
+2025-11-22 22:47:40,228 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:47:40,229 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:47:40,344 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 22:47:40,345 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 22:47:40,548 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 22:47:40,549 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 22:47:40,565 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:47:40,572 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 22:47:40,704 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-18\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 22:47:40,704 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 22:48:34,382 - src.runner - INFO - ==================================================
+2025-11-22 22:48:34,383 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 22:48:34,383 - src.runner - INFO - ==================================================
+2025-11-22 22:48:34,383 - src.ingestion - INFO - Loading transactions from outputs\api-runs\a26e1f7a-2146-464f-8635-f7b8b4963c31\input.csv
+2025-11-22 22:48:34,426 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 22:48:34,442 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 22:48:39,539 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 22:48:39,682 - src.runner - ERROR - Unexpected error in pipeline: 'SpendingClusterer' object has no attribute 'get_cluster_profiles'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 59, in run_pipeline
+    cluster_profiles = clusterer.get_cluster_profiles(df, df["cluster_id"])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SpendingClusterer' object has no attribute 'get_cluster_profiles'
+2025-11-22 23:00:50,876 - src.runner - INFO - ==================================================
+2025-11-22 23:00:50,876 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:00:50,876 - src.runner - INFO - ==================================================
+2025-11-22 23:00:50,877 - src.ingestion - INFO - Loading transactions from outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe\input.csv
+2025-11-22 23:00:50,923 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:00:50,938 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:00:56,299 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:00:56,500 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe
+2025-11-22 23:00:56,501 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:00:56,675 - src.visualization - INFO - Saved figure to: outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe\category_spending.png
+2025-11-22 23:00:56,676 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:00:56,683 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:56,685 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:56,686 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:56,686 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:56,811 - src.visualization - INFO - Saved figure to: outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe\spending_trends.png
+2025-11-22 23:00:56,811 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:00:56,960 - src.visualization - INFO - Saved figure to: outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe\anomaly_detection.png
+2025-11-22 23:00:56,961 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:00:56,971 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:56,976 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:00:57,089 - src.visualization - INFO - Saved figure to: outputs\api-runs\d8a6ec85-657f-4006-833c-c89fe1148bfe\cluster_distribution.png
+2025-11-22 23:00:57,089 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:00:57,095 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:01:29,968 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 23:01:29,977 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 23:01:29,978 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 23:01:29,984 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 23:01:30,011 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 23:01:30,018 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 23:01:30,022 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 23:01:30,025 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 23:01:33,933 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:01:34,044 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:01:34,049 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:01:34,243 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:01:34,248 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:01:34,502 - src.ml_engine - INFO - Saved cluster model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_save_and_load_models_roun0\cluster_model.joblib
+2025-11-22 23:01:34,502 - src.ml_engine - INFO - Saved anomaly model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_save_and_load_models_roun0\anomaly_model.joblib
+2025-11-22 23:01:34,588 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:01:34,896 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 23:01:34,941 - src.runner - INFO - ==================================================
+2025-11-22 23:01:34,941 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:01:34,941 - src.runner - INFO - ==================================================
+2025-11-22 23:01:34,942 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 23:01:34,947 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 23:01:34,956 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 23:01:34,962 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 23:01:35,190 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\outputs
+2025-11-22 23:01:35,190 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:01:35,413 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\outputs\category_spending.png
+2025-11-22 23:01:35,414 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:01:35,425 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,427 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,428 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,428 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,561 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\outputs\spending_trends.png
+2025-11-22 23:01:35,561 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:01:35,761 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\outputs\anomaly_detection.png
+2025-11-22 23:01:35,762 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:01:35,778 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,785 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:35,951 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_successful_o0\outputs\cluster_distribution.png
+2025-11-22 23:01:35,951 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:01:35,955 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:01:35,961 - src.runner - INFO - ==================================================
+2025-11-22 23:01:35,962 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:01:35,962 - src.runner - INFO - ==================================================
+2025-11-22 23:01:35,962 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:01:35,962 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:01:35,969 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:01:35,969 - src.visualization - WARNING - No category data to plot
+2025-11-22 23:01:35,973 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:01:35,974 - src.visualization - WARNING - No time series data to plot
+2025-11-22 23:01:35,980 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:01:35,981 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 23:01:35,987 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:01:35,987 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 23:01:35,995 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_generate_all_plots_create0
+2025-11-22 23:01:35,996 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:01:36,141 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_generate_all_plots_create0\category_spending.png
+2025-11-22 23:01:36,142 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:01:36,153 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:36,154 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:36,267 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 23:01:36,267 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:01:36,469 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 23:01:36,469 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:01:36,485 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:36,491 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:01:36,626 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-19\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 23:01:36,626 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:15:50,645 - src.runner - INFO - ==================================================
+2025-11-22 23:15:50,645 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:15:50,645 - src.runner - INFO - ==================================================
+2025-11-22 23:15:50,646 - src.ingestion - INFO - Loading transactions from outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495\input.csv
+2025-11-22 23:15:50,695 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:15:50,712 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:15:55,664 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:15:55,834 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495
+2025-11-22 23:15:55,835 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:15:56,013 - src.visualization - INFO - Saved figure to: outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495\category_spending.png
+2025-11-22 23:15:56,013 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:15:56,020 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,022 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,023 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,024 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,148 - src.visualization - INFO - Saved figure to: outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495\spending_trends.png
+2025-11-22 23:15:56,149 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:15:56,292 - src.visualization - INFO - Saved figure to: outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495\anomaly_detection.png
+2025-11-22 23:15:56,293 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:15:56,309 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,316 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:15:56,432 - src.visualization - INFO - Saved figure to: outputs\api-runs\bbcf6f19-3bf8-4369-9d37-8edc3f9e2495\cluster_distribution.png
+2025-11-22 23:15:56,432 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:15:56,438 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:16:27,788 - src.runner - INFO - ==================================================
+2025-11-22 23:16:27,788 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:16:27,788 - src.runner - INFO - ==================================================
+2025-11-22 23:16:27,789 - src.ingestion - INFO - Loading transactions from outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7\input.csv
+2025-11-22 23:16:27,835 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:16:27,848 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:16:32,006 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:16:32,166 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7
+2025-11-22 23:16:32,166 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:16:32,330 - src.visualization - INFO - Saved figure to: outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7\category_spending.png
+2025-11-22 23:16:32,330 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:16:32,337 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,339 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,340 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,341 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,463 - src.visualization - INFO - Saved figure to: outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7\spending_trends.png
+2025-11-22 23:16:32,463 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:16:32,612 - src.visualization - INFO - Saved figure to: outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7\anomaly_detection.png
+2025-11-22 23:16:32,612 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:16:32,623 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,628 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:32,740 - src.visualization - INFO - Saved figure to: outputs\api-runs\4a585922-7769-4e4e-9109-541097cdf7d7\cluster_distribution.png
+2025-11-22 23:16:32,740 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:16:32,746 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:16:44,901 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 23:16:44,910 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 23:16:44,910 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 23:16:44,915 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 23:16:44,941 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 23:16:44,948 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 23:16:44,952 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 23:16:44,955 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 23:16:48,740 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:16:48,817 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:16:48,822 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:16:48,987 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:16:48,992 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:16:49,217 - src.ml_engine - INFO - Saved cluster model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_save_and_load_models_roun0\cluster_model.joblib
+2025-11-22 23:16:49,217 - src.ml_engine - INFO - Saved anomaly model to C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_save_and_load_models_roun0\anomaly_model.joblib
+2025-11-22 23:16:49,295 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:16:49,374 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 23:16:49,921 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 23:16:50,256 - src.runner - INFO - ==================================================
+2025-11-22 23:16:50,257 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:16:50,257 - src.runner - INFO - ==================================================
+2025-11-22 23:16:50,257 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 23:16:50,262 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 23:16:50,270 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 23:16:50,277 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 23:16:50,463 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\outputs
+2025-11-22 23:16:50,464 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:16:50,682 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\outputs\category_spending.png
+2025-11-22 23:16:50,682 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:16:50,694 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:50,695 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:50,696 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:50,696 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:50,822 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\outputs\spending_trends.png
+2025-11-22 23:16:50,822 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:16:51,020 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\outputs\anomaly_detection.png
+2025-11-22 23:16:51,020 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:16:51,036 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,042 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,200 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_successful_o0\outputs\cluster_distribution.png
+2025-11-22 23:16:51,200 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:16:51,204 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:16:51,210 - src.runner - INFO - ==================================================
+2025-11-22 23:16:51,210 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:16:51,210 - src.runner - INFO - ==================================================
+2025-11-22 23:16:51,211 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:16:51,211 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:16:51,216 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:16:51,216 - src.visualization - WARNING - No category data to plot
+2025-11-22 23:16:51,221 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:16:51,222 - src.visualization - WARNING - No time series data to plot
+2025-11-22 23:16:51,227 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:16:51,228 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 23:16:51,233 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:16:51,234 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 23:16:51,241 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_generate_all_plots_create0
+2025-11-22 23:16:51,241 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:16:51,376 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_generate_all_plots_create0\category_spending.png
+2025-11-22 23:16:51,377 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:16:51,387 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,388 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,500 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 23:16:51,500 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:16:51,707 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 23:16:51,707 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:16:51,723 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,729 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:16:51,862 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-20\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 23:16:51,862 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:21:08,640 - src.runner - INFO - ==================================================
+2025-11-22 23:21:08,640 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:21:08,641 - src.runner - INFO - ==================================================
+2025-11-22 23:21:08,641 - src.ingestion - INFO - Loading transactions from outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b\input.csv
+2025-11-22 23:21:08,684 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:21:08,697 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:21:13,878 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:21:14,045 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b
+2025-11-22 23:21:14,045 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:21:14,211 - src.visualization - INFO - Saved figure to: outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b\category_spending.png
+2025-11-22 23:21:14,211 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:21:14,219 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,220 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,222 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,223 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,347 - src.visualization - INFO - Saved figure to: outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b\spending_trends.png
+2025-11-22 23:21:14,347 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:21:14,492 - src.visualization - INFO - Saved figure to: outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b\anomaly_detection.png
+2025-11-22 23:21:14,493 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:21:14,509 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,514 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:14,627 - src.visualization - INFO - Saved figure to: outputs\api-runs\2fc5a41a-98e0-4cfa-983b-e7b348708c5b\cluster_distribution.png
+2025-11-22 23:21:14,628 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:21:14,632 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:21:24,403 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 23:21:24,414 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 23:21:24,415 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 23:21:24,420 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 23:21:24,447 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 23:21:24,453 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 23:21:24,456 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 23:21:24,459 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 23:21:28,198 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:21:28,275 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:21:28,280 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:21:28,444 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:21:28,449 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:21:28,736 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:21:28,815 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 23:21:29,293 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 23:21:29,612 - src.runner - INFO - ==================================================
+2025-11-22 23:21:29,612 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:21:29,612 - src.runner - INFO - ==================================================
+2025-11-22 23:21:29,612 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 23:21:29,618 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 23:21:29,628 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 23:21:29,632 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 23:21:29,824 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\outputs
+2025-11-22 23:21:29,825 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:21:30,044 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\outputs\category_spending.png
+2025-11-22 23:21:30,045 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:21:30,057 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,058 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,059 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,060 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,189 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\outputs\spending_trends.png
+2025-11-22 23:21:30,189 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:21:30,389 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\outputs\anomaly_detection.png
+2025-11-22 23:21:30,389 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:21:30,404 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,410 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,573 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_successful_o0\outputs\cluster_distribution.png
+2025-11-22 23:21:30,573 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:21:30,577 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:21:30,582 - src.runner - INFO - ==================================================
+2025-11-22 23:21:30,582 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:21:30,582 - src.runner - INFO - ==================================================
+2025-11-22 23:21:30,583 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:21:30,583 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:21:30,589 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:21:30,589 - src.visualization - WARNING - No category data to plot
+2025-11-22 23:21:30,594 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:21:30,594 - src.visualization - WARNING - No time series data to plot
+2025-11-22 23:21:30,600 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:21:30,600 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 23:21:30,607 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:21:30,607 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 23:21:30,613 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_generate_all_plots_create0
+2025-11-22 23:21:30,614 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:21:30,751 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_generate_all_plots_create0\category_spending.png
+2025-11-22 23:21:30,752 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:21:30,762 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,763 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:30,873 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 23:21:30,873 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:21:31,077 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 23:21:31,077 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:21:31,093 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:31,099 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:21:31,234 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-21\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 23:21:31,235 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:27:26,073 - src.runner - INFO - ==================================================
+2025-11-22 23:27:26,073 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:27:26,073 - src.runner - INFO - ==================================================
+2025-11-22 23:27:26,074 - src.ingestion - INFO - Loading transactions from outputs\api-runs\aec8eea8-3de0-4c22-b45c-c41f75cf07cb\input.csv
+2025-11-22 23:27:26,115 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:27:26,126 - src.runner - ERROR - Unexpected error in pipeline: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 82, in run_pipeline
+    features = scale_features(features)
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 142, in scale_features
+    return _default_service.scale_features(features)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 119, in scale_features
+    scaled_array = scaler.fit_transform(features)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 894, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 907, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 943, in partial_fit
+    X = validate_data(
+        self,
+    ...<4 lines>...
+        reset=first_call,
+    )
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 2954, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 1053, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_array_api.py", line 757, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+2025-11-22 23:27:50,253 - src.runner - INFO - ==================================================
+2025-11-22 23:27:50,253 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:27:50,253 - src.runner - INFO - ==================================================
+2025-11-22 23:27:50,254 - src.ingestion - INFO - Loading transactions from outputs\api-runs\7a9fdbf8-80cd-482c-bc5c-dd21f655452a\input.csv
+2025-11-22 23:27:50,293 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:27:50,303 - src.runner - ERROR - Unexpected error in pipeline: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 82, in run_pipeline
+    features = scale_features(features)
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 142, in scale_features
+    return _default_service.scale_features(features)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 119, in scale_features
+    scaled_array = scaler.fit_transform(features)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 894, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 907, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 943, in partial_fit
+    X = validate_data(
+        self,
+    ...<4 lines>...
+        reset=first_call,
+    )
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 2954, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 1053, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_array_api.py", line 757, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+2025-11-22 23:28:43,761 - src.runner - INFO - ==================================================
+2025-11-22 23:28:43,761 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:28:43,761 - src.runner - INFO - ==================================================
+2025-11-22 23:28:43,761 - src.ingestion - INFO - Loading transactions from outputs\api-runs\ddfefbae-0e4f-44aa-8bf3-c134114c09d2\input.csv
+2025-11-22 23:28:43,795 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:28:43,802 - src.runner - ERROR - Unexpected error in pipeline: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 82, in run_pipeline
+    features = scale_features(features)
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 142, in scale_features
+    return _default_service.scale_features(features)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 119, in scale_features
+    scaled_array = scaler.fit_transform(features)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 894, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 907, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 943, in partial_fit
+    X = validate_data(
+        self,
+    ...<4 lines>...
+        reset=first_call,
+    )
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 2954, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 1053, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_array_api.py", line 757, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+2025-11-22 23:28:47,251 - src.runner - INFO - ==================================================
+2025-11-22 23:28:47,251 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:28:47,251 - src.runner - INFO - ==================================================
+2025-11-22 23:28:47,252 - src.ingestion - INFO - Loading transactions from outputs\api-runs\5200b64d-7298-45d6-a231-35efa1d63a1a\input.csv
+2025-11-22 23:28:47,285 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:28:47,295 - src.runner - ERROR - Unexpected error in pipeline: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 82, in run_pipeline
+    features = scale_features(features)
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 142, in scale_features
+    return _default_service.scale_features(features)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\preprocessing.py", line 119, in scale_features
+    scaled_array = scaler.fit_transform(features)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 894, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 907, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\preprocessing\_data.py", line 943, in partial_fit
+    X = validate_data(
+        self,
+    ...<4 lines>...
+        reset=first_call,
+    )
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 2954, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\validation.py", line 1053, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "D:\anaconda\envs\py2\Lib\site-packages\sklearn\utils\_array_api.py", line 757, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+2025-11-22 23:29:11,856 - src.runner - INFO - ==================================================
+2025-11-22 23:29:11,856 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:29:11,856 - src.runner - INFO - ==================================================
+2025-11-22 23:29:11,857 - src.ingestion - INFO - Loading transactions from outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399\input.csv
+2025-11-22 23:29:11,899 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:29:11,910 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:29:17,162 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:29:17,410 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399
+2025-11-22 23:29:17,411 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:29:17,654 - src.visualization - INFO - Saved figure to: outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399\category_spending.png
+2025-11-22 23:29:17,655 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:29:17,664 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:17,667 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:17,669 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:17,670 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:17,879 - src.visualization - INFO - Saved figure to: outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399\spending_trends.png
+2025-11-22 23:29:17,879 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:29:18,118 - src.visualization - INFO - Saved figure to: outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399\anomaly_detection.png
+2025-11-22 23:29:18,119 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:29:18,138 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:18,148 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:29:18,320 - src.visualization - INFO - Saved figure to: outputs\api-runs\3ca2f375-9154-4e8f-82de-5c16ee88f399\cluster_distribution.png
+2025-11-22 23:29:18,321 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:29:18,328 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:29:57,978 - src.runner - INFO - ==================================================
+2025-11-22 23:29:57,978 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:29:57,978 - src.runner - INFO - ==================================================
+2025-11-22 23:29:57,979 - src.ingestion - INFO - Loading transactions from outputs\api-runs\df7e7a12-8755-4320-bfbd-b93f72a1c26d\input.csv
+2025-11-22 23:29:58,023 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:29:58,037 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:30:03,131 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:30:03,357 - src.runner - ERROR - Unexpected error in pipeline: 'AnalysisSummary' object has no attribute 'summary'
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-Hardhik\src\runner.py", line 65, in run_pipeline
+    recs = recommendations.generate_recommendations(analysis_result)
+  File "D:\TechSophy\TechSophy-Hardhik\src\recommendations.py", line 117, in generate_recommendations
+    return _default_engine.generate_recommendations(analysis_result)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\recommendations.py", line 26, in generate_recommendations
+    recs.extend(self._recommend_on_cash_flow(analysis_result))
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-Hardhik\src\recommendations.py", line 35, in _recommend_on_cash_flow
+    s = analysis_result.summary
+        ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnalysisSummary' object has no attribute 'summary'
+2025-11-22 23:30:16,560 - src.runner - INFO - ==================================================
+2025-11-22 23:30:16,561 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:30:16,561 - src.runner - INFO - ==================================================
+2025-11-22 23:30:16,561 - src.ingestion - INFO - Loading transactions from outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535\input.csv
+2025-11-22 23:30:16,601 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:30:16,612 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:30:21,607 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:30:21,764 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535
+2025-11-22 23:30:21,765 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:30:21,947 - src.visualization - INFO - Saved figure to: outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535\category_spending.png
+2025-11-22 23:30:21,947 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:30:21,954 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:21,956 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:21,957 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:21,959 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:22,102 - src.visualization - INFO - Saved figure to: outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535\spending_trends.png
+2025-11-22 23:30:22,102 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:30:22,250 - src.visualization - INFO - Saved figure to: outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535\anomaly_detection.png
+2025-11-22 23:30:22,250 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:30:22,266 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:22,272 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:22,384 - src.visualization - INFO - Saved figure to: outputs\api-runs\2c98630c-b572-48eb-8e56-f2162211e535\cluster_distribution.png
+2025-11-22 23:30:22,384 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:30:22,389 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:30:36,209 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 23:30:36,218 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 23:30:36,219 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 23:30:36,225 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 23:30:36,250 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 23:30:36,256 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 23:30:36,260 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 23:30:36,263 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 23:30:40,015 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:30:40,093 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:30:40,098 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:30:40,268 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:30:40,273 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:30:40,562 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:30:40,638 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 23:30:41,126 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 23:30:41,444 - src.runner - INFO - ==================================================
+2025-11-22 23:30:41,444 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:30:41,445 - src.runner - INFO - ==================================================
+2025-11-22 23:30:41,445 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 23:30:41,451 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 23:30:41,459 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 23:30:41,465 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 23:30:41,658 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\outputs
+2025-11-22 23:30:41,659 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:30:41,877 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\outputs\category_spending.png
+2025-11-22 23:30:41,878 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:30:41,890 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:41,891 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:41,892 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:41,892 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,018 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\outputs\spending_trends.png
+2025-11-22 23:30:42,018 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:30:42,208 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\outputs\anomaly_detection.png
+2025-11-22 23:30:42,209 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:30:42,225 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,231 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,391 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_successful_o0\outputs\cluster_distribution.png
+2025-11-22 23:30:42,392 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:30:42,396 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:30:42,402 - src.runner - INFO - ==================================================
+2025-11-22 23:30:42,402 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:30:42,403 - src.runner - INFO - ==================================================
+2025-11-22 23:30:42,403 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:30:42,403 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:30:42,409 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:30:42,409 - src.visualization - WARNING - No category data to plot
+2025-11-22 23:30:42,414 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:30:42,415 - src.visualization - WARNING - No time series data to plot
+2025-11-22 23:30:42,421 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:30:42,421 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 23:30:42,427 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:30:42,428 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 23:30:42,436 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_generate_all_plots_create0
+2025-11-22 23:30:42,436 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:30:42,578 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_generate_all_plots_create0\category_spending.png
+2025-11-22 23:30:42,579 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:30:42,589 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,590 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,700 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 23:30:42,700 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:30:42,910 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 23:30:42,910 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:30:42,927 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:42,933 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:30:43,066 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-22\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 23:30:43,066 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:50:31,295 - src.runner - INFO - ==================================================
+2025-11-22 23:50:31,295 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:50:31,295 - src.runner - INFO - ==================================================
+2025-11-22 23:50:31,296 - src.ingestion - INFO - Loading transactions from outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c\input.csv
+2025-11-22 23:50:31,341 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-22 23:50:31,353 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-22 23:50:36,395 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-22 23:50:36,553 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c
+2025-11-22 23:50:36,553 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:50:36,722 - src.visualization - INFO - Saved figure to: outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c\category_spending.png
+2025-11-22 23:50:36,722 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:50:36,729 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:36,731 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:36,733 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:36,734 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:36,871 - src.visualization - INFO - Saved figure to: outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c\spending_trends.png
+2025-11-22 23:50:36,872 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:50:37,026 - src.visualization - INFO - Saved figure to: outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c\anomaly_detection.png
+2025-11-22 23:50:37,026 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:50:37,040 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:37,046 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:37,159 - src.visualization - INFO - Saved figure to: outputs\api-runs\4f934936-73a0-463e-abea-2fe8a0b0473c\cluster_distribution.png
+2025-11-22 23:50:37,159 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:50:37,165 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:50:52,645 - src.ingestion - WARNING - Dropping 1 rows with invalid dates
+2025-11-22 23:50:52,654 - src.ingestion - WARNING - Filling 1 missing descriptions
+2025-11-22 23:50:52,655 - src.ingestion - WARNING - Filling 1 missing transaction types
+2025-11-22 23:50:52,660 - src.ingestion - WARNING - Dropping 1 rows with missing amounts
+2025-11-22 23:50:52,684 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_ingest_valid_csv_round_tr0\transactions.csv
+2025-11-22 23:50:52,691 - src.ingestion - INFO - Ingested 2 valid transactions
+2025-11-22 23:50:52,694 - src.ingestion - ERROR - Input CSV file not found: does_not_exist.csv
+2025-11-22 23:50:52,697 - src.ml_engine - INFO - Fitting KMeans with n_clusters=2 on 5 samples
+2025-11-22 23:50:56,512 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:50:56,591 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:50:56,595 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:50:56,764 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 5 samples
+2025-11-22 23:50:56,769 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:50:57,068 - src.ml_engine - INFO - Fitting IsolationForest on 5 samples
+2025-11-22 23:50:57,150 - src.ml_engine - INFO - Fitting KMeans with n_clusters=3 on 3 samples
+2025-11-22 23:50:57,637 - src.ml_engine - INFO - Fitting IsolationForest on 3 samples
+2025-11-22 23:50:57,973 - src.runner - INFO - ==================================================
+2025-11-22 23:50:57,973 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:50:57,973 - src.runner - INFO - ==================================================
+2025-11-22 23:50:57,974 - src.ingestion - INFO - Loading transactions from C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\small_transactions.csv
+2025-11-22 23:50:57,979 - src.ingestion - INFO - Ingested 6 valid transactions
+2025-11-22 23:50:57,986 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 6 samples
+2025-11-22 23:50:57,991 - src.ml_engine - INFO - Fitting IsolationForest on 6 samples
+2025-11-22 23:50:58,178 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\outputs
+2025-11-22 23:50:58,178 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:50:58,398 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\outputs\category_spending.png
+2025-11-22 23:50:58,398 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:50:58,410 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,411 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,412 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,413 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,540 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\outputs\spending_trends.png
+2025-11-22 23:50:58,540 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:50:58,732 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\outputs\anomaly_detection.png
+2025-11-22 23:50:58,733 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:50:58,747 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,754 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:58,916 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_successful_o0\outputs\cluster_distribution.png
+2025-11-22 23:50:58,917 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-22 23:50:58,921 - src.runner - INFO - Pipeline completed successfully
+2025-11-22 23:50:58,927 - src.runner - INFO - ==================================================
+2025-11-22 23:50:58,927 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-22 23:50:58,927 - src.runner - INFO - ==================================================
+2025-11-22 23:50:58,928 - src.ingestion - ERROR - Input CSV file not found: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:50:58,928 - src.runner - ERROR - Unexpected error in pipeline: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_handles_miss0\does_not_exist.csv
+Traceback (most recent call last):
+  File "D:\TechSophy\TechSophy-hardhik\src\runner.py", line 48, in run_pipeline
+    df = ingestion.ingest_transactions(csv_path)
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 205, in ingest_transactions
+    return _default_service.ingest_transactions(csv_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\TechSophy\TechSophy-hardhik\src\ingestion.py", line 67, in ingest_transactions
+    raise FileNotFoundError(f"CSV file not found at {path}")
+FileNotFoundError: CSV file not found at C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_run_pipeline_handles_miss0\does_not_exist.csv
+2025-11-22 23:50:58,934 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:50:58,934 - src.visualization - WARNING - No category data to plot
+2025-11-22 23:50:58,938 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:50:58,938 - src.visualization - WARNING - No time series data to plot
+2025-11-22 23:50:58,944 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:50:58,945 - src.visualization - WARNING - No anomaly data to plot
+2025-11-22 23:50:58,951 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:50:58,952 - src.visualization - WARNING - No cluster data to plot
+2025-11-22 23:50:58,959 - src.visualization - INFO - Generating all plots in directory: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_generate_all_plots_create0
+2025-11-22 23:50:58,959 - src.visualization - INFO - Generating category spending chart
+2025-11-22 23:50:59,097 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_generate_all_plots_create0\category_spending.png
+2025-11-22 23:50:59,098 - src.visualization - INFO - Generating time series chart
+2025-11-22 23:50:59,109 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:59,110 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:59,220 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_generate_all_plots_create0\spending_trends.png
+2025-11-22 23:50:59,220 - src.visualization - INFO - Generating anomaly visualization
+2025-11-22 23:50:59,429 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_generate_all_plots_create0\anomaly_detection.png
+2025-11-22 23:50:59,429 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-22 23:50:59,445 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:59,452 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-22 23:50:59,585 - src.visualization - INFO - Saved figure to: C:\Users\KISHORE\AppData\Local\Temp\pytest-of-KISHORE\pytest-23\test_generate_all_plots_create0\cluster_distribution.png
+2025-11-22 23:50:59,585 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 00:04:27,464 - src.runner - INFO - ==================================================
+2025-11-23 00:04:27,464 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 00:04:27,465 - src.runner - INFO - ==================================================
+2025-11-23 00:04:27,465 - src.ingestion - INFO - Loading transactions from outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436\input.csv
+2025-11-23 00:04:27,515 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 00:04:27,532 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 00:04:33,243 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 00:04:33,542 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436
+2025-11-23 00:04:33,542 - src.visualization - INFO - Generating category spending chart
+2025-11-23 00:04:33,885 - src.visualization - INFO - Saved figure to: outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436\category_spending.png
+2025-11-23 00:04:33,886 - src.visualization - INFO - Generating time series chart
+2025-11-23 00:04:33,898 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:33,900 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:33,902 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:33,903 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:34,144 - src.visualization - INFO - Saved figure to: outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436\spending_trends.png
+2025-11-23 00:04:34,144 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 00:04:34,443 - src.visualization - INFO - Saved figure to: outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436\anomaly_detection.png
+2025-11-23 00:04:34,444 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 00:04:34,463 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:34,473 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:04:34,694 - src.visualization - INFO - Saved figure to: outputs\api-runs\ca8b8785-b222-42e2-a0e9-14fc220a9436\cluster_distribution.png
+2025-11-23 00:04:34,695 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 00:04:34,702 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 00:06:21,449 - src.runner - INFO - ==================================================
+2025-11-23 00:06:21,449 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 00:06:21,449 - src.runner - INFO - ==================================================
+2025-11-23 00:06:21,450 - src.ingestion - INFO - Loading transactions from outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8\input.csv
+2025-11-23 00:06:21,491 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 00:06:21,506 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 00:06:21,513 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 00:06:21,803 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8
+2025-11-23 00:06:21,804 - src.visualization - INFO - Generating category spending chart
+2025-11-23 00:06:22,074 - src.visualization - INFO - Saved figure to: outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8\category_spending.png
+2025-11-23 00:06:22,075 - src.visualization - INFO - Generating time series chart
+2025-11-23 00:06:22,087 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,089 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,091 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,092 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,325 - src.visualization - INFO - Saved figure to: outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8\spending_trends.png
+2025-11-23 00:06:22,325 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 00:06:22,640 - src.visualization - INFO - Saved figure to: outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8\anomaly_detection.png
+2025-11-23 00:06:22,641 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 00:06:22,669 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,679 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:06:22,912 - src.visualization - INFO - Saved figure to: outputs\api-runs\bc55f0be-74a2-44db-b821-77103f5d22e8\cluster_distribution.png
+2025-11-23 00:06:22,912 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 00:06:22,919 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 00:19:19,114 - src.runner - INFO - ==================================================
+2025-11-23 00:19:19,114 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 00:19:19,115 - src.runner - INFO - ==================================================
+2025-11-23 00:19:19,116 - src.ingestion - INFO - Loading transactions from outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e\input.csv
+2025-11-23 00:19:19,165 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 00:19:19,183 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 00:19:19,190 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 00:19:19,513 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e
+2025-11-23 00:19:19,514 - src.visualization - INFO - Generating category spending chart
+2025-11-23 00:19:19,834 - src.visualization - INFO - Saved figure to: outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e\category_spending.png
+2025-11-23 00:19:19,835 - src.visualization - INFO - Generating time series chart
+2025-11-23 00:19:19,850 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:19,852 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:19,854 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:19,855 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:20,115 - src.visualization - INFO - Saved figure to: outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e\spending_trends.png
+2025-11-23 00:19:20,115 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 00:19:20,425 - src.visualization - INFO - Saved figure to: outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e\anomaly_detection.png
+2025-11-23 00:19:20,426 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 00:19:20,442 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:20,452 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:19:20,718 - src.visualization - INFO - Saved figure to: outputs\api-runs\eb201b21-7d82-4022-b31b-ebb9dba9430e\cluster_distribution.png
+2025-11-23 00:19:20,719 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 00:19:20,726 - src.runner - INFO - Pipeline completed successfully
+2025-11-23 00:20:49,041 - src.runner - INFO - ==================================================
+2025-11-23 00:20:49,041 - src.runner - INFO - Starting Finance Tracker Pipeline
+2025-11-23 00:20:49,041 - src.runner - INFO - ==================================================
+2025-11-23 00:20:49,042 - src.ingestion - INFO - Loading transactions from outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\input.csv
+2025-11-23 00:20:49,082 - src.ingestion - INFO - Ingested 612 valid transactions
+2025-11-23 00:20:49,095 - src.ml_engine - INFO - Fitting KMeans with n_clusters=5 on 612 samples
+2025-11-23 00:20:49,103 - src.ml_engine - INFO - Fitting IsolationForest on 612 samples
+2025-11-23 00:20:49,399 - src.visualization - INFO - Generating all plots in directory: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9
+2025-11-23 00:20:49,400 - src.visualization - INFO - Generating category spending chart
+2025-11-23 00:20:49,678 - src.visualization - INFO - Saved figure to: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\category_spending.png
+2025-11-23 00:20:49,679 - src.visualization - INFO - Generating time series chart
+2025-11-23 00:20:49,690 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:49,691 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:49,693 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:49,694 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:49,912 - src.visualization - INFO - Saved figure to: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\spending_trends.png
+2025-11-23 00:20:49,912 - src.visualization - INFO - Generating anomaly visualization
+2025-11-23 00:20:50,194 - src.visualization - INFO - Saved figure to: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\anomaly_detection.png
+2025-11-23 00:20:50,195 - src.visualization - INFO - Generating cluster distribution chart
+2025-11-23 00:20:50,212 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:50,220 - matplotlib.category - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-11-23 00:20:50,444 - src.visualization - INFO - Saved figure to: outputs\api-runs\c664faad-dd9b-4db2-b11d-df774c5716e9\cluster_distribution.png
+2025-11-23 00:20:50,445 - src.visualization - INFO - Generated 4 visualization(s)
+2025-11-23 00:20:50,451 - src.runner - INFO - Pipeline completed successfully
