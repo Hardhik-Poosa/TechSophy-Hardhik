@@ -196,6 +196,19 @@ function App() {
                   <div className="mt-3 small text-muted">
                     <span className="d-block fw-semibold mb-1">Run ID</span>
                     <code className="text-wrap d-block">{result.run_id}</code>
+
+                    {result.processed_data_url && (
+                      <Button
+                        as="a"
+                        href={`${API_BASE}${result.processed_data_url}`}
+                        download={`cleaned_transactions_${result.run_id}.csv`}
+                        variant="outline-light"
+                        size="sm"
+                        className="mt-2 w-100"
+                      >
+                        Download cleaned CSV
+                      </Button>
+                    )}
                   </div>
                 )}
               </Card.Body>

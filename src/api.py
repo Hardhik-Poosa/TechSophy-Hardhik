@@ -30,9 +30,6 @@ app.add_middleware(
 # Serve files under ./outputs at /static/...
 app.mount("/static", StaticFiles(directory="outputs"), name="static")
 
-# ---- Ruff B008-safe default for File(...) ----
-FILE_PARAM = File(...)  # FastAPI dependency, created once at module level
-
 
 @app.get("/")
 def root() -> dict[str, str]:
@@ -45,9 +42,11 @@ def health() -> dict[str, str]:
 
 
 @app.post("/analyze")
-async def analyze_file(file: UploadFile = FILE_PARAM) -> dict[str, Any]:
+async def analyze_file(
+    file: UploadFile = File(...),  # noqa: B008
+) -> dict[str, Any]:
     """
-    Upload a CSV, run the full pipeline, and return summary + recs + figure URLs.
+    Upload a CSV, run the full pipeline, and return summary + recs + figure/download URLs.
     """
     if not file.filename.lower().endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are supported.")
@@ -76,21 +75,37 @@ async def analyze_file(file: UploadFile = FILE_PARAM) -> dict[str, Any]:
     summary = result["summary"]
     recommendations = result.get("recommendations", [])
 
-    # 🔑 Accept both newer "figures" and your current "figure_paths"
-    raw_figures: dict[str, str] = (
-        result.get("figures") or result.get("figure_paths") or {}
-    )
+    # The core pipeline returns figure_paths
+    figure_paths: dict[str, str] = result.get("figure_paths", {})
 
-    # Convert local file paths into URLs under /static/...
+    # Convert local figure paths into URLs under /static/...
     public_figures: dict[str, str] = {}
-    for name, path_str in raw_figures.items():
+    for name, path_str in figure_paths.items():
         path = Path(path_str)
         try:
             rel = path.relative_to(Path("outputs"))
         except ValueError:
-            # If it's outside ./outputs for some reason, skip it
+            # If it's already absolute somewhere else, skip it
             continue
         public_figures[name] = f"/static/{rel.as_posix()}"
+
+    # Downloadable artifacts (cleaned CSV, summary, recommendations)
+    downloads: dict[str, str] = {}
+
+    for key, out_key in [
+        ("processed_data_path", "cleaned_csv"),
+        ("summary_path", "summary_txt"),
+        ("recommendations_path", "recommendations_txt"),
+    ]:
+        p_str = result.get(key)
+        if not p_str:
+            continue
+        p = Path(p_str)
+        try:
+            rel = p.relative_to(Path("outputs"))
+        except ValueError:
+            continue
+        downloads[out_key] = f"/static/{rel.as_posix()}"
 
     return {
         "run_id": run_id,
@@ -101,8 +116,8 @@ async def analyze_file(file: UploadFile = FILE_PARAM) -> dict[str, Any]:
             "num_transactions": summary.num_transactions,
         },
         "recommendations": recommendations,
-        # 👇 This is what App.js expects:
         "figures": public_figures,
+        "downloads": downloads,
     }
 
 
