@@ -1,128 +1,195 @@
-# src/api.py
+"""
+FastAPI layer for the TechSophy Finance Insights backend.
+
+Exposes:
+    - POST /analyze   : upload CSV, run full pipeline, return summary, recs, figure URLs.
+    - GET  /outputs/* : static serving of generated plots and cleaned CSVs.
+"""
+
 from __future__ import annotations
 
+import shutil
 import uuid
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from src.runner import run_pipeline
+from src.logging_config import get_logger
+from src.runner import run_pipeline, validate_input_file
+
+logger = get_logger(__name__)
 
 app = FastAPI(title="TechSophy Finance Insights API")
 
-# Allow local React dev server(s)
+UploadedCSV = Annotated[UploadFile, File(...)]
+
+
+# ---------------------------------------------------------------------------
+# CORS – allow React dev server
+# ---------------------------------------------------------------------------
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://localhost:5173",
         "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Serve files under ./outputs at /static/...
-app.mount("/static", StaticFiles(directory="outputs"), name="static")
+# ---------------------------------------------------------------------------
+# Static files: serve everything under ./outputs at /outputs
+# ---------------------------------------------------------------------------
+
+OUTPUTS_DIR = Path("outputs")
+OUTPUTS_DIR.mkdir(exist_ok=True, parents=True)
+
+app.mount(
+    "/outputs",
+    StaticFiles(directory=str(OUTPUTS_DIR)),
+    name="outputs",
+)
 
 
-@app.get("/")
-def root() -> dict[str, str]:
-    return {"message": "TechSophy Finance Insights API is running"}
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
 
-@app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "ok"}
+def _to_http_path(path_str: str) -> str:
+    """
+    Convert a filesystem path like 'outputs/api-runs/123/fig.png'
+    into a URL path '/outputs/api-runs/123/fig.png'.
+    """
+    p = Path(path_str)
+
+    # Make it relative to outputs/ if possible
+    try:
+        rel = p.relative_to(OUTPUTS_DIR)
+    except ValueError:
+        # Path is already relative or outside outputs; just use as-is
+        rel = p
+
+    return f"/outputs/{rel.as_posix()}"
+
+
+# ---------------------------------------------------------------------------
+# /analyze endpoint
+# ---------------------------------------------------------------------------
 
 
 @app.post("/analyze")
 async def analyze_file(
-    file: UploadFile = File(...),  # noqa: B008
+    file: UploadedCSV,
 ) -> dict[str, Any]:
     """
-    Upload a CSV, run the full pipeline, and return summary + recs + figure/download URLs.
+    Upload a CSV, run the full pipeline, and return summary + recs + figure URLs.
+
+    Response shape:
+
+    {
+        "run_id": "...",
+        "success": true,
+        "summary": { ... },
+        "recommendations": [...],
+        "figures": {
+            "category_spending": "/outputs/api-runs/<run_id>/category_spending.png",
+            ...
+        },
+        "num_anomalies": 3,
+        "processed_data_url": "/outputs/api-runs/<run_id>/processed_transactions.csv"
+    }
     """
-    if not file.filename.lower().endswith(".csv"):
-        raise HTTPException(status_code=400, detail="Only CSV files are supported.")
+    if file.content_type not in ("text/csv", "application/vnd.ms-excel"):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file type. Please upload a CSV file.",
+        )
 
-    # Per-request working directory: outputs/api-runs/<uuid>/
+    api_runs_dir = OUTPUTS_DIR / "api-runs"
+    api_runs_dir.mkdir(parents=True, exist_ok=True)
+
     run_id = str(uuid.uuid4())
-    base_output_dir = Path("outputs") / "api-runs" / run_id
-    base_output_dir.mkdir(parents=True, exist_ok=True)
+    run_dir = api_runs_dir / run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
 
-    input_path = base_output_dir / "input.csv"
-    input_path.write_bytes(await file.read())
+    input_path = run_dir / "input.csv"
 
-    # Use your existing pipeline
-    result = run_pipeline(str(input_path), str(base_output_dir))
+    # Save uploaded file
+    try:
+        with input_path.open("wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+    finally:
+        await file.close()
 
-    if not result.get("success", False):
+    # Validate input file quickly (schema / readability)
+    if not validate_input_file(str(input_path)):
+        raise HTTPException(
+            status_code=400,
+            detail="Uploaded CSV failed basic validation.",
+        )
+
+    logger.info("Starting pipeline for run_id=%s", run_id)
+
+    try:
+        # Force outputs into run-specific directory
+        pipeline_result: dict[str, Any] = run_pipeline(
+            csv_path=str(input_path),
+            output_dir=str(run_dir),
+        )
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.exception("Pipeline crashed for run_id=%s", run_id)
+        raise HTTPException(
+            status_code=500,
+            detail={"message": "Internal processing error", "error": str(exc)},
+        ) from exc
+
+    if not pipeline_result.get("success", False):
+        logger.error(
+            "Pipeline reported failure for run_id=%s: %s",
+            run_id,
+            pipeline_result.get("error"),
+        )
         raise HTTPException(
             status_code=500,
             detail={
-                "message": "Analysis failed",
-                "error_type": result.get("error_type"),
-                "error": result.get("error"),
+                "message": "Pipeline failed while analyzing the file.",
+                "error": pipeline_result.get("error"),
             },
         )
 
-    summary = result["summary"]
-    recommendations = result.get("recommendations", [])
+    # ---------------- URL normalisation for frontend ----------------
 
-    # The core pipeline returns figure_paths
-    figure_paths: dict[str, str] = result.get("figure_paths", {})
-
-    # Convert local figure paths into URLs under /static/...
-    public_figures: dict[str, str] = {}
-    for name, path_str in figure_paths.items():
-        path = Path(path_str)
-        try:
-            rel = path.relative_to(Path("outputs"))
-        except ValueError:
-            # If it's already absolute somewhere else, skip it
-            continue
-        public_figures[name] = f"/static/{rel.as_posix()}"
-
-    # Downloadable artifacts (cleaned CSV, summary, recommendations)
-    downloads: dict[str, str] = {}
-
-    for key, out_key in [
-        ("processed_data_path", "cleaned_csv"),
-        ("summary_path", "summary_txt"),
-        ("recommendations_path", "recommendations_txt"),
-    ]:
-        p_str = result.get(key)
-        if not p_str:
-            continue
-        p = Path(p_str)
-        try:
-            rel = p.relative_to(Path("outputs"))
-        except ValueError:
-            continue
-        downloads[out_key] = f"/static/{rel.as_posix()}"
-
-    return {
-        "run_id": run_id,
-        "summary": {
-            "total_spend": summary.total_spend,
-            "total_income": summary.total_income,
-            "net_cash_flow": summary.net_cash_flow,
-            "num_transactions": summary.num_transactions,
-        },
-        "recommendations": recommendations,
-        "figures": public_figures,
-        "downloads": downloads,
+    raw_figures: dict[str, str] = pipeline_result.get("figures", {}) or {}
+    figures_http: dict[str, str] = {
+        key: _to_http_path(path_str) for key, path_str in raw_figures.items()
     }
 
+    # Processed CSV: either taken from pipeline_result or computed from run_dir
+    processed_path_str = (
+        pipeline_result.get("processed_csv_path")
+        or pipeline_result.get("processed_path")
+        or str(run_dir / "processed_transactions.csv")
+    )
+    processed_data_url = _to_http_path(processed_path_str)
 
-if __name__ == "__main__":
-    import uvicorn
+    summary = pipeline_result.get("summary")
+    recommendations = pipeline_result.get("recommendations", [])
+    num_anomalies = pipeline_result.get("num_anomalies", 0)
 
-    # Bind only to localhost for local development to satisfy Bandit (B104).
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    response: dict[str, Any] = {
+        "run_id": run_id,
+        "success": True,
+        "summary": summary,
+        "recommendations": recommendations,
+        "figures": figures_http,
+        "num_anomalies": num_anomalies,
+        "processed_data_url": processed_data_url,
+    }
+
+    return response

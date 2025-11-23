@@ -1,8 +1,9 @@
 """
 Command-line entry point for the Finance Tracker.
 
-Example:
+Examples:
     python main.py --input data/input_transactions.csv
+    python main.py --train_categories
 """
 
 from __future__ import annotations
@@ -17,10 +18,11 @@ logger = get_logger(__name__)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Personal Finance Tracker")
+
     parser.add_argument(
         "--input",
         "-i",
-        required=True,
+        default=None,
         help="Path to input CSV file containing transactions.",
     )
     parser.add_argument(
@@ -35,7 +37,19 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Enable verbose logging (DEBUG level).",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--train_categories",
+        action="store_true",
+        help="Train the ML category classifier from data/training_categories.csv.",
+    )
+
+    args = parser.parse_args()
+
+    # Require --input unless we are only training categories
+    if not args.train_categories and args.input is None:
+        parser.error("--input is required unless --train_categories is set.")
+
+    return args
 
 
 def _get_summary_value(summary_obj, key: str):
@@ -46,7 +60,6 @@ def _get_summary_value(summary_obj, key: str):
     """
     if hasattr(summary_obj, key):
         return getattr(summary_obj, key)
-    # fallback for old dict-based version
     return summary_obj[key]
 
 
@@ -55,6 +68,13 @@ def main() -> None:
 
     if args.verbose:
         logger.setLevel("DEBUG")
+
+    if args.train_categories:
+        from src.category_model import train_category_model
+
+        train_category_model("data/training_categories.csv")
+        logger.info("Category model training completed.")
+        raise SystemExit(0)
 
     csv_path = args.input
     if not validate_input_file(csv_path):

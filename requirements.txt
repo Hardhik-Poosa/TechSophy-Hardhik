@@ -17,3 +17,7 @@ bandit>=1.7.10
 
 fastapi
 uvicorn[standard]
+
+transformers
+torch
+accelerate

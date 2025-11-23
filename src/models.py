@@ -1,7 +1,4 @@
-"""
-Domain models and custom exceptions.
-"""
-
+# src/models.py
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -9,36 +6,23 @@ from typing import Any
 
 import pandas as pd
 
-# Exceptions ---------------------------------------------------------------
-
 
 class DataValidationError(Exception):
-    """Raised when input data does not meet required schema or quality."""
+    """Raised when input data fails validation (schema, types, missing columns)."""
+
+    pass
 
 
 class ModelError(Exception):
     """Raised when ML model operations fail."""
 
-
-class ConfigurationError(Exception):
-    """Raised when configuration is missing or invalid."""
-
-
-# Data classes ------------------------------------------------------------
-
-
-@dataclass
-class ClusterProfile:
-    cluster_id: int
-    size: int
-    avg_amount: float
-    total_amount: float
-    top_merchants: list[str]
-    dominant_category: str | None = None
+    pass
 
 
 @dataclass
 class AnalysisSummary:
+    """High-level numeric summary of the transaction dataset."""
+
     total_spend: float
     total_income: float
     net_cash_flow: float
@@ -47,27 +31,27 @@ class AnalysisSummary:
 
 @dataclass
 class AnalysisResult:
+    """
+    Container for all analysis artefacts produced by the pipeline.
+
+    Note:
+        analysis.build_analysis_result passes:
+            - summary
+            - category_stats
+            - time_series
+            - anomalies
+            - recurring
+            - raw_df
+    """
+
     summary: AnalysisSummary
     category_stats: pd.DataFrame
     time_series: pd.DataFrame
     anomalies: pd.DataFrame
-    recurring: pd.DataFrame
-    raw_df: pd.DataFrame
 
-    def to_dict(self) -> dict[str, Any]:
-        """
-        Serialize key metrics to a plain dictionary (for JSON/reporting).
-        DataFrames are not fully serialized here, only shapes/basic stats.
-        """
-        return {
-            "summary": {
-                "total_spend": self.summary.total_spend,
-                "total_income": self.summary.total_income,
-                "net_cash_flow": self.summary.net_cash_flow,
-                "num_transactions": self.summary.num_transactions,
-            },
-            "category_stats_rows": len(self.category_stats),
-            "time_series_rows": len(self.time_series),
-            "num_anomalies": len(self.anomalies),
-            "num_recurring": len(self.recurring),
-        }
+    # New fields used by analysis.py
+    recurring: pd.DataFrame | None = None
+    raw_df: pd.DataFrame | None = None
+
+    # Optional extra metadata if ever needed
+    extra: dict[str, Any] | None = None

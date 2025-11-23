@@ -53,9 +53,7 @@ export default function Dashboard({
     setModalTitle("");
   };
 
-  const anomaliesImg = figures?.anomaly_detection;
-  const hasAnomalies = Boolean(anomaliesImg);
-
+  // Advanced visualizations (these are the only ones we keep)
   const advHeatmap = figures?.correlation_heatmap;
   const advRadar = figures?.cluster_radar;
   const advWaterfall = figures?.cashflow_waterfall;
@@ -68,10 +66,12 @@ export default function Dashboard({
       <header className="app-header dashboard-header">
         <div className="dash-header-left">
           <h1 className="app-title dashboard-title">
-            Finance Insights <span className="dash-gradient-text">Dashboard</span>
+            Finance Insights{" "}
+            <span className="dash-gradient-text">Dashboard</span>
           </h1>
           <p className="text-light-50 dash-header-subtitle">
-            Upload a CSV and explore spending patterns, clusters, anomalies, and trends.
+            Upload a CSV and explore spending patterns, clusters, anomalies, and
+            trends.
           </p>
         </div>
         <div className="dash-header-right">
@@ -81,7 +81,9 @@ export default function Dashboard({
               <span className="dash-badge-id">{lastRunId.slice(0, 8)}</span>
             </span>
           )}
-          {isAnalyzing && <span className="dash-badge dash-badge-live">Analyzing…</span>}
+          {isAnalyzing && (
+            <span className="dash-badge dash-badge-live">Analyzing…</span>
+          )}
         </div>
       </header>
 
@@ -91,26 +93,30 @@ export default function Dashboard({
           <div className="dash-grid dash-grid-4">
             <StatCard
               label="Total Spend"
-              value={summary ? `₹${summary.total_spend.toLocaleString()}` : "–"}
+              value={
+                summary ? `₹${summary.total_spend.toLocaleString()}` : "–"
+              }
               subtitle="All outgoing transactions"
               accent="Expenses"
             />
             <StatCard
               label="Total Income"
-              value={summary ? `₹${summary.total_income.toLocaleString()}` : "–"}
+              value={
+                summary ? `₹${summary.total_income.toLocaleString()}` : "–"
+              }
               subtitle="All incoming transactions"
               accent="Income"
             />
             <StatCard
               label="Net Cash Flow"
               value={
-                summary
-                  ? `₹${summary.net_cash_flow.toLocaleString()}`
-                  : "–"
+                summary ? `₹${summary.net_cash_flow.toLocaleString()}` : "–"
               }
               subtitle="Income minus spend"
               accent={
-                summary && summary.net_cash_flow >= 0 ? "Positive" : "Negative"
+                summary && summary.net_cash_flow >= 0
+                  ? "Positive"
+                  : "Negative"
               }
             />
             <StatCard
@@ -122,8 +128,9 @@ export default function Dashboard({
           </div>
         </section>
 
-        {/* Middle row: anomalies + recommendations */}
+        {/* Middle row: anomalies (text only) + recommendations */}
         <section className="dashboard-section dash-section-2col">
+          {/* Anomaly Snapshot WITHOUT image preview */}
           <div className="dash-card card-glass card-hover dash-anomaly-card">
             <div className="dash-card-header">
               <div>
@@ -132,30 +139,14 @@ export default function Dashboard({
                   Outlier transactions spotted by the anomaly detector.
                 </p>
               </div>
-              {hasAnomalies && (
-                <span className="dash-badge dash-badge-outline">
-                  Visual anomalies view
-                </span>
-              )}
             </div>
-            {anomaliesImg ? (
-              <div
-                className="dash-anomaly-preview"
-                onClick={() => openModal(anomaliesImg, "Anomaly Detection")}
-              >
-                <img
-                  src={anomaliesImg}
-                  alt="Anomaly Detection"
-                  className="chart-thumb"
-                />
-              </div>
-            ) : (
-              <div className="dash-empty-state">
-                Upload a file to see anomaly visualization.
-              </div>
-            )}
+            <div className="dash-empty-state">
+              Anomaly insights are reflected in your statistics and
+              recommendations.
+            </div>
           </div>
 
+          {/* Recommendations */}
           <div className="dash-card card-glass dash-rec-card">
             <div className="dash-card-header">
               <div>
@@ -179,40 +170,11 @@ export default function Dashboard({
           </div>
         </section>
 
-        {/* Bottom: charts grid, including NEW charts */}
+        {/* Bottom: ONLY the advanced charts */}
         <section className="dashboard-section">
           <h2 className="dash-section-title">Visual Analytics</h2>
           <div className="dash-grid dash-grid-4">
-            <ChartCard
-              title="Category Spending"
-              subtitle="Which categories dominate your expenses?"
-              src={figures?.category_spending}
-              onClick={() =>
-                openModal(
-                  figures?.category_spending,
-                  "Category Spending Breakdown"
-                )
-              }
-            />
-            <ChartCard
-              title="Spending Over Time"
-              subtitle="Cash flow evolution across dates."
-              src={figures?.spending_trends}
-              onClick={() =>
-                openModal(figures?.spending_trends, "Spending Over Time")
-              }
-            />
-            <ChartCard
-              title="Cluster Distribution"
-              subtitle="How your transactions group into behavioral clusters."
-              src={figures?.cluster_distribution}
-              onClick={() =>
-                openModal(
-                  figures?.cluster_distribution,
-                  "Cluster Distribution"
-                )
-              }
-            />
+            {/* Correlation Heatmap */}
             <ChartCard
               title="Correlation Heatmap"
               subtitle="Relationships between numeric features."
@@ -221,6 +183,8 @@ export default function Dashboard({
                 openModal(advHeatmap, "Feature Correlation Heatmap")
               }
             />
+
+            {/* Cluster Radar */}
             <ChartCard
               title="Cluster Radar"
               subtitle="Profile of each cluster (avg / min / max / volume)."
@@ -229,6 +193,8 @@ export default function Dashboard({
                 openModal(advRadar, "Cluster Profiles (Radar Chart)")
               }
             />
+
+            {/* Cashflow Waterfall */}
             <ChartCard
               title="Cashflow Waterfall"
               subtitle="Month-by-month net cash movement."
@@ -236,10 +202,12 @@ export default function Dashboard({
               onClick={() =>
                 openModal(
                   advWaterfall,
-                  "Monthly Net Cash Flow (Waterfall-style)"
+                  "Monthly Net Cash Flow (Waterfall-style)",
                 )
               }
             />
+
+            {/* Cashflow Forecast */}
             <ChartCard
               title="Cashflow Forecast"
               subtitle="Simple forecast from recent months."

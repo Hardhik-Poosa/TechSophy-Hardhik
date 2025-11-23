@@ -1,7 +1,6 @@
 # src/ml_engine.py
 from __future__ import annotations
 
-import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -12,12 +11,10 @@ from sklearn.cluster import KMeans
 from sklearn.ensemble import IsolationForest
 
 from src.config import get_model_config
+from src.logging_config import get_logger
+from src.models import ModelError
 
-logger = logging.getLogger(__name__)
-
-
-class ModelError(Exception):
-    """Custom exception for ML errors."""
+logger = get_logger(__name__)
 
 
 # ----------------------------------------------------------
@@ -54,7 +51,7 @@ class SpendingClusterer:
 
     def _ensure_fitted(self) -> None:
         if not self.is_fitted or self.model is None:
-            raise ModelError("Underlying model failure")
+            raise ModelError("Cluster model has not been fitted yet.")
 
     def predict(self, features: pd.DataFrame) -> pd.Series:
         self._ensure_fitted()
@@ -62,7 +59,7 @@ class SpendingClusterer:
             labels = self.model.predict(features)
             return pd.Series(labels, index=features.index)
         except Exception as exc:
-            raise ModelError("Underlying model failure") from exc
+            raise ModelError("Failed to predict clusters") from exc
 
     def get_cluster_profiles(
         self, df: pd.DataFrame, cluster_labels: pd.Series
@@ -111,9 +108,7 @@ class AnomalyDetector:
             raise ModelError(f"Failed to fit anomaly detector: {exc}") from exc
 
     def _ensure_fitted(self) -> None:
-        """
-        Ensure the underlying IsolationForest model is available and fitted.
-        """
+        """Ensure the underlying IsolationForest model is available and fitted."""
         if not self.is_fitted or self.model is None:
             raise ModelError("Anomaly detector has not been fitted yet.")
 
@@ -122,7 +117,7 @@ class AnomalyDetector:
         try:
             return self.model.decision_function(features)
         except Exception as exc:
-            raise ModelError("Underlying model failure") from exc
+            raise ModelError("Failed to score anomalies") from exc
 
     def predict(self, features: pd.DataFrame) -> np.ndarray:
         self._ensure_fitted()
@@ -130,7 +125,7 @@ class AnomalyDetector:
             raw = self.model.predict(features)  # 1 normal, -1 anomaly
             return raw == -1
         except Exception as exc:
-            raise ModelError("Underlying model failure") from exc
+            raise ModelError("Failed to predict anomalies") from exc
 
 
 # ----------------------------------------------------------
