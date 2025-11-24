@@ -3,7 +3,7 @@
 Here’s a clean, complete README you can use.
 Create `README.md` in the repo root and paste this:
 
-````markdown
+---
 # TechSophy – Smart Personal Finance Insights
 
 This project is a full-stack personal finance analytics tool built with:
@@ -84,7 +84,7 @@ It’s fully Dockerized and has a CI pipeline with tests, linting and security c
    └─ category_model_metrics.json   # accuracy, macro F1, classes
 ````
 
----
+
 
 ## Setup – Local Development
 
