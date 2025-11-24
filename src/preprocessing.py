@@ -14,7 +14,10 @@ from __future__ import annotations
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-from src.category_model import CategoryModelNotAvailableError, predict_category
+from src.category_model import (
+    CategoryModelNotAvailableError,
+    predict_category_with_confidence,
+)
 from src.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -22,6 +25,8 @@ logger = get_logger(__name__)
 
 class PreprocessingService:
     """Encapsulates feature engineering logic for reuse and testing."""
+
+    # ---------- Time features ----------
 
     def add_time_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """Add time-based features derived from the 'date' column."""
@@ -86,32 +91,14 @@ class PreprocessingService:
 
         return "Other"
 
-    def _safe_predict_category(self, description: str) -> str:
-        """
-        Try to predict using the ML model. If anything fails (model missing,
-        loading error, etc.), fall back to the rule-based category.
-        """
-        try:
-            label = predict_category(description)
-            logger.debug("ML category prediction: '%s' -> '%s'", description, label)
-            return label
-        except CategoryModelNotAvailableError as exc:
-            logger.info(
-                "Category model not available, falling back to rules: %s",
-                exc,
-            )
-            return self._rule_based_category(description)
-        except Exception as exc:  # pragma: no cover - defensive
-            logger.warning(
-                "Category prediction failed, falling back to rules: %s",
-                exc,
-            )
-            return self._rule_based_category(description)
-
     def derive_base_category(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Derive a 'base_category' column using ML classifier when available,
+        Derive a 'base_category' column using the BERT classifier when available,
         otherwise fall back to rule-based categorization.
+
+        Also adds:
+            - category_confidence (float)
+            - is_category_uncertain (bool)
         """
         logger.debug("Deriving base categories (ML + rule-based fallback)")
 
@@ -119,10 +106,47 @@ class PreprocessingService:
             raise ValueError("Expected 'description' column in DataFrame")
 
         df = df.copy()
-        df["base_category"] = (
-            df["description"].astype(str).apply(self._safe_predict_category)
-        )
+
+        def _predict_row(desc: str):
+            desc = str(desc)
+            try:
+                label, conf = predict_category_with_confidence(desc)
+                is_uncertain = conf < 0.6
+                final_label = "Uncertain" if is_uncertain else label
+                logger.debug(
+                    "ML category prediction: '%s' -> '%s' (conf=%.3f, uncertain=%s)",
+                    desc,
+                    final_label,
+                    conf,
+                    is_uncertain,
+                )
+                return final_label, conf, is_uncertain
+
+            except CategoryModelNotAvailableError as exc:
+                logger.info(
+                    "Category model not available, falling back to rules: %s",
+                    exc,
+                )
+                rb_label = self._rule_based_category(desc)
+                return rb_label, 0.0, True
+
+            except Exception as exc:  # pragma: no cover - defensive
+                logger.warning(
+                    "Category prediction failed, falling back to rules: %s",
+                    exc,
+                )
+                rb_label = self._rule_based_category(desc)
+                return rb_label, 0.0, True
+
+        # Apply row-wise and unpack the tuple into separate columns
+        preds = df["description"].astype(str).apply(_predict_row)
+        df["base_category"] = preds.apply(lambda x: x[0])
+        df["category_confidence"] = preds.apply(lambda x: x[1])
+        df["is_category_uncertain"] = preds.apply(lambda x: x[2])
+
         return df
+
+    # ---------- Feature matrix ----------
 
     def build_feature_matrix(self, df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
         """

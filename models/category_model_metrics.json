@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.7,
+  "macro_f1": 0.5843868416066692,
+  "classes": [
+    "Education",
+    "Entertainment",
+    "Food",
+    "Health",
+    "Rent",
+    "Shopping",
+    "Travel",
+    "Utilities"
+  ]
+}

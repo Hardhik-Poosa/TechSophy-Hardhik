@@ -1,0 +1,22 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+.env.*
+.vscode/
+.idea/
+
+# Logs & coverage
+*.log
+finance_tracker.log
+.coverage
+
+# Outputs that the app can regenerate
+outputs/
+
+# Node stuff (frontend will handle separately)
+frontend/node_modules

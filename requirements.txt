@@ -19,5 +19,7 @@ fastapi
 uvicorn[standard]
 
 transformers
-torch
+torch==2.5.1
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 accelerate

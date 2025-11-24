@@ -2,11 +2,14 @@
 """
 Category classification models for transaction descriptions.
 
-At runtime we try to use the fine-tuned DistilBERT model saved under:
+We load a fine-tuned BERT model from:
     models/bert_category_model/
 
-If that model is missing or fails to load, callers are expected to catch
-CategoryModelNotAvailableError and fall back to rule-based logic.
+Exports:
+    - CategoryModelNotAvailableError
+    - predict_category_with_confidence(text) -> (label, confidence)
+    - predict_category(text) -> label
+        * Returns "Uncertain" if confidence is below CONFIDENCE_THRESHOLD.
 """
 
 from __future__ import annotations
@@ -14,89 +17,87 @@ from __future__ import annotations
 from pathlib import Path
 
 import torch
-from transformers import DistilBertForSequenceClassification, DistilBertTokenizerFast
+import torch.nn.functional as F
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from src.logging_config import get_logger
 
 logger = get_logger(__name__)
 
-# Directory where train_bert_categories.py saved the model
-MODEL_DIR = Path("models") / "bert_category_model"
+BASE_DIR = Path(__file__).resolve().parent.parent
+BERT_MODEL_DIR = BASE_DIR / "models" / "bert_category_model"
 
-# Simple in-memory cache so we only hit disk once
-_MODEL: DistilBertForSequenceClassification | None = None
-_TOKENIZER: DistilBertTokenizerFast | None = None
-_ID2LABEL: dict[int, str] = {}
+CONFIDENCE_THRESHOLD: float = 0.6  # you can tune this
 
 
 class CategoryModelNotAvailableError(RuntimeError):
-    """
-    Raised when a category model cannot be loaded (e.g. not trained yet).
-    """
+    """Raised when a category model cannot be loaded (e.g. not trained yet)."""
 
     pass
+
+
+# Lazy-loaded singletons
+_TOKENIZER: AutoTokenizer | None = None
+_MODEL: AutoModelForSequenceClassification | None = None
+_LOADED: bool = False
 
 
 def _ensure_model_loaded() -> None:
     """
     Load tokenizer + model from disk once, or raise CategoryModelNotAvailableError.
     """
-    global _MODEL, _TOKENIZER, _ID2LABEL
+    global _TOKENIZER, _MODEL, _LOADED
 
-    if _MODEL is not None and _TOKENIZER is not None:
+    if _LOADED and _TOKENIZER is not None and _MODEL is not None:
         return
 
-    if not MODEL_DIR.exists():
+    if not BERT_MODEL_DIR.exists():
         raise CategoryModelNotAvailableError(
-            f"BERT category model directory not found at {MODEL_DIR}"
+            f"BERT category model directory not found at {BERT_MODEL_DIR}"
         )
 
     try:
-        logger.info("Loading BERT category model from %s", MODEL_DIR)
+        logger.info("Loading BERT category model from %s", BERT_MODEL_DIR)
 
-        # Local-only, offline load of the fine-tuned model to satisfy Bandit B615.
-        _TOKENIZER = DistilBertTokenizerFast.from_pretrained(
-            MODEL_DIR,
-            local_files_only=True,  # nosec B615 - only load local fine-tuned weights
+        _TOKENIZER = AutoTokenizer.from_pretrained(
+            BERT_MODEL_DIR,
+            local_files_only=True,  # only load fine-tuned local weights
         )
-        _MODEL = DistilBertForSequenceClassification.from_pretrained(
-            MODEL_DIR,
-            local_files_only=True,  # nosec B615 - only load local fine-tuned weights
+        _MODEL = AutoModelForSequenceClassification.from_pretrained(
+            BERT_MODEL_DIR,
+            local_files_only=True,
         )
         _MODEL.eval()
 
-        # Pull label mapping from config if available
-        config = _MODEL.config
-        if hasattr(config, "id2label") and isinstance(config.id2label, dict):
-            _ID2LABEL = {int(k): v for k, v in config.id2label.items()}
-        else:
-            num_labels = config.num_labels
-            _ID2LABEL = {i: str(i) for i in range(num_labels)}
+        _LOADED = True
 
-        logger.info("Loaded BERT category model with labels: %s", _ID2LABEL)
+        logger.info(
+            "Loaded BERT category model with labels: %s",
+            getattr(_MODEL.config, "id2label", {}),
+        )
+
     except Exception as exc:  # pragma: no cover - defensive
         logger.error("Failed to load BERT category model: %s", exc, exc_info=True)
-        _MODEL = None
         _TOKENIZER = None
-        _ID2LABEL = {}
+        _MODEL = None
+        _LOADED = False
         raise CategoryModelNotAvailableError(
             f"Failed to load BERT category model: {exc}"
         ) from exc
 
 
-def predict_category(description: str) -> str:
+def predict_category_with_confidence(text: str) -> tuple[str, float]:
     """
-    Predict a high-level spending category for a transaction description.
+    Return (label, confidence) for a single transaction description.
 
     Raises:
-        CategoryModelNotAvailableError if model is missing or fails to load.
+        CategoryModelNotAvailableError if the fine-tuned model cannot be loaded.
     """
     _ensure_model_loaded()
-
-    assert _MODEL is not None
     assert _TOKENIZER is not None
+    assert _MODEL is not None
 
-    text = description or ""
+    text = text or ""
     inputs = _TOKENIZER(
         text,
         truncation=True,
@@ -105,11 +106,36 @@ def predict_category(description: str) -> str:
         return_tensors="pt",
     )
 
-    # We do plain argmax on logits; no need for softmax
     with torch.no_grad():
         outputs = _MODEL(**inputs)
         logits = outputs.logits
-        pred_id = int(torch.argmax(logits, dim=-1).item())
+        probs = F.softmax(logits, dim=-1)
+        confidence, pred_idx = torch.max(probs, dim=-1)
 
-    label = _ID2LABEL.get(pred_id, str(pred_id))
+    confidence_val = float(confidence.item())
+
+    # id2label is stored on the model config
+    id2label = getattr(_MODEL.config, "id2label", None)
+    if isinstance(id2label, dict):
+        label = id2label[int(pred_idx)]
+    else:
+        # Fallback: just use the index as string
+        label = str(int(pred_idx))
+
+    return label, confidence_val
+
+
+def predict_category(text: str) -> str:
+    """
+    Wrapper used by the rest of the codebase.
+
+    Returns a category label, or "Uncertain" if confidence is below
+    CONFIDENCE_THRESHOLD.
+
+    Raises:
+        CategoryModelNotAvailableError if the model cannot be loaded.
+    """
+    label, conf = predict_category_with_confidence(text)
+    if conf < CONFIDENCE_THRESHOLD:
+        return "Uncertain"
     return label

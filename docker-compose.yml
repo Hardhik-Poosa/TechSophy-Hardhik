@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: techsophy-api
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: "1"
+      # You can add more env vars here, e.g.:
+      # ENV: "production"
+      # LOG_LEVEL: "info"
+    volumes:
+      # So your local models/data are visible inside container
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: techsophy-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    environment:
+      # Your React app can read this as process.env.REACT_APP_API_BASE_URL
+      - REACT_APP_API_BASE_URL=http://localhost:8000
+    restart: unless-stopped
