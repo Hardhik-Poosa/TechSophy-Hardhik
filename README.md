@@ -1,9 +1,3 @@
-## Final `README.md` for your project
-
-Here’s a clean, complete README you can use.
-Create `README.md` in the repo root and paste this:
-
----
 # TechSophy – Smart Personal Finance Insights
 
 This project is a full-stack personal finance analytics tool built with:
