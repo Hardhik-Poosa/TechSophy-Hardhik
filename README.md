@@ -1,4 +1,3 @@
-````markdown
 # TechSophy – Smart Personal Finance Insights
 
 TechSophy is a **full-stack personal finance analytics platform** that combines:
