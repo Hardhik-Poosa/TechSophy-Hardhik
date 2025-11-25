@@ -21,7 +21,7 @@ You upload a transaction CSV, and the system:
 
 ---
 
-# 🚀 New Feature: LLM-Powered Monthly Summaries
+# New Feature: LLM-Powered Monthly Summaries
 
 The platform now includes an **LLM Insights Engine** under:
 `POST /api/llm/summary`
@@ -53,7 +53,7 @@ Backend loads this in: `src/llm_service.py` and `src/llm_routes.py`. If the key 
 
 ---
 
-# 📐 Architecture / Project Structure
+#  Architecture / Project Structure
 
 ```text
 .
@@ -89,7 +89,7 @@ Backend loads this in: `src/llm_service.py` and `src/llm_routes.py`. If the key 
 
 -----
 
-# ⚙️ Setup (Local)
+#  Setup (Local)
 
 ## 1\. Installation
 
@@ -110,7 +110,7 @@ npm install
 npm start
 ```
 
-## 📥 CSV Format Requirements (VERY IMPORTANT)
+##  CSV Format Requirements (VERY IMPORTANT)
 
 Your CSV must have these columns:
 
@@ -140,7 +140,7 @@ date,time,description,amount,merchant
 2025-01-06,09:50,Cafe Coffee Day,180,CCD
 ```
 
-## 🤖 ML Pipeline
+##  ML Pipeline
 
 The data pipeline runs sequentially:
 
@@ -153,7 +153,7 @@ The data pipeline runs sequentially:
 
 -----
 
-## 🧪 Testing & Quality
+##  Testing & Quality
 
 ### Run tests:
 
@@ -179,7 +179,7 @@ The **CI pipeline** (`.github/workflows/ci.yml`) runs all these checks: `Ruff`, 
 
 -----
 
-## 🐳 Docker (Full Stack)
+##  Docker (Full Stack)
 
 Run the entire stack (FastAPI backend + React/Nginx frontend) with one command.
 
@@ -193,7 +193,7 @@ docker compose up -d
 | **Backend (API)** | `http://localhost:8000` | FastAPI and LLM endpoints |
 | **Frontend (UI)** | `http://localhost:3000` | React dashboard |
 
-## 📦 Outputs
+##  Outputs
 
 Each API run generates a unique directory under `outputs/api-runs/<run_id>/` containing all analytical artifacts:
 
@@ -205,7 +205,7 @@ Each API run generates a unique directory under `outputs/api-runs/<run_id>/` con
 
 -----
 
-## 🧠 Future Enhancements
+##  Future Enhancements
 
   * Improve LLM prompts for even richer financial insights.
   * Support multiple models (OpenAI / Gemini / Llama selectable).
@@ -215,7 +215,7 @@ Each API run generates a unique directory under `outputs/api-runs/<run_id>/` con
 
 -----
 
-**🙌 Author**
+** Author**
 Hardhik Poosa (Woxsen University)
 
 Backend • ML • Frontend • DevOps
