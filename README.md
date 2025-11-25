@@ -1,5 +1,46 @@
 # TechSophy – Smart Personal Finance Insights
 
+TechSophy is a full-stack AI-powered personal finance analytics platform designed to transform raw banking transactions into meaningful insights. This project integrates Machine Learning, NLP, and LLM-based reasoning to automatically analyze spending behavior, detect unusual activities, and generate intuitive human-like summaries.
+
+This system was built to resemble the capabilities of modern fintech apps (e.g., MoneyView, CRED, Walnut) — but powered entirely by your own pipeline.
+
+ What This Project Achieves
+
+TechSophy performs:
+* Automated Data Processing
+   Parses, cleans, normalizes and enriches messy transaction data from user-uploaded CSV files.
+* ML-Driven Categorization & Behavior Analysis
+   Uses a fine-tuned BERT transformer model to classify transaction descriptions into spending categories with high accuracy.
+* Pattern Clustering
+   Uses KMeans to identify grouped spending behaviors like:
+   * Daily food expenses
+   * Shopping clusters
+   * Travel clusters
+   * Utility bill patterns
+* Anomaly Detection
+   Tracks suspicious or unusually high transactions using IsolationForest, helping detect:
+   * Fraudulent charges
+   * Unexpected bill spikes
+   * Out-of-pattern purchases
+* Data Visualizations
+   Generates clear visual charts for:
+   * Category spending
+   * Cashflow patterns
+   * Transaction anomalies
+   * Cluster behavior
+* NEW: LLM-Powered Monthly Financial Summary
+   Using Gemini 2.5 Flash, the system automatically creates natural-language summaries explaining:
+   * Where your money went
+   * Biggest merchants
+   * Risky transactions
+   * Intelligent insights & suggestions
+   This makes the platform feel like a smart financial assistant.
+* Full DevOps Integration
+  Dockerized backend + frontend
+  CI pipeline (lint, tests, coverage, Bandit security, pre-commit)
+  Reproducible build & deploy
+  Clean modular code structure
+
 TechSophy is a **full-stack personal finance analytics platform** that combines:
 
 * **FastAPI** (Python backend)
