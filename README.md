@@ -8,7 +8,7 @@ This system was built to resemble the capabilities of modern fintech apps (e.g.,
 
 TechSophy performs:
 * Automated Data Processing
-   Parses, cleans, normalizes and enriches messy transaction data from user-uploaded CSV files.
+Parses, cleans, normalizes and enriches messy transaction data from user-uploaded CSV files.
 * ML-Driven Categorization & Behavior Analysis
    Uses a fine-tuned BERT transformer model to classify transaction descriptions into spending categories with high accuracy.
 * Pattern Clustering
