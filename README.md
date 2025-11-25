@@ -86,7 +86,7 @@ Backend loads this in: `src/llm_service.py` and `src/llm_routes.py`. If the key 
 └─ models/
    ├─ bert_category_model/         # Local BERT weights
    └─ category_model_metrics.json
-````
+
 
 -----
 
