@@ -63,7 +63,9 @@ class SpendingClusterer:
             raise ModelError("Failed to predict clusters") from exc
 
     def get_cluster_profiles(
-        self, df: pd.DataFrame, cluster_labels: pd.Series
+        self,
+        df: pd.DataFrame,
+        cluster_labels: pd.Series,
     ) -> dict[int, dict[str, float]]:
         merged = df.copy()
         merged["cluster_id"] = cluster_labels
@@ -348,8 +350,11 @@ def build_summary_payload(df: pd.DataFrame) -> dict[str, Any]:
     if "date" in df.columns and not np.issubdtype(df["date"].dtype, np.datetime64):
         try:
             df["date"] = pd.to_datetime(df["date"], errors="coerce")
-        except Exception:  # pragma: no cover - defensive
-            pass
+        except (TypeError, ValueError) as exc:  # pragma: no cover - defensive
+            logger.warning(
+                "Unable to coerce 'date' column to datetime; leaving as-is. Error: %s",
+                exc,
+            )
 
     month_label = "Unknown period"
     if "date" in df.columns and df["date"].notna().any():
