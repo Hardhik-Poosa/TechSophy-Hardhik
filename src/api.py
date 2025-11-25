@@ -2,6 +2,7 @@
 FastAPI layer for the TechSophy Finance Insights backend.
 
 Exposes:
+    - GET  /          : simple root message + link to docs
     - POST /analyze   : upload CSV, run full pipeline, return summary, recs, figure URLs.
     - GET  /outputs/* : static serving of generated plots and cleaned CSVs.
 """
@@ -22,13 +23,24 @@ from src.runner import run_pipeline, validate_input_file
 
 logger = get_logger(__name__)
 
-app = FastAPI(title="TechSophy Finance Insights API")
+# ---------------------------------------------------------------------------
+# FastAPI application
+# ---------------------------------------------------------------------------
+
+app = FastAPI(
+    title="TechSophy Finance Insights API",
+    version="0.1.0",
+    description=(
+        "Backend for TechSophy – upload your transaction CSV, get clustering, "
+        "anomaly detection, recommendations, and LLM-powered summaries."
+    ),
+)
 
 UploadedCSV = Annotated[UploadFile, File(...)]
 
 
 # ---------------------------------------------------------------------------
-# CORS – allow React dev server
+# CORS – allow React dev server (adjust origins as needed)
 # ---------------------------------------------------------------------------
 
 app.add_middleware(
@@ -41,6 +53,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---------------------------------------------------------------------------
 # Static files: serve everything under ./outputs at /outputs
@@ -79,31 +92,46 @@ def _to_http_path(path_str: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Root endpoint (so GET / is not 404)
+# ---------------------------------------------------------------------------
+
+
+@app.get("/", tags=["default"])
+def root() -> dict[str, Any]:
+    """
+    Simple root endpoint so hitting '/' returns something useful.
+    """
+    return {
+        "message": "TechSophy Finance Insights backend is running.",
+        "docs_url": "/docs",
+        "health_url": "/health",
+    }
+
+
+# ---------------------------------------------------------------------------
 # /analyze endpoint
 # ---------------------------------------------------------------------------
 
 
-@app.post("/analyze")
-async def analyze_file(
-    file: UploadedCSV,
-) -> dict[str, Any]:
+@app.post("/analyze", tags=["default"])
+async def analyze_file(file: UploadedCSV) -> dict[str, Any]:
     """
     Upload a CSV, run the full pipeline, and return summary + recs + figure URLs.
 
     Response shape:
 
-    {
-        "run_id": "...",
-        "success": true,
-        "summary": { ... },
-        "recommendations": [...],
-        "figures": {
-            "category_spending": "/outputs/api-runs/<run_id>/category_spending.png",
-            ...
-        },
-        "num_anomalies": 3,
-        "processed_data_url": "/outputs/api-runs/<run_id>/processed_transactions.csv"
-    }
+        {
+            "run_id": "...",
+            "success": true,
+            "summary": { ... },
+            "recommendations": [...],
+            "figures": {
+                "category_spending": "/outputs/api-runs/<run_id>/category_spending.png",
+                ...
+            },
+            "num_anomalies": 3,
+            "processed_data_url": "/outputs/api-runs/<run_id>/processed_transactions.csv"
+        }
     """
     if file.content_type not in ("text/csv", "application/vnd.ms-excel"):
         raise HTTPException(

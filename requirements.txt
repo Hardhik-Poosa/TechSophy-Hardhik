@@ -19,7 +19,9 @@ fastapi
 uvicorn[standard]
 
 transformers
-torch==2.5.1
+torch
 --extra-index-url https://download.pytorch.org/whl/cpu
 
 accelerate
+
+google-generativeai>=0.8.0

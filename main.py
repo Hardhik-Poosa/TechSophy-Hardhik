@@ -1,19 +1,58 @@
 """
-Command-line entry point for the Finance Tracker.
+FastAPI + CLI entrypoint for TechSophy.
 
-Examples:
-    python main.py --input data/input_transactions.csv
-    python main.py --train_categories
+- When run with `uvicorn main:app --reload`, this exposes the FastAPI app.
+- When run with `python main.py ...`, this runs the CLI pipeline.
 """
 
 from __future__ import annotations
 
 import argparse
 
+from dotenv import load_dotenv
+from src.api import app as api_app  # existing FastAPI app (with /api routes)
+from src.llm_routes import router as llm_router
 from src.logging_config import get_logger
 from src.runner import run_pipeline, validate_input_file
 
+# Load environment variables from .env (e.g. GEMINI_API_KEY)
+load_dotenv()
+
 logger = get_logger(__name__)
+
+# ---------------------------------------------------------------------------
+# FastAPI app wiring
+# ---------------------------------------------------------------------------
+
+# Reuse the FastAPI app defined in src.api
+app = api_app
+
+# Attach LLM routes under /api/...
+app.include_router(llm_router, prefix="/api")
+
+# Optional: add a simple /health endpoint if not already present in src.api
+try:
+    from fastapi import APIRouter
+
+    health_router = APIRouter(tags=["health"])
+
+    @health_router.get("/health")
+    def health_check():
+        return {"status": "ok"}
+
+    app.include_router(health_router)
+except Exception:  # pragma: no cover - defensive
+    logger.warning("Could not attach health router, but app will still run.")
+
+# ---------------------------------------------------------------------------
+# Command-line entry point (same behaviour as your old main.py)
+# ---------------------------------------------------------------------------
+
+# Examples:
+#
+#     python main.py --input data/input_transactions.csv
+#     python main.py --train_categories
+#
 
 
 def parse_args() -> argparse.Namespace:
@@ -68,7 +107,9 @@ def main() -> None:
 
     if args.verbose:
         logger.setLevel("DEBUG")
+        logger.debug("Verbose logging enabled")
 
+    # Optional training-only mode
     if args.train_categories:
         from src.category_model import train_category_model
 

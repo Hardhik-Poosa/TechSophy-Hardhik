@@ -1,6 +1,10 @@
 // frontend/src/Dashboard.jsx
-import React from "react";
-import "./App.css"; // reuse existing dark styles + new dashboard rules
+import React, { useState } from "react";
+import { Button, Spinner, Alert } from "react-bootstrap";
+import "./App.css"; // reuse existing dark styles + dashboard rules
+
+// Use the API_BASE URL from the environment or default to localhost:8000
+const API_BASE = process.env.REACT_APP_API_BASE || "http://127.0.0.1:8000";
 
 function StatCard({ label, value, subtitle, accent }) {
   return (
@@ -40,8 +44,14 @@ export default function Dashboard({
   isAnalyzing,
   lastRunId,
 }) {
-  const [modalSrc, setModalSrc] = React.useState(null);
-  const [modalTitle, setModalTitle] = React.useState("");
+  const [modalSrc, setModalSrc] = useState(null);
+  const [modalTitle, setModalTitle] = useState("");
+
+  // --- AI SUMMARY STATE ---
+  const [aiSummary, setAiSummary] = useState("");
+  const [aiSummaryLoading, setAiSummaryLoading] = useState(false);
+  const [aiSummaryError, setAiSummaryError] = useState("");
+  // ------------------------
 
   const openModal = (src, title) => {
     setModalSrc(src);
@@ -53,7 +63,40 @@ export default function Dashboard({
     setModalTitle("");
   };
 
-  // Advanced visualizations (these are the only ones we keep)
+  // --- AI SUMMARY HANDLER ---
+  async function handleAiSummaryClick() {
+    if (!lastRunId) return;
+
+    setAiSummaryLoading(true);
+    setAiSummaryError("");
+    setAiSummary("");
+
+    try {
+      const res = await fetch(`${API_BASE}/api/llm/summary`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ run_id: lastRunId }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        const errorMessage =
+          data.detail || "Failed to fetch AI summary from API.";
+        throw new Error(errorMessage);
+      }
+
+      setAiSummary(data.summary || "");
+    } catch (err) {
+      console.error("AI Summary Error:", err);
+      setAiSummaryError(err.message || "An unexpected error occurred.");
+    } finally {
+      setAiSummaryLoading(false);
+    }
+  }
+  // ------------------------
+
+  // Advanced visualizations
   const advHeatmap = figures?.correlation_heatmap;
   const advRadar = figures?.cluster_radar;
   const advWaterfall = figures?.cashflow_waterfall;
@@ -74,7 +117,25 @@ export default function Dashboard({
             trends.
           </p>
         </div>
+
         <div className="dash-header-right">
+          {/* AI Summary Button */}
+          <Button
+            onClick={handleAiSummaryClick}
+            disabled={!lastRunId || aiSummaryLoading || isAnalyzing}
+            variant="success"
+            className="btn-elevated"
+          >
+            {aiSummaryLoading ? (
+              <>
+                <Spinner animation="border" size="sm" className="me-2" />
+                Generating…
+              </>
+            ) : (
+              "🤖 Generate AI Summary"
+            )}
+          </Button>
+
           {lastRunId && (
             <span className="dash-badge">
               Run ID:
@@ -88,6 +149,27 @@ export default function Dashboard({
       </header>
 
       <main className="dashboard-main">
+        {/* AI Summary Display */}
+        {(aiSummary || aiSummaryError) && (
+          <section className="dashboard-section">
+            <div className="dash-card card-glass dash-ai-card">
+              <div className="dash-card-header">
+                <h2 className="dash-card-title">🤖 AI Monthly Summary</h2>
+              </div>
+              <div className="dash-card-body">
+                {aiSummaryError && (
+                  <Alert variant="danger">
+                    <strong>AI Generation Failed:</strong> {aiSummaryError}
+                  </Alert>
+                )}
+                {aiSummary && (
+                  <pre className="ai-summary-text">{aiSummary}</pre>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Top row: key stats */}
         <section className="dashboard-section">
           <div className="dash-grid dash-grid-4">
@@ -114,9 +196,7 @@ export default function Dashboard({
               }
               subtitle="Income minus spend"
               accent={
-                summary && summary.net_cash_flow >= 0
-                  ? "Positive"
-                  : "Negative"
+                summary && summary.net_cash_flow >= 0 ? "Positive" : "Negative"
               }
             />
             <StatCard
@@ -128,25 +208,8 @@ export default function Dashboard({
           </div>
         </section>
 
-        {/* Middle row: anomalies (text only) + recommendations */}
-        <section className="dashboard-section dash-section-2col">
-          {/* Anomaly Snapshot WITHOUT image preview */}
-          <div className="dash-card card-glass card-hover dash-anomaly-card">
-            <div className="dash-card-header">
-              <div>
-                <h2 className="dash-card-title">Anomaly Snapshot</h2>
-                <p className="dash-card-subtitle">
-                  Outlier transactions spotted by the anomaly detector.
-                </p>
-              </div>
-            </div>
-            <div className="dash-empty-state">
-              Anomaly insights are reflected in your statistics and
-              recommendations.
-            </div>
-          </div>
-
-          {/* Recommendations */}
+        {/* Middle row: ONLY recommendations now */}
+        <section className="dashboard-section">
           <div className="dash-card card-glass dash-rec-card">
             <div className="dash-card-header">
               <div>
@@ -170,11 +233,10 @@ export default function Dashboard({
           </div>
         </section>
 
-        {/* Bottom: ONLY the advanced charts */}
+        {/* Advanced visual charts */}
         <section className="dashboard-section">
-          <h2 className="dash-section-title">Visual Analytics</h2>
+          <h2 className="dash-section-title">Advanced Analytics</h2>
           <div className="dash-grid dash-grid-4">
-            {/* Correlation Heatmap */}
             <ChartCard
               title="Correlation Heatmap"
               subtitle="Relationships between numeric features."
@@ -183,8 +245,6 @@ export default function Dashboard({
                 openModal(advHeatmap, "Feature Correlation Heatmap")
               }
             />
-
-            {/* Cluster Radar */}
             <ChartCard
               title="Cluster Radar"
               subtitle="Profile of each cluster (avg / min / max / volume)."
@@ -193,8 +253,6 @@ export default function Dashboard({
                 openModal(advRadar, "Cluster Profiles (Radar Chart)")
               }
             />
-
-            {/* Cashflow Waterfall */}
             <ChartCard
               title="Cashflow Waterfall"
               subtitle="Month-by-month net cash movement."
@@ -206,8 +264,6 @@ export default function Dashboard({
                 )
               }
             />
-
-            {/* Cashflow Forecast */}
             <ChartCard
               title="Cashflow Forecast"
               subtitle="Simple forecast from recent months."

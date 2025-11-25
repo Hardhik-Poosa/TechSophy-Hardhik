@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 import joblib
 import numpy as np
@@ -198,57 +199,47 @@ def load_models(model_dir: str) -> tuple[SpendingClusterer, AnomalyDetector]:
 
 
 # ----------------------------------------------------------
-# Human-readable cluster & anomaly explanations
+# Extra insight helpers (clusters, anomalies, recommendations, LLM payload)
 # ----------------------------------------------------------
 
 
 def describe_clusters(df: pd.DataFrame) -> list[str]:
     """
+    Build human-readable summaries for each spending cluster.
+
     df must contain:
       - 'cluster_id' (int)
       - 'amount' (float)
-      - 'base_category' (str)  # from preprocessing
-      - 'merchant' (str)
+      - 'base_category' (str)
+      - 'merchant' (str)   # adjust if your column name differs
     """
+    if "cluster_id" not in df.columns:
+        return []
+
     summaries: list[str] = []
 
-    if "cluster_id" not in df.columns:
-        logger.warning("describe_clusters: 'cluster_id' column missing")
-        return summaries
-
     for cluster_id, group in df.groupby("cluster_id"):
-        if group.empty:
-            continue
+        amounts = group["amount"].astype(float)
+        mean_amount = amounts.mean()
+        p25, p75 = np.percentile(amounts, [25, 75])
 
-        mean_amount = group["amount"].mean()
-        p25, p75 = np.percentile(group["amount"], [25, 75])
-
-        category_col = "base_category" if "base_category" in group.columns else None
+        top_categories = (
+            group["base_category"].astype(str).value_counts().head(3).index.tolist()
+        )
         merchant_col = "merchant" if "merchant" in group.columns else None
-
-        top_categories: list[str] = []
         top_merchants: list[str] = []
-
-        if category_col is not None:
-            top_categories = (
-                group[category_col].value_counts().head(3).index.astype(str).tolist()
-            )
-
-        if merchant_col is not None:
+        if merchant_col:
             top_merchants = (
-                group[merchant_col].value_counts().head(3).index.astype(str).tolist()
+                group[merchant_col].astype(str).value_counts().head(3).index.tolist()
             )
 
         summary = (
             f"Cluster {cluster_id} represents typical spends around "
-            f"₹{p25:,.0f}–₹{p75:,.0f} (avg ₹{mean_amount:,.0f})"
+            f"₹{p25:,.0f}–₹{p75:,.0f} (avg ₹{mean_amount:,.0f}), "
+            f"mostly in categories: {', '.join(top_categories) if top_categories else 'mixed'}."
         )
-
-        if top_categories:
-            summary += f", mostly in categories: {', '.join(top_categories)}"
-
         if top_merchants:
-            summary += f". Common merchants: {', '.join(top_merchants)}."
+            summary += f" Common merchants: {', '.join(top_merchants)}."
 
         summaries.append(summary)
 
@@ -261,49 +252,54 @@ def describe_top_anomalies(
     top_k: int = 10,
 ) -> list[str]:
     """
+    Pick top-k anomalous transactions and describe them.
+
     df must contain:
       - score_col (higher = more anomalous)
       - 'date'
-      - 'merchant'
       - 'amount'
       - 'base_category'
+      - 'merchant' (if available)
     """
     if score_col not in df.columns:
-        logger.warning("describe_top_anomalies: '%s' column missing", score_col)
         return []
 
-    if df.empty:
+    if "date" not in df.columns or "amount" not in df.columns:
         return []
 
     top = df.sort_values(score_col, ascending=False).head(top_k)
 
     lines: list[str] = []
     for _, row in top.iterrows():
-        date_str = str(row.get("date", "unknown date"))
-        merchant = str(row.get("merchant", "unknown merchant"))
-        amount = float(row.get("amount", 0.0))
+        date_str = row["date"]
+        if hasattr(date_str, "strftime"):
+            date_str = row["date"].strftime("%Y-%m-%d")
+        merchant = str(row.get("merchant", "Unknown merchant"))
         category = str(row.get("base_category", "Unknown"))
-
-        reason_bits = [f"anomaly score {row[score_col]:.2f}"]
+        amount = float(row["amount"])
+        score = float(row[score_col])
 
         line = (
-            f"On {date_str}, you spent ₹{amount:,.0f} at "
-            f"{merchant} (category: {category}) – " + "; ".join(reason_bits) + "."
+            f"On {date_str}, you spent ₹{amount:,.0f} at {merchant} "
+            f"(category: {category}) – anomaly score {score:.2f}."
         )
         lines.append(line)
 
     return lines
 
 
-def build_recommendations(df: pd.DataFrame, outputs_dir: Path) -> None:
+def build_recommendations(df: pd.DataFrame, outputs_dir: Path) -> Path:
     """
-    Build a human-readable recommendations.txt from cluster + anomaly info.
+    Build a human-readable recommendations.txt file using:
+      - cluster summaries
+      - anomaly explanations
+    and save it under outputs_dir / 'recommendations.txt'.
 
-    Writes:
-        outputs_dir / "recommendations.txt"
+    Returns the path to the written file.
     """
+    outputs_dir = Path(outputs_dir)
     outputs_dir.mkdir(parents=True, exist_ok=True)
-    recommendations_path = outputs_dir / "recommendations.txt"
+    rec_path = outputs_dir / "recommendations.txt"
 
     cluster_summaries = describe_clusters(df)
     anomaly_summaries = describe_top_anomalies(df, score_col="anomaly_score", top_k=10)
@@ -316,7 +312,7 @@ def build_recommendations(df: pd.DataFrame, outputs_dir: Path) -> None:
         for s in cluster_summaries:
             lines.append(f"- {s}")
     else:
-        lines.append("- Could not derive clear cluster patterns from this dataset.")
+        lines.append("- No clusters found or clustering not applied.")
     lines.append("")
 
     if anomaly_summaries:
@@ -329,23 +325,59 @@ def build_recommendations(df: pd.DataFrame, outputs_dir: Path) -> None:
         lines.append("No highly unusual transactions detected in this period.")
         lines.append("")
 
-    # Optionally: flag uncertain categories
-    if "is_category_uncertain" in df.columns:
-        n_uncertain = int(df["is_category_uncertain"].sum())
-        lines.append("=== Category Quality ===")
-        lines.append("")
-        if n_uncertain > 0:
-            lines.append(
-                f"- Found {n_uncertain} transactions with low category confidence."
-            )
-            lines.append(
-                "- Please review 'Uncertain' categories manually in the dashboard."
-            )
-        else:
-            lines.append(
-                "- All transaction categories are predicted with high confidence."
-            )
-        lines.append("")
+    rec_path.write_text("\n".join(lines), encoding="utf-8")
+    logger.info("Wrote recommendations to %s", rec_path)
+    return rec_path
 
-    recommendations_path.write_text("\n".join(lines), encoding="utf-8")
-    logger.info("Wrote recommendations to %s", recommendations_path)
+
+def build_summary_payload(df: pd.DataFrame) -> dict[str, Any]:
+    """
+    Build a compact JSON-like dict summarizing a run, for LLM input.
+
+    Expected columns in df:
+      - 'date' (datetime or str)
+      - 'amount'
+      - 'base_category'
+      - 'cluster_id' (optional)
+      - 'anomaly_score' (optional)
+      - 'is_anomaly' (optional)
+      - 'merchant' (optional)
+    """
+    df = df.copy()
+
+    if "date" in df.columns and not np.issubdtype(df["date"].dtype, np.datetime64):
+        try:
+            df["date"] = pd.to_datetime(df["date"], errors="coerce")
+        except Exception:  # pragma: no cover - defensive
+            pass
+
+    month_label = "Unknown period"
+    if "date" in df.columns and df["date"].notna().any():
+        month_label = df["date"].dropna().dt.to_period("M").astype(str).mode().iloc[0]
+
+    total_spent = float(df["amount"].sum()) if "amount" in df.columns else 0.0
+
+    by_category: dict[str, float] = {}
+    if "base_category" in df.columns and "amount" in df.columns:
+        by_category = (
+            df.groupby("base_category")["amount"].sum().astype(float).to_dict()
+        )
+
+    top_merchants: list[str] = []
+    if "merchant" in df.columns:
+        top_merchants = df["merchant"].astype(str).value_counts().head(5).index.tolist()
+
+    anomaly_examples = describe_top_anomalies(df, score_col="anomaly_score", top_k=5)
+    cluster_summaries = describe_clusters(df)
+
+    payload: dict[str, Any] = {
+        "month": month_label,
+        "total_spent": total_spent,
+        "by_category": by_category,
+        "top_merchants": top_merchants,
+        "anomaly_examples": anomaly_examples,
+        "cluster_summaries": cluster_summaries,
+        "num_transactions": int(len(df)),
+    }
+
+    return payload
